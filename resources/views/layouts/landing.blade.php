@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<!--
-Landing page based on Pratt: http://blacktie.co/demo/pratt/
--->
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adminlte-laravel - Laravel 5 package that switchs default Laravel scaffolding/boilerplate to AdminLTE template with Bootstrap 3.0 and Pratt Landing page">
-    <meta name="author" content="Sergi Tur Badenas - acacha.org">
+    <meta name="description" content="{{ Config::get('sitename') }} - {{ Config::get('sitedesc') }}">
+    <meta name="author" content="Dwij IT Solutions">
 
-    <meta property="og:title" content="Adminlte-laravel" />
+    <meta property="og:title" content="{{ Config::get('sitename') }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Adminlte-laravel - Laravel 5 package that switchs default Laravel scaffolding/boilerplate to AdminLTE template with Bootstrap 3.0 and Pratt Landing page" />
+    <meta property="og:description" content="{{ Config::get('sitename') }} - {{ Config::get('sitedesc') }}" />
+    
+    <!--
     <meta property="og:url" content="http://demo.adminlte.acacha.org/" />
     <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE.png" />
     <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x600.png" />
     <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x314.png" />
     <meta property="og:sitename" content="demo.adminlte.acacha.org" />
     <meta property="og:url" content="http://demo.adminlte.acacha.org" />
-
+    -->
+    
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@acachawiki" />
-    <meta name="twitter:creator" content="@acacha1" />
-
-    <title>Acacha AdminLTE Laravel package template Landing page - Using Pratt</title>
-
+    <meta name="twitter:site" content="@dwijitsolutions" />
+    <meta name="twitter:creator" content="@dwijitsolutions" />
+    
+    <title>{{ Config::get('sitename') }}</title>
+    
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
-
+    
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 
@@ -51,7 +51,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><b>adminlte-laravel</b></a>
+            <a class="navbar-brand" href="#"><b>{{ Config::get('sitename') }}</b></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -78,15 +78,13 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <div class="container">
         <div class="row centered">
             <div class="col-lg-12">
-                <h1>Acacha <b><a href="https://github.com/acacha/adminlte-laravel">adminlte-laravel</a></b></h1>
-                <h3>A <a href="https://laravel.com/">Laravel</a> 5 package that switchs default Laravel
-                    scaffolding/boilerplate to <a href="https://almsaeedstudio.com/preview">AdminLTE</a> template with
-                    <a href="http://getbootstrap.com/">Bootstrap</a> 3.0 and <a href="http://blacktie.co/demo/pratt/">Pratt</a> Landing page</h3>
-                <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">Get Started!</a></h3>
+                <h1>Dwij <b><a>SBS 3.0</a></b></h1>
+                <h3>{{ Config::get('sitedesc') }}</h3>
+                <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">Get Started!</a></h3><br>
             </div>
             <div class="col-lg-2">
-                <h5>Amazing admin template</h5>
-                <p>Based on adminlte bootstrap theme</p>
+                <h5>Amazing Functionalities</h5>
+                <p>based on Advanced Technologies</p>
                 <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow1.png') }}">
             </div>
             <div class="col-lg-8">
@@ -95,8 +93,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             <div class="col-lg-2">
                 <br>
                 <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow2.png') }}">
-                <h5>Awesome packaged...</h5>
-                <p>... by <a href="http://acacha.org/sergitur">Sergi Tur Badenas</a> at <a href="http://acacha.org">acacha.org</a> ready to use with Laravel!</p>
+                <h5>Completely Packaged...</h5>
+                <p>for Future expantion of Modules</p>
             </div>
         </div>
     </div> <!--/ .container -->
@@ -108,23 +106,23 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 <div id="intro">
     <div class="container">
         <div class="row centered">
-            <h1>Designed To Excel</h1>
+            <h1>An Architecture designed To Excel</h1>
             <br>
             <br>
             <div class="col-lg-4">
                 <img src="{{ asset('/img/intro01.png') }}" alt="">
-                <h3>Community</h3>
-                <p>See <a href="https://github.com/acacha/adminlte-laravel">Github project</a>, post <a href="https://github.com/acacha/adminlte-laravel/issues">issues</a> and <a href="https://github.com/acacha/adminlte-laravel/pulls">Pull requests</a></p>
+                <h3>Communicate</h3>
+                <p>For Proper internal communication.</p>
             </div>
             <div class="col-lg-4">
                 <img src="{{ asset('/img/intro02.png') }}" alt="">
                 <h3>Schedule</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>Schedule your work efficiently.</p>
             </div>
             <div class="col-lg-4">
                 <img src="{{ asset('/img/intro03.png') }}" alt="">
                 <h3>Monitoring</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>Monitor your business on the go.</p>
             </div>
         </div>
         <br>
@@ -247,13 +245,16 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 <div id="footerwrap">
     <div class="container">
         <div class="col-lg-5">
-            <h3>Address</h3>
+            <h3>Contact Us</h3>
+            <b>Office:</b>
             <p>
-                Av. Greenville 987,<br/>
-                New York,<br/>
-                90873<br/>
-                United States
+                B4, Patang Plaza Phase 5,<br/>
+                Opp. PICT College,<br/>
+                Katraj, Pune<br/>
+                India - 411046.
             </p>
+            <div><b style="width:55px;display:inline-block;">Phone: </b>  &nbsp;<a href="tel:+917350558900">+91 7350558900</a></div>
+            <div style="margin-top:10px;"><b style="width:55px;display:inline-block;">Email: </b>  &nbsp;<a href="mailto:ganesh@dwij.in">ganesh@dwij.in</a></div>
         </div>
 
         <div class="col-lg-7">
@@ -281,14 +282,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 <div id="c">
     <div class="container">
         <p>
-            <a href="https://github.com/acacha/adminlte-laravel"></a><b>admin-lte-laravel</b></a>. A Laravel 5 package that switchs default Laravel scaffolding/boilerplate to AdminLTE template.<br/>
-            <strong>Copyright &copy; 2015 <a href="http://acacha.org">Acacha.org</a>.</strong> Created by <a href="http://acacha.org/sergitur">Sergi Tur Badenas</a>. See code at <a href="https://github.com/acacha/adminlte-laravel">Github</a>
-            <br/>
-            AdminLTE created by Abdullah Almsaeed <a href="https://almsaeedstudio.com/">almsaeedstudio.com</a>
-            <br/>
-             Pratt Landing Page Created by <a href="http://www.blacktie.co">BLACKTIE.CO</a>
+            <strong>Copyright &copy; 2016. Powered by <a href="https://dwijitsolutions.com"><b>Dwij IT Solutions</b></a>
         </p>
-
     </div>
 </div>
 

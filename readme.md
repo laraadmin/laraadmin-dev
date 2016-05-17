@@ -11,4 +11,7 @@ nano .env
 php artisan migrate
 adminlte-laravel --no-llum install
 
+npm install
+gulp
+
 ```
