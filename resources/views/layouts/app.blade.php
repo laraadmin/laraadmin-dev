@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-white sidebar-mini">
+<body class="skin-white fixed">
 <div class="wrapper">
 
     @include('layouts.partials.mainheader')

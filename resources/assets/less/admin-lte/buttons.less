@@ -20,6 +20,14 @@
     box-shadow: none;
     border-width: 1px;
   }
+  
+  &.btn-rounded {
+    .border-radius(100px);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-width: 1px;
+  }
 
   // Active state
   &:active {
@@ -55,13 +63,15 @@
 
 //Button color variations
 .btn-default {
-  background-color: #f4f4f4;
-  color: #444;
-  border-color: #ddd;
+  background-color: #fff;
+  color: #5e5e5e;
+  border-color: #f0f0f0;
   &:hover,
   &:active,
   &.hover {
-    background-color: darken(#f4f4f4, 5%);
+    background-color: #fafafa;
+    border-color: rgba(98,98,98,0.27);
+    color: #1a1a1a;
   }
 }
 

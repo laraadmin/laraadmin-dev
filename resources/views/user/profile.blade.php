@@ -12,13 +12,13 @@
 			<div class="row p20">
 				<div class="box profile">
 					<div class="box-content w200 text-center profile-image">
-						<form action="http://dwij.net/rise/index.php/team_members/save_profile_image/1" id="profile-image-form" class="general-form" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+						<form action="" id="profile-image-form" class="general-form" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
 							<div class="file-upload btn mt0 p0" style="vertical-align: top;  margin-left: -50px; ">
 								<span><i class="btn fa fa-camera"></i></span>
 								<input id="profile_image_file" class="upload" name="profile_image_file" type="file" data-height="200" data-width="200" data-preview-container="#profile-image-preview" data-input-field="#profile_image">
 							</div>
 							<input type="hidden" id="profile_image" name="profile_image" value="">
-							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ asset('/img/user2-160x160.jpg') }}" alt="..."></span>
+							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email) }}" alt="..."></span>
 							<h4 class="">{{ $user->name }}</h4>
 						</form>
 					</div>
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 
-	<ul data-toggle="ajax-tab" class="nav nav-tabs" role="tablist">
+	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
 		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"> Timeline</a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-general-info"> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-social-links"> Social Links</a></li>
@@ -80,9 +80,253 @@
 	</ul>
 
 	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane fade pl15 pr15" id="tab-timeline">
-			<div class="text-center p30">
-				<i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>
+		<div role="tabpanel" class="tab-pane fade p20 bg-white" id="tab-timeline">
+			<ul class="timeline timeline-inverse">
+				<!-- timeline time label -->
+				<li class="time-label">
+					<span class="bg-red">
+						10 Feb. 2014
+					</span>
+				</li>
+				<!-- /.timeline-label -->
+				<!-- timeline item -->
+				<li>
+				<i class="fa fa-envelope bg-blue"></i>
+
+				<div class="timeline-item">
+					<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+					<h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+
+					<div class="timeline-body">
+					Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+					weebly ning heekya handango imeem plugg dopplr jibjab, movity
+					jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+					quora plaxo ideeli hulu weebly balihoo...
+					</div>
+					<div class="timeline-footer">
+					<a class="btn btn-primary btn-xs">Read more</a>
+					<a class="btn btn-danger btn-xs">Delete</a>
+					</div>
+				</div>
+				</li>
+				<!-- END timeline item -->
+				<!-- timeline item -->
+				<li>
+				<i class="fa fa-user bg-aqua"></i>
+
+				<div class="timeline-item">
+					<span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+					<h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+					</h3>
+				</div>
+				</li>
+				<!-- END timeline item -->
+				<!-- timeline item -->
+				<li>
+				<i class="fa fa-comments bg-yellow"></i>
+
+				<div class="timeline-item">
+					<span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+					<h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+					<div class="timeline-body">
+					Take me to your leader!
+					Switzerland is small and neutral!
+					We are more like Germany, ambitious and misunderstood!
+					</div>
+					<div class="timeline-footer">
+					<a class="btn btn-warning btn-flat btn-xs">View comment</a>
+					</div>
+				</div>
+				</li>
+				<!-- END timeline item -->
+				<!-- timeline time label -->
+				<li class="time-label">
+					<span class="bg-green">
+						3 Jan. 2014
+					</span>
+				</li>
+				<!-- /.timeline-label -->
+				<!-- timeline item -->
+				<li>
+				<i class="fa fa-camera bg-purple"></i>
+
+				<div class="timeline-item">
+					<span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+					<h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+					<div class="timeline-body">
+					<img src="http://placehold.it/150x100" alt="..." class="margin">
+					<img src="http://placehold.it/150x100" alt="..." class="margin">
+					<img src="http://placehold.it/150x100" alt="..." class="margin">
+					<img src="http://placehold.it/150x100" alt="..." class="margin">
+					</div>
+				</div>
+				</li>
+				<!-- END timeline item -->
+				<li>
+				<i class="fa fa-clock-o bg-gray"></i>
+				</li>
+			</ul>
+			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
+			
+			<table class="table table-bordered text-center">
+                <tr>
+                  <th>Normal</th>
+                  <th>Large <code>.btn-lg</code></th>
+                  <th>Small <code>.btn-sm</code></th>
+                  <th>X-Small <code>.btn-xs</code></th>
+                  <th>Flat <code>.btn-flat</code></th>
+                  <th>Disabled <code>.disabled</code></th>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default">Default</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default btn-lg">Default</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default btn-sm">Default</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default btn-xs">Default</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default btn-flat">Default</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-default disabled">Default</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary">Primary</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary btn-lg">Primary</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary btn-sm">Primary</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary btn-xs">Primary</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary btn-flat">Primary</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-primary disabled">Primary</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success">Success</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success btn-lg">Success</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success btn-sm">Success</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success btn-xs">Success</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success btn-flat">Success</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-success disabled">Success</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info">Info</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info btn-lg">Info</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info btn-sm">Info</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info btn-xs">Info</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info btn-flat">Info</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-info disabled">Info</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-lg">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-sm">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-xs">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-flat">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger disabled">Danger</button>
+                  </td>
+                </tr>
+				<tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-rounded">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-lg btn-rounded">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-sm btn-rounded">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-xs btn-rounded">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger btn-flat btn-rounded">Danger</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-danger disabled btn-rounded">Danger</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning">Warning</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning btn-lg">Warning</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning btn-sm">Warning</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning btn-xs">Warning</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning btn-flat">Warning</button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-block btn-warning disabled">Warning</button>
+                  </td>
+                </tr>
+              </table><br>
+			
+			
+			
 		</div>
 		<div role="tabpanel" class="tab-pane fade active in" id="tab-general-info">
 			<div class="tab-content">
@@ -165,7 +409,7 @@
 		</div>
 		<div role="tabpanel" class="tab-pane fade" id="tab-social-links">
 			<div class="tab-content">
-				<form action="http://dwij.net/rise/index.php/team_members/save_social_links/1" id="social-links-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+				<form action="" id="social-links-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
 					<div class="panel">
 						<div class="panel-default panel-heading">
 							<h4> Social Links</h4>
@@ -248,7 +492,7 @@
 		</div>
 		<div role="tabpanel" class="tab-pane fade" id="tab-job-info">
 			<div class="tab-content">
-				<form action="http://dwij.net/rise/index.php/team_members/save_job_info" id="job-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+				<form action="" id="job-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
 
 					<input name="user_id" type="hidden" value="1">
 					<div class="panel">
@@ -293,7 +537,7 @@
 		</div>
 		<div role="tabpanel" class="tab-pane fade" id="tab-account-settings">
 			<div class="tab-content">
-				<form action="http://dwij.net/rise/index.php/team_members/save_account_settings/1" id="account-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+				<form action="" id="account-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
 					<div class="panel">
 						<div class="panel-default panel-heading">
 							<h4>Account settings</h4>
