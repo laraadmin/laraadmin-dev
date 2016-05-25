@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="skin-white sidebar-mini">
 <div class="wrapper">
 
     @include('layouts.partials.mainheader')
@@ -38,11 +38,14 @@ desired effect
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
-        @include('layouts.partials.contentheader')
+        
+        @if(!isset($no_header))
+            @include('layouts.partials.contentheader')
+        @endif
+        
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content {{ $no_padding or '' }}">
             <!-- Your Page Content Here -->
             @yield('main-content')
         </section><!-- /.content -->

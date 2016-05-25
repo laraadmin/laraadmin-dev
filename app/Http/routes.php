@@ -17,3 +17,5 @@ Config::set('sitedesc', "Dwij SBS is a better and smoother way to manage Project
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('user/{id}', 'UserController@showProfile');

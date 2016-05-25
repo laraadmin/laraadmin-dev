@@ -94,3 +94,53 @@
 .form-group-sm .form-control + .form-control-feedback.fa {
   line-height: @input-height-small;
 }
+
+.dashed-row .form-group{
+    border-bottom: 1px dashed #e2e4e8;
+    padding-bottom: 15px;
+} 
+.dashed-row .form-group:last-child{
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+.dashed-row .bd {
+    border-bottom: 1px dotted #e2e4e8;
+}
+
+.general-form .form-group:before,
+.general-form .form-group:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+.general-form .form-group:after {
+    clear: both;
+}
+.general-form textarea {
+    height: 75px;
+}
+.general-form .select2 {
+    width: 100%;
+}
+.general-form .mini {
+    max-width: 200px;
+}
+
+.general-form .form-control {
+    border-radius: 2px;
+    border-color: #f6f8f9;
+    background-color: #f6f8f9;
+    box-shadow: none;
+    transition: all 0.5s;
+}
+
+.general-form.white .form-control {
+    border-color: #fff;
+    background-color: #fff;
+}
+.general-form.white label {
+    margin-top: 5px;
+}
+.general-form.white .select2-container .select2-choice{
+    background-color: #fff !important;
+}
