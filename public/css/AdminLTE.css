@@ -2449,6 +2449,11 @@ a:focus {
   border-color: rgba(98, 98, 98, 0.27);
   color: #1a1a1a;
 }
+.btn-default:focus {
+  color: #5e5e5e;
+  border-color: rgba(98, 98, 98, 0.27);
+  background-color: #ffffff;
+}
 .btn-primary {
   background-color: #3c8dbc;
   border-color: #367fa9;
@@ -2457,6 +2462,14 @@ a:focus {
 .btn-primary:active,
 .btn-primary.hover {
   background-color: #367fa9;
+}
+.btn-primary:focus {
+  border-color: #307095;
+  background-color: #3c8dbc;
+}
+.btn-primary.disabled {
+  background-color: #3c8dbc;
+  border-color: #367fa9;
 }
 .btn-success {
   background-color: #10cfbd;
@@ -2467,6 +2480,14 @@ a:focus {
 .btn-success.hover {
   background-color: #0eb7a7;
 }
+.btn-success:focus {
+  border-color: #0ca092;
+  background-color: #10cfbd;
+}
+.btn-success.disabled {
+  background-color: #10cfbd;
+  border-color: #0eb7a7;
+}
 .btn-info {
   background-color: #48b0f7;
   border-color: #30a5f6;
@@ -2475,6 +2496,14 @@ a:focus {
 .btn-info:active,
 .btn-info.hover {
   background-color: #30a5f6;
+}
+.btn-info:focus {
+  border-color: #179bf5;
+  background-color: #48b0f7;
+}
+.btn-info.disabled {
+  background-color: #48b0f7;
+  border-color: #30a5f6;
 }
 .btn-danger {
   background-color: #f55753;
@@ -2485,6 +2514,10 @@ a:focus {
 .btn-danger.hover {
   background-color: #f43f3b;
 }
+.btn-danger:focus {
+  border-color: #f22823;
+  background-color: #f55753;
+}
 .btn-warning {
   background-color: #f39c12;
   border-color: #e08e0b;
@@ -2493,6 +2526,10 @@ a:focus {
 .btn-warning:active,
 .btn-warning.hover {
   background-color: #e08e0b;
+}
+.btn-warning:focus {
+  border-color: #c87f0a;
+  background-color: #f39c12;
 }
 .btn-outline {
   border: 1px solid #fff;
@@ -3657,17 +3694,19 @@ table.text-center th {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
+  border: 0px;
+  border-radius: 3px !important;
 }
 .btn-social > :first-child {
   position: absolute;
-  left: 0;
+  left: 2px;
   top: 0;
   bottom: 0;
   width: 32px;
   line-height: 34px;
-  font-size: 1.6em;
+  font-size: 1.4em;
   text-align: center;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .btn-social.btn-lg {
   padding-left: 61px;
@@ -3700,20 +3739,22 @@ table.text-center th {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
+  border: 0px;
+  border-radius: 3px !important;
   height: 34px;
   width: 34px;
   padding: 0;
 }
 .btn-social-icon > :first-child {
   position: absolute;
-  left: 0;
+  left: 2px;
   top: 0;
   bottom: 0;
   width: 32px;
   line-height: 34px;
-  font-size: 1.6em;
+  font-size: 1.4em;
   text-align: center;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .btn-social-icon.btn-lg {
   padding-left: 61px;

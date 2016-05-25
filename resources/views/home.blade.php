@@ -471,6 +471,6 @@
 <script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- dashboard -->
 <script src="{{ asset('js/pages/dashboard.js') }}"></script>
 @endpush

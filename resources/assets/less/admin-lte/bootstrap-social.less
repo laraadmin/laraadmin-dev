@@ -19,16 +19,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 700;
+  border: 0px;
+  border-radius: 3px !important;
   > :first-child {
     position: absolute;
-    left: 0;
+    left: 2px;
     top: 0;
     bottom: 0;
     width: @bs-height-base;
     line-height: (@bs-height-base + 2);
-    font-size: 1.6em;
+    font-size: 1.4em;
     text-align: center;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
   }
   &.btn-lg {
     padding-left: (@bs-height-lg + @padding-large-horizontal);
