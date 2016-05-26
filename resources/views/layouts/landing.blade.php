@@ -63,7 +63,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
                 @else
                     <li><a href="{{ url('/home') }}">{{ Auth::user()->name }}</a></li>
                 @endif
@@ -78,9 +78,9 @@
     <div class="container">
         <div class="row centered">
             <div class="col-lg-12">
-                <h1>Dwij <b><a>SBS 3.0</a></b></h1>
+                <h1>{{ Config::get('sitename2')[0] }} <b><a>{{ Config::get('sitename2')[1] }}</a></b></h1>
                 <h3>{{ Config::get('sitedesc') }}</h3>
-                <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">Get Started!</a></h3><br>
+                <h3><a href="{{ url('/login') }}" class="btn btn-lg btn-success">Get Started!</a></h3><br>
             </div>
             <div class="col-lg-2">
                 <h5>Amazing Functionalities</h5>

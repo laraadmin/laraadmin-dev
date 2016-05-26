@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\User;
 
 class CreateUsersTable extends Migration
 {
@@ -14,14 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('context_id')->unsigned();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email', 100)->unique();
             $table->string('password');
-            $table->integer('context_id');
-            $table->integer('type');
+            $table->string('type', 10)->default("employee");
             $table->rememberToken();
             $table->timestamps();
         });
+        User::create([
+            'name' => "Super Admin",
+            'email' => "gdb.sci123@gmail.com",
+            'password' => bcrypt("12345678"),
+            'context_id' => "1",
+            'type' => "employee",
+        ]);
     }
 
     /**

@@ -9,7 +9,7 @@
     <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ url('/home') }}"><b>Dwij </b>SBS 3.0</a>
+            <a href="{{ url('/home') }}"><b>{{ Config::get('sitename2')[0] }} </b>{{ Config::get('sitename2')[1] }}</a>
         </div>
 
         @if (count($errors) > 0)
