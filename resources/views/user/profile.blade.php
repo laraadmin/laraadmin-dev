@@ -18,7 +18,7 @@
 								<input id="profile_image_file" class="upload" name="profile_image_file" type="file" data-height="200" data-width="200" data-preview-container="#profile-image-preview" data-input-field="#profile_image">
 							</div>
 							<input type="hidden" id="profile_image" name="profile_image" value="">
-							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email) }}" alt="..."></span>
+							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email, ['size'=>400]) }}" alt="..."></span>
 							<h4 class="">{{ $user->name }}</h4>
 						</form>
 					</div>
