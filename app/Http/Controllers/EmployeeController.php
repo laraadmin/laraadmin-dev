@@ -20,10 +20,14 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function showProfile($id)
-    {
+    public function showProfile($id) {
         $employee = Employee::findOrFail($id);
-        $user = User::findOrFail($id);
+        //$user = User::findOrFail($id);
+        $user = User::where('context_id', '=', $id)->firstOrFail();
         return view('employees.view', ['user' => $user, 'employee' => $employee, 'no_header' => true, 'no_padding' => "no-padding"]);
+    }
+    
+    public function store() {
+        return "store";
     }
 }

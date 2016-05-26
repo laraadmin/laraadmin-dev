@@ -3,6 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Employee;
+use App\Module;
+use App\ModuleFields;
 
 class CreateEmployeesTable extends Migration
 {
@@ -18,7 +20,9 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('title', 100);
             $table->string('mobile', 20);
+            $table->string('mobile2', 20);
             $table->string('email', 100)->unique();
+            $table->string('gender')->default('male');
             $table->integer('dept')->unsigned();
             $table->integer('role')->unsigned();
             $table->string('city', 50);
@@ -30,11 +34,25 @@ class CreateEmployeesTable extends Migration
             $table->double('salary_cur');
             $table->timestamps();
         });
+        $module = Module::create([
+            'name' => "Employees",
+            'name_db' => 'employees'
+        ]);
+        ModuleFields::create([
+            'module' => $module->id,
+            'colname' => "name",
+            'label' => 'Name',
+        ]);
+        
+        
+        
         Employee::create([
             'name' => "Super Admin",
             'title' => "Super Admin",
             'mobile' => "8888888888",
+            'mobile2' => "",
             'email' => "gdb.sci123@gmail.com",
+            'gender' => 'male',
             'dept' => "0",
             'role' => "1",
             'city' => "",

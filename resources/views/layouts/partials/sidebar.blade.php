@@ -60,6 +60,7 @@
                     <li><a href="#"><i class="fa fa-circle-o text-red"></i> Company Profile</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Work Types</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Task Modeling</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Field Manager</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

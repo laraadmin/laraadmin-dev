@@ -8,6 +8,8 @@
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+<!-- jquery.validate -->
+<script src="{{ asset('/plugins/jquery-validation/jquery.validate.min.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

@@ -1549,6 +1549,20 @@ a:focus {
 .general-form.white .select2-container .select2-choice {
   background-color: #fff !important;
 }
+.general-form.white label.error {
+  box-shadow: none;
+  color: #ec5855;
+  margin-left: 13px;
+  font-weight: normal;
+}
+.general-form .form-control.white {
+  background-color: #fff;
+}
+.general-form .form-control:focus,
+.general-form .form-control.white:focus {
+  border-color: #ebeff2;
+  background-color: #ebeff2;
+}
 /*
  * Component: Progress Bar
  * -----------------------

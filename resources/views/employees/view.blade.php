@@ -19,14 +19,14 @@
 							</div>
 							<input type="hidden" id="profile_image" name="profile_image" value="">
 							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email, ['size'=>400]) }}" alt="..."></span>
-							<h4 class="">{{ $user->name }}</h4>
+							<h4 class="">{{ $employee->name }}</h4>
 						</form>
 					</div>
 
 					<div class="box-content pl15">
 						<p class="p10 m0"><label class="label label-info large"><strong> Admin </strong></label></p>
-						<p class="p10 m0"><i class="fa fa-envelope-o"></i> {{ $user->email }}</p>
-						<p class="p10 m0" title="Since"><i class="fa fa-clock-o"></i> {{ date("M d, Y", strtotime($user->created_at)) }}</p>
+						<p class="p10 m0"><i class="fa fa-envelope-o"></i> {{ $employee->email }}</p>
+						<p class="p10 m0" title="Since"><i class="fa fa-clock-o"></i> {{ date("M d, Y", strtotime($employee->created_at)) }}</p>
 
 						<div class="p10 m0 clearfix">
 							<div class="pull-left">
@@ -80,7 +80,7 @@
 	</ul>
 
 	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane fade p20 bg-white" id="tab-timeline">
+		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-timeline">
 			<ul class="timeline timeline-inverse">
 				<!-- timeline time label -->
 				<li class="time-label">
@@ -175,88 +175,109 @@
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 			
 		</div>
-		<div role="tabpanel" class="tab-pane fade active in" id="tab-general-info">
+		<div role="tabpanel" class="tab-pane active fade in" id="tab-general-info">
 			<div class="tab-content">
-				<form action="" id="general-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+				{!! Form::model($employee, ['route' => ['employee.store', $employee->id ], 'method'=>'PUT', 'id' => 'general-info-form', 'class' => 'general-form dashed-row white']) !!}
+					{!! Form::hidden('operation', 'saveProfileGI') !!}
 					<div class="panel">
 						<div class="panel-default panel-heading">
 							<h4> General Info</h4>
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="name" class=" col-md-2">First name</label>
+								{!! Form::label('name', 'Name :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="first_name" value="Ganesh" id="first_name" class="form-control" placeholder="First name" data-rule-required="1" data-msg-required="This field is required." aria-required="true">
+									{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="last_name" class=" col-md-2">Last name</label>
+								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="last_name" value="Bhosale" id="last_name" class="form-control" placeholder="Last name" data-rule-required="1" data-msg-required="This field is required." aria-required="true">
+									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="address" class=" col-md-2">Mailing address</label>
+								{!! Form::label('mobile2', 'Alternative Mobile :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<textarea name="address" cols="40" rows="10" id="address" value="" class="form-control" placeholder="Mailing address"></textarea>
+									{!! Form::text('mobile2', null, ['class'=>'form-control', 'placeholder'=>'Alternative Mobile']) !!}
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="alternative_address" class=" col-md-2">Alternative address</label>
+								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<textarea name="alternative_address" cols="40" rows="10" id="alternative_address" value="" class="form-control" placeholder="Alternative address"></textarea>
+									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Mobile']) !!}
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="phone" class=" col-md-2">Phone</label>
+								{!! Form::label('address', 'Address :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="phone" value="" id="phone" class="form-control" placeholder="Phone">
+									{!! Form::textarea('address', null, ['class'=>'form-control', 'placeholder'=>'Mailing Address', 'cols' => 40, 'rows' => 10]) !!}
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="alternative_phone" class=" col-md-2">Alternative phone</label>
+								{!! Form::label('about', 'About :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="alternative_phone" value="" id="alternative_phone" class="form-control" placeholder="Alternative phone">
+									{!! Form::textarea('about', null, ['class'=>'form-control', 'placeholder'=>'About', 'cols' => 40, 'rows' => 10]) !!}
 								</div>
 							</div>
+							
 							<div class="form-group">
-								<label for="skype" class=" col-md-2">Skype</label>
+								{!! Form::label('date_birth', 'Date of birth :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="skype" value="" id="skype" class="form-control" placeholder="Skype">
+									{!! Form::text('date_birth', null, ['class'=>'form-control', 'placeholder'=>'Date of birth']) !!}
 								</div>
 							</div>
+							
 							<div class="form-group">
-								<label for="dob" class=" col-md-2">Date of birth</label>
+								{!! Form::label('date_hire', 'Hiring Date :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="dob" value="0000-00-00" id="dob" class="form-control" placeholder="Date of birth">
+									{!! Form::text('date_hire', null, ['class'=>'form-control', 'placeholder'=>'Hiring Date']) !!}
 								</div>
 							</div>
+							
 							<div class="form-group">
-								<label for="ssn" class=" col-md-2">SSN</label>
+								{!! Form::label('date_left', 'Date of Resignation :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="text" name="ssn" value="" id="ssn" class="form-control" placeholder="SSN">
+									{!! Form::text('date_left', null, ['class'=>'form-control', 'placeholder'=>'Date of Resignation']) !!}
 								</div>
 							</div>
+							
 							<div class="form-group">
-								<label for="gender" class=" col-md-2">Gender</label>
+								{!! Form::label('salary_cur', 'Current Salary :', array('class' => 'col-md-2')) !!}
 								<div class=" col-md-10">
-									<input type="radio" name="gender" value="male" checked="checked" id="gender_male" data-msg-required="This field is required.">
-									<label for="gender_male" class="mr15">Male</label> <input type="radio" name="gender" value="female" id="gender_female" data-msg-required="This field is required.">
-									<label for="gender_female" class="">Female</label>
+									{!! Form::text('salary_cur', null, ['class'=>'form-control', 'placeholder'=>'Current Salary']) !!}
+								</div>
+							</div>
+							
+							<div class="form-group">
+								{!! Form::label('gender', 'Gender :', array('class' => 'col-md-2')) !!}
+								<div class=" col-md-10">
+									<input type="radio" name="gender" value="male" {{ $employee->gender == "male" ? 'checked="checked"' : '' }}> <label for="gender_male" class="mr15">Male</label>
+									<input type="radio" name="gender" value="female" {{ $employee->gender == "female" ? 'checked="checked"' : '' }}> <label for="gender_female" class="">Female</label>
 								</div>
 							</div>
 						</div>
 						<div class="panel-footer">
 							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
 						</div>
-						
-						
-						
-						
 					</div>
-				</form>
+				{!! Form::close() !!}
 			</div>
-			
+			@push("scripts")
+<script>
+$(function() {
+	$("#general-info-form").validate({
+		rules: {
+			name: {required: true, minlength: 5}
+		},
+		submitHandler: function(form) {
+			console.log("Test done");
+			return false;
+		}
+	});
+});
+</script>
+			@endpush
 		</div>
 		<div role="tabpanel" class="tab-pane fade" id="tab-social-links">
 			<div class="tab-content">
