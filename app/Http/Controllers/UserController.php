@@ -24,6 +24,12 @@ class UserController extends Controller
      */
     public function showProfile($id)
     {
-        return view('user.profile', ['user' => User::findOrFail($id), 'no_header' => true, 'no_padding' => "no-padding"]);
+        $user = User::findOrFail($id);
+        if($user['type'] == "employee") {
+            return redirect()->action('EmployeeController@showProfile', [1]);
+        } else if($user['type'] == "client") {
+            return redirect()->action('ClientController@showProfile', [1]);
+        }
+        // return view('user.profile', ['user' => User::findOrFail($id), 'no_header' => true, 'no_padding' => "no-padding"]);
     }
 }

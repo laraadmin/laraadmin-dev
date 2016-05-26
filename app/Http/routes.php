@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('user/{id}', 'UserController@showProfile');
+Route::get('employee/{id}', 'EmployeeController@showProfile');
