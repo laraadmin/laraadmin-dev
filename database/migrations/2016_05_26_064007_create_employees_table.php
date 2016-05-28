@@ -15,40 +15,28 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('title', 100);
-            $table->string('mobile', 20);
-            $table->string('mobile2', 20);
-            $table->string('email', 100)->unique();
-            $table->string('gender')->default('male');
-            $table->integer('dept')->unsigned();
-            $table->integer('role')->unsigned();
-            $table->string('city', 50);
-            $table->string('address', 1000);
-            $table->string('about', 1000);
-            $table->date('date_birth');
-            $table->date('date_hire');
-            $table->date('date_left');
-            $table->double('salary_cur');
-            $table->timestamps();
-        });
-        $module = Module::create([
-            'name' => "Employees",
-            'name_db' => 'employees'
+        Module::generate("Employees", 'employees', [
+            // ["field_name_db", "Label", "UI Type", "Readonly", "Default_Value", "min_length", "max_length"]
+            ["name", 'Name', 'Name', false, '', 5, 256 ],
+            ["designation", 'Designation', 'String', false, '', 0, 50],
+            ["gender", 'Gender', 'Radio', false, 'male', 0, 0],
+            ["mobile", 'Mobile', 'Mobile', false, '', 10, 20],
+            ["mobile2", 'Alernative Mobile', 'Mobile', false, '', 10, 20],
+            ["email", 'Email', 'Email', false, '', 5, 100],
+            ["dept", 'Department', 'Integer', false, '', 0, 0],
+            ["role", 'Role', 'Integer', false, '', 0, 0],
+            ["city", 'City', 'String', false, '', 0, 50],
+            ["address", 'Address', 'Address', false, '', 0, 1000],
+            ["about", 'About', 'String', false, '', 0, 0],
+            ["date_birth", 'Date of Birth', 'Date', false, '1990-01-01', 0, 0],
+            ["date_hire", 'Hiring Date', 'Date', false, date("Y-m-d"), 0, 0],
+            ["date_left", 'Resignation Date', 'Date', false, '0000-00-00', 0, 0],
+            ["salary_cur", 'Current Salary', 'Decimal', false, '0.0', 0, 2],
         ]);
-        ModuleFields::create([
-            'module' => $module->id,
-            'colname' => "name",
-            'label' => 'Name',
-        ]);
-        
-        
         
         Employee::create([
             'name' => "Super Admin",
-            'title' => "Super Admin",
+            'designation' => "Super Admin",
             'mobile' => "8888888888",
             'mobile2' => "",
             'email' => "gdb.sci123@gmail.com",
