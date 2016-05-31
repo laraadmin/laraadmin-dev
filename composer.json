@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "acacha/admin-lte-template-laravel": "2.*",
         "creativeorange/gravatar": "^1.0",
-        "laravelcollective/html": "^5.2"
+        "laravelcollective/html": "^5.2",
+        "dwijitso/sbscrud": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
