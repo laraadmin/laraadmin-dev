@@ -263,12 +263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gdbhosale/sbscrud.git",
-                "reference": "52f8640b0e58076603e14d41f1d1080e3ebc76d7"
+                "reference": "f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gdbhosale/sbscrud/zipball/52f8640b0e58076603e14d41f1d1080e3ebc76d7",
-                "reference": "52f8640b0e58076603e14d41f1d1080e3ebc76d7",
+                "url": "https://api.github.com/repos/gdbhosale/sbscrud/zipball/f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce",
+                "reference": "f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,7 @@
                 }
             ],
             "description": "This is proprietory package of Dwij IT Solutions for Dwij SBS for CRUD generation from defined models.",
-            "time": "2016-05-31 10:15:43"
+            "time": "2016-05-31 11:08:45"
         },
         {
             "name": "jakub-onderka/php-console-color",
