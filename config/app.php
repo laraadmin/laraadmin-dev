@@ -162,7 +162,8 @@ return [
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Dwijitso\Sbscrud\SbsCrudProvider::class
+        Dwijitso\Sbscrud\SbsCrudProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class
     ],
 
     /*
