@@ -17,21 +17,21 @@ class CreateEmployeesTable extends Migration
     {
         Module::generate("Employees", 'employees', [
             // ["field_name_db", "Label", "UI Type", "Readonly", "Default_Value", "min_length", "max_length"]
-            ["name", 'Name', 'Name', false, '', 5, 256 ],
-            ["designation", 'Designation', 'String', false, '', 0, 50],
-            ["gender", 'Gender', 'Radio', false, 'male', 0, 0],
-            ["mobile", 'Mobile', 'Mobile', false, '', 10, 20],
-            ["mobile2", 'Alernative Mobile', 'Mobile', false, '', 10, 20],
-            ["email", 'Email', 'Email', false, '', 5, 100],
-            ["dept", 'Department', 'Integer', false, '', 0, 0],
-            ["role", 'Role', 'Integer', false, '', 0, 0],
-            ["city", 'City', 'String', false, '', 0, 50],
-            ["address", 'Address', 'Address', false, '', 0, 1000],
-            ["about", 'About', 'String', false, '', 0, 0],
-            ["date_birth", 'Date of Birth', 'Date', false, '1990-01-01', 0, 0],
-            ["date_hire", 'Hiring Date', 'Date', false, date("Y-m-d"), 0, 0],
-            ["date_left", 'Resignation Date', 'Date', false, '0000-00-00', 0, 0],
-            ["salary_cur", 'Current Salary', 'Decimal', false, '0.0', 0, 2],
+            ["name", 'Name', 'Name', false, '', 5, 256, true],
+            ["designation", 'Designation', 'String', false, '', 0, 50, true],
+            ["gender", 'Gender', 'Radio', false, 'male', 0, 0, true],
+            ["mobile", 'Mobile', 'Mobile', false, '', 10, 20, true],
+            ["mobile2", 'Alernative Mobile', 'Mobile', false, '', 10, 20, false],
+            ["email", 'Email', 'Email', false, '', 5, 100, true],
+            ["dept", 'Department', 'Integer', false, '', 0, 0, false],
+            ["role", 'Role', 'Integer', false, '', 0, 0, true],
+            ["city", 'City', 'String', false, '', 0, 50, false],
+            ["address", 'Address', 'Address', false, '', 0, 1000, false],
+            ["about", 'About', 'String', false, '', 0, 0, false],
+            ["date_birth", 'Date of Birth', 'Date', false, '1990-01-01', 0, 0, false],
+            ["date_hire", 'Hiring Date', 'Date', false, date("Y-m-d"), 0, 0, false],
+            ["date_left", 'Resignation Date', 'Date', false, '0000-00-00', 0, 0, false],
+            ["salary_cur", 'Current Salary', 'Decimal', false, '0.0', 0, 2, false],
         ]);
         
         Employee::create([
