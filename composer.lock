@@ -304,19 +304,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gdbhosale/sbscrud.git",
-                "reference": "f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce"
+                "reference": "cabd150c47d408021d8b0d1cc0cbaa2634b887bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gdbhosale/sbscrud/zipball/f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce",
-                "reference": "f8a87bbfadc9eddd59d9ca02d61a8b71f8bc99ce",
+                "url": "https://api.github.com/repos/gdbhosale/sbscrud/zipball/cabd150c47d408021d8b0d1cc0cbaa2634b887bc",
+                "reference": "cabd150c47d408021d8b0d1cc0cbaa2634b887bc",
                 "shasum": ""
             },
             "require": {
                 "illuminate/container": "^5.2|^5.1",
                 "illuminate/support": "5.*",
                 "laravelcollective/html": "^5.2|^5.1",
-                "php": ">=5.5.9"
+                "php": ">=5.5.9",
+                "yajra/laravel-datatables-oracle": "~6.0"
             },
             "type": "library",
             "autoload": {
@@ -336,7 +337,7 @@
                 }
             ],
             "description": "This is proprietory package of Dwij IT Solutions for Dwij SBS for CRUD generation from defined models.",
-            "time": "2016-05-31 11:08:45"
+            "time": "2016-06-01 16:39:29"
         },
         {
             "name": "jakub-onderka/php-console-color",
