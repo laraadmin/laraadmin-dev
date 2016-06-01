@@ -65,6 +65,8 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('employees');
+        if (Schema::hasTable('employees')) {
+            Schema::drop('employees');
+        }
     }
 }
