@@ -2403,10 +2403,11 @@ input[type="search"] {
 .radio label,
 .checkbox label {
   min-height: 20px;
-  padding-left: 20px;
+  padding-left: 25px;
   margin-bottom: 0;
   font-weight: normal;
   cursor: pointer;
+  margin-left: 10px;
 }
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
