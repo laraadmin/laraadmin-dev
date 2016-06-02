@@ -1582,6 +1582,20 @@ label.error {
   border-color: #ebeff2;
   background-color: #ebeff2;
 }
+/* ================= HTML Editor ================= */
+.htmlbox {
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  border: solid 1px #d2d6de;
+  width: 100%;
+  max-width: 100%;
+  padding: 6px 12px;
+  min-height: 90px;
+}
+.htmlbox:focus {
+  outline: none;
+}
 /* ================= Toggle Switch - Checkbox ================= */
 .Switch {
   position: relative;
