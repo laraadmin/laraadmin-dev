@@ -1482,6 +1482,14 @@ a:focus {
   border-color: #f55753;
   box-shadow: none;
 }
+label.error {
+  color: #FF6262;
+  font-weight: 400;
+  margin-top: 2px;
+}
+.form-control.error {
+  border-color: #FF6262;
+}
 /* Input group */
 .input-group .input-group-addon {
   border-radius: 0;
