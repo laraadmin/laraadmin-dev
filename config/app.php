@@ -216,7 +216,8 @@ return [
          */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
+        'Html' => Collective\Html\HtmlFacade::class,
+        'SbsFormMaker' => Dwijitso\Sbscrud\SbsFormMaker::class,
     ],
 
 ];
