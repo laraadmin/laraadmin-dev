@@ -7,5 +7,7 @@
 		"/vendor/**": true,
 		"/bootstrap/**": true,
 		"/storage/**":true
-	}
+	},
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false
 }

@@ -22,3 +22,11 @@ Route::get('/', function () {
 Route::get('user/{id}', 'UserController@showProfile');
 Route::get('employee/{id}', 'EmployeeController@showProfile');
 Route::resource('employee', 'EmployeeController');
+
+/* ================== Books ================== */
+Route::resource('book', 'BookController');
+//Route::controller('book', 'BookController');
+Route::get('book_dt_ajax', 'BookController@dtajax');
+// Route::get('book_dt_ajax', function () {
+//     return 'Hello World';
+// });
