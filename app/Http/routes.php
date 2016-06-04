@@ -24,9 +24,9 @@ Route::get('employee/{id}', 'EmployeeController@showProfile');
 Route::resource('employee', 'EmployeeController');
 
 /* ================== Books ================== */
-Route::resource('book', 'BookController');
-//Route::controller('book', 'BookController');
-Route::get('book_dt_ajax', 'BookController@dtajax');
+Route::resource('books', 'BooksController');
+//Route::controller('book', 'BooksController');
+Route::get('book_dt_ajax', 'BooksController@dtajax');
 // Route::get('book_dt_ajax', function () {
 //     return 'Hello World';
 // });
