@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Book;
+use App\Books;
 use Dwijitso\Sbscrud\Models\Module;
 use Datatables;
 use DB;
@@ -57,35 +57,18 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        // $v = $this->validate($request, [
-        //     'name' => 'required|unique|min:5|max:256',
-        //     'author' => 'required|max:50',
-        //     'price' => 'decimal',
-        //     'pages' => 'integer|max:5',
-        //     'genre' => 'max:500',
-        //     'description' => 'max:1000'
-        // ]);
-        // if ($v->fails()) {
-        //     return redirect()->back()->withErrors($v->errors());
-        // }
+        $rules = Module::validate("Books", $request);
+        return $rules;
         
-        $insert_id = Module::insert("Book", $request);
-        
-        // $book = new Book;
-        
-        // $book->name= $request['name'];
-        // $book->author= $request['author'];
-        // $book->phone= $request['phone'];
-        // if(isset($request['ref_add']) && $request['ref_add'] != 0) {
-        //     $book->ref= 1;
-        // } else {
-        //     $book->ref= 0;
-        // }
-        // $book->owner= Auth::id();
-        // $book->save();
-        //Send control to index() method where it'll redirect to bookList.blade.php
-        //return redirect()->route('books.index');
-		return;
+        $v = $this->validate($request, $rules);
+        if ($v->fails()) {
+            print_r($rules);
+            return "FAILED";
+            // return redirect()->back()->withErrors($v->errors());
+        }
+        $insert_id = Module::insert("Books", $request);
+        // return redirect()->route('books.index');
+        return "SUCCESS";
     }
 
     /**
@@ -165,12 +148,12 @@ class BooksController extends Controller
             for ($j=0; $j < count($this->listing_cols); $j++) { 
                 $col = $this->listing_cols[$j];
                 if($col == $this->view_col) {
-                    $data->data[$i][$j] = '<a href="'.url('book/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+                    $data->data[$i][$j] = '<a href="'.url('books/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
                 } // else if($col == "author") {$data->data[$i][$j];}
             }
             if($this->show_action) {
-                $output = '<a href="'.url('book/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => ['book.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                $output = '<a href="'.url('books/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+                $output .= Form::open(['route' => ['books.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                 $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                 $output .= Form::close();
                 $data->data[$i][] = (string)$output;
