@@ -14,7 +14,7 @@ class BooksController extends Controller
 {
     public $show_action = true;
     public $view_col = 'name';
-    public $listing_cols = ['id', 'name', 'author', 'price'];
+    public $listing_cols = ['id', 'name', 'author', 'pages', 'price'];
     
     public function __construct() {
         // for authentication (optional)
