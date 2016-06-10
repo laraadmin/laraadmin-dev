@@ -3,12 +3,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Books;
-use Dwijitso\Sbscrud\Models\Module;
-use Datatables;
-use DB;
 use Auth;
+use DB;
+use Validator;
+use Datatables;
 use Collective\Html\FormFacade as Form;
+use Dwijitso\Sbscrud\Models\Module;
+
+use App\Books;
 
 class BooksController extends Controller
 {
@@ -57,18 +59,17 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = Module::validate("Books", $request);
-        return $rules;
+        $rules = Module::validateRules("Books", $request);
         
-        $v = $this->validate($request, $rules);
-        if ($v->fails()) {
-            print_r($rules);
-            return "FAILED";
-            // return redirect()->back()->withErrors($v->errors());
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();;
         }
+            
         $insert_id = Module::insert("Books", $request);
-        // return redirect()->route('books.index');
-        return "SUCCESS";
+        
+        return redirect()->route('books.index');
     }
 
     /**
