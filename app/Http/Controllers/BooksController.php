@@ -30,9 +30,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        //$module = Module::where('name', 'Books')->first();
         $module = Module::get('Books');
-        //print_r($module);
         
         return View('books.listing', [
             'show_actions' => $this->show_action,
@@ -92,7 +90,15 @@ class BooksController extends Controller
     public function edit($id)
     {
         $book = Books::find($id);
-        return view('books.edit')->with('book',$book);
+        
+        $module = Module::get('Books');
+        
+        $module->row = $book;
+        
+        return view('books.edit', [
+            'module' => $module,
+            'view_col' => $this->view_col,
+        ])->with('book', $book);
     }
 
     /**
@@ -104,18 +110,16 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Books::find($id);
-        //Update Query
-        $book->name= $requestData['name'];
-        $book->email= $requestData['email'];
-        $book->phone= $requestData['phone'];
-        if(isset($requestData['ref_add']) && $requestData['ref_add'] != 0) {
-            $book->ref= 1;
-        } else {
-            $book->ref= 0;
+        $rules = Module::validateRules("Books", $request);
+        
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();;
         }
-        $book->save();
-        //Redirecting to index() method of BooksController class
+            
+        $insert_id = Module::updateRow("Books", $request, $id);
+        
         return redirect()->route('books.index');
     }
 
@@ -128,7 +132,7 @@ class BooksController extends Controller
     public function destroy($id)
     {
         Books::find($id)->delete();
-        //Redirecting to index() method
+        // Redirecting to index() method
         return redirect()->route('books.index');
     }
     
@@ -141,16 +145,17 @@ class BooksController extends Controller
     {
         $users = DB::table('books')->select($this->listing_cols);
         $out = Datatables::of($users)->make();
-        //print_r($out);
         $data = $out->getData();
-        //print_r($data);
         
         for($i=0; $i<count($data->data); $i++) {
             for ($j=0; $j < count($this->listing_cols); $j++) { 
                 $col = $this->listing_cols[$j];
                 if($col == $this->view_col) {
                     $data->data[$i][$j] = '<a href="'.url('books/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
-                } // else if($col == "author") {$data->data[$i][$j];}
+                }
+                // else if($col == "author") {
+                //    $data->data[$i][$j];
+                // }
             }
             if($this->show_action) {
                 $output = '<a href="'.url('books/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
@@ -160,12 +165,6 @@ class BooksController extends Controller
                 $data->data[$i][] = (string)$output;
             }
         }
-        
-        // print_r($data->data);
-        
-        // echo "\n\n\n\n";
-        // echo $out;
-        // echo "\n\n\n\n";
         $out->setData($data);
         return $out;
     }

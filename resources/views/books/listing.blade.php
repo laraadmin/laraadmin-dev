@@ -1,18 +1,18 @@
 @extends("layouts.app")
 
 @section("contentheader_title", "Books")
-@section("contentheader_description", "book listing")
+@section("contentheader_description", "books listing")
 @section("section", "Books")
 @section("sub_section", "Listing")
+
+@section("htmlheader_title", "Books Listing")
+
 @section("headerElems")
 <button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Book</button>
 @endsection
 
 @section("main-content")
 
-<?php
-use App\User;
-?>
 <div class="box box-success">
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
@@ -98,36 +98,8 @@ $(function () {
 		@endif
 	});
 	$("#book-add-form").validate({
-		// submitHandler: function(form) {
-		// 	$(form).submit();
-		// 	return false;
-		// }
+		
 	});
-	// $('.Switch.Ajax').click(function() {
-	// 	var state = "false";
-	// 	if ($(this).hasClass('On')){
-	// 		state = "false";
-	// 	} else {
-	// 		state = "true";
-	// 	}
-	// 	var _token = $(this).parent().find('#AddModal input[name=_token]').val();
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url : "{{ url('/book/update_ajax') }}",
-	// 		xhrFields: {
-	// 			withCredentials: true
-	// 		},
-	// 		data : {
-	// 			_token: _token,
-	// 			type: "UPDATE_REF",
-	// 			inqid: $(this).attr("inqid"),
-	// 			state: state,
-	// 		},
-	// 		success : function(data){
-	// 			console.log(data);
-	// 		}
-	// 	});
-	// });
 });
 </script>
 @endpush
