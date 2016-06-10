@@ -8,10 +8,12 @@
         <span class="headerElems">
         @yield('headerElems')
         </span>
-    @else hasSection('section')
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> @hasSection('section') @yield('section') @else Level @endif</a></li>
-        <li class="active">@hasSection('sub_section') @yield('sub_section') @else Here @endif</li>
-    </ol>
+    @else 
+        @hasSection('section')
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @yield('section')</a></li>
+            @hasSection('sub_section')<li class="active"> @yield('sub_section') </li>@endif
+        </ol>
+        @endif
     @endif
 </section>
