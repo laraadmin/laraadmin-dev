@@ -4,61 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a484d1a9a84623a874bc5645a16d9fbc",
-    "content-hash": "bc154430dc6b3da19fc86a439e4ee548",
+    "hash": "711a561819e7e79e103e56e9223e27b3",
+    "content-hash": "a5cd5986aa8350e80e10641c6ace734c",
     "packages": [
-        {
-            "name": "acacha/admin-lte-template-laravel",
-            "version": "2.0.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/acacha/adminlte-laravel.git",
-                "reference": "0674e87d972659c15c67c2e92d289921892bbda5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/0674e87d972659c15c67c2e92d289921892bbda5",
-                "reference": "0674e87d972659c15c67c2e92d289921892bbda5",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "package",
-            "autoload": {
-                "psr-4": {
-                    "Acacha\\AdminLTETemplateLaravel\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sergi Tur Badenas",
-                    "email": "sergiturbadenas@gmail.com",
-                    "homepage": "http://acacha.org"
-                }
-            ],
-            "description": "AdminLTE template applied to Laravel Scaffolding",
-            "keywords": [
-                "AdminLTE",
-                "admin",
-                "admin-lte",
-                "administrator",
-                "bootstrap",
-                "laravel",
-                "template",
-                "theme"
-            ],
-            "time": "2016-05-26 18:35:55"
-        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -304,12 +252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gdbhosale/laraadmin-package.git",
-                "reference": "49df5ed9091e26231a195116a770f121f3a922a3"
+                "reference": "94746ff4e2888caf77a7b265691b8288f2f5956d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gdbhosale/laraadmin-package/zipball/49df5ed9091e26231a195116a770f121f3a922a3",
-                "reference": "49df5ed9091e26231a195116a770f121f3a922a3",
+                "url": "https://api.github.com/repos/gdbhosale/laraadmin-package/zipball/94746ff4e2888caf77a7b265691b8288f2f5956d",
+                "reference": "94746ff4e2888caf77a7b265691b8288f2f5956d",
                 "shasum": ""
             },
             "require": {
@@ -337,7 +285,7 @@
                 }
             ],
             "description": "This is main package for LaraAdmin for Migrations, CRUD generation and Form Maker.",
-            "time": "2016-06-11 17:46:06"
+            "time": "2016-06-11 17:58:24"
         },
         {
             "name": "jakub-onderka/php-console-color",

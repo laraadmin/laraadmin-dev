@@ -158,12 +158,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
-         * Acacha AdminLTE template provider
+         * Dev. Providers
          */
-        Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Dwij\Laraadmin\LAProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Dwij\Laraadmin\LAProvider::class
     ],
 
     /*
