@@ -162,7 +162,7 @@ return [
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Dwijitso\Sbscrud\SbsCrudProvider::class,
+        Dwij\Laraadmin\LAProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class
     ],
 
@@ -217,7 +217,7 @@ return [
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'SbsFormMaker' => Dwijitso\Sbscrud\SbsFormMaker::class,
+        'LAFormMaker' => Dwij\Laraadmin\LAFormMaker::class,
     ],
 
 ];

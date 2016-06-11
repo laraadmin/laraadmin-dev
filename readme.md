@@ -1,15 +1,12 @@
-# SBS 3.0 using Laravel + AdminLTE
+# LaraAdmin 0.1
 
-Commands Used (Internet required):
+Installation:
 ```
-composer create-project --prefer-dist laravel/laravel sbs3
-composer require "acacha/admin-lte-template-laravel:2.*"
-
-nano .env
-# configure DB
-
+git clone https://github.com/gdbhosale/laraadmin.git
+composer install
+cp .env.example .env
+php artisan key:generate
 php artisan migrate
-adminlte-laravel --no-llum install
 
 npm install
 gulp

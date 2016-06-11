@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Employee;
-use Dwijitso\Sbscrud\Models\Module;
-use Dwijitso\Sbscrud\Models\ModuleFields;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFields;
 
 class CreateEmployeesTable extends Migration
 {

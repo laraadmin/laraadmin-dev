@@ -10,7 +10,7 @@
         "acacha/admin-lte-template-laravel": "2.*",
         "creativeorange/gravatar": "^1.0",
         "laravelcollective/html": "^5.2",
-        "dwijitso/sbscrud": "dev-master",
+        "dwij/laraadmin": "dev-master",
         "yajra/laravel-datatables-oracle": "~6.0"
     },
     "require-dev": {

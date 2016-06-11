@@ -11,9 +11,9 @@
 |
 */
 
-Config::set('sitename', "Dwij SBS 3.0");
-Config::set('sitename2', ["Dwij", "SBS 3.0"]); // {{ Config::get('sitename2')[0] }}</b> {{ Config::get('sitename2')[1] }}
-Config::set('sitedesc', "Dwij SBS is a better and smoother way to manage Projects, Clients, Revenue and all the other aspects of Small & Medium Businesses.");
+Config::set('sitename', "LaraAdmin 0.1");
+Config::set('sitename2', ["Lara", "Admin 0.1"]); // {{ Config::get('sitename2')[0] }}</b> {{ Config::get('sitename2')[1] }}
+Config::set('sitedesc', "LaraAdmin is a better and smoother way to manage Projects, Clients, Revenue and all the other aspects of Small & Medium Businesses.");
 
 Route::get('/', function () {
     return view('welcome');

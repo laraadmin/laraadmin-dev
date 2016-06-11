@@ -8,7 +8,7 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use Dwijitso\Sbscrud\Models\Module;
+use Dwij\Laraadmin\Models\Module;
 
 use App\Books;
 

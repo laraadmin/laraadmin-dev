@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Dwijitso\Sbscrud\Models\Module;
-use Dwijitso\Sbscrud\Models\ModuleFields;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFields;
 
 class CreateBooksTable extends Migration
 {
