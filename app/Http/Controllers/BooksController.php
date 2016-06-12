@@ -80,6 +80,7 @@ class BooksController extends Controller
     {
         $book = Books::find($id);
         $module = Module::get('Books');
+        $module->row = $book;
         return view('books.view', [
             'module' => $module,
             'view_col' => $this->view_col,

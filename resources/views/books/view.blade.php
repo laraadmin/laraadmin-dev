@@ -7,12 +7,12 @@
 
 @section('main-content')
 <div id="page-content" class="profile2">
-	<div class="bg-success clearfix">
+	<div class="bg-primary clearfix">
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-md-3">
 					<!--<img class="profile-image" src="{{ asset('/img/avatar5.png') }}" alt="">-->
-					<div class="profile-icon text-success"><i class="fa fa-cube"></i></div>
+					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
 				</div>
 				<div class="col-md-9">
 					<h4 class="name">{{ $book->$view_col }}</h4>
@@ -25,38 +25,104 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="dats1"><div class="label2">Admin</div></div>
 			<div class="dats1"><i class="fa fa-envelope-o"></i> superadmin@gmail.com</div>
 			<div class="dats1"><i class="fa fa-map-marker"></i> Pune, India</div>
 		</div>
 		<div class="col-md-4">
+			<!--
 			<div class="teamview">
-				<a class="face"><img src="{{ asset('/img/user1-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user2-160x160.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user3-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user4-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user8-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
-				<a class="face"><img src="{{ asset('/img/user8-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user1-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user2-160x160.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user3-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user4-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user8-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
 			</div>
+			-->
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #1</span>
+					<small class="pull-right">20%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">20% Complete</span>
+					</div>
+				</div>
+			</div>
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #2</span>
+					<small class="pull-right">90%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">90% Complete</span>
+					</div>
+				</div>
+			</div>
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #3</span>
+					<small class="pull-right">60%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 60%" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">60% Complete</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1 actions">
+			<a href="{{ url('books/'.$book->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-edit"></i></a><br>
+			{{ Form::open(['route' => ['books.destroy', $book->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
+			{{ Form::close() }}
 		</div>
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"> Timeline</a></li>
-		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-general-info"> General Info</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-social-links"> Social Links</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-account-settings"> Account settings</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-job-info"> Job Info</a></li>
+		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
 	</ul>
 
 	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active fade in" id="tab-info">
+			<div class="tab-content">
+				<div class="panel infolist">
+					<div class="panel-default panel-heading">
+						<h4>General Info</h4>
+					</div>
+					<div class="panel-body">
+						@laform_display($module, 'name')
+						@laform_display($module, 'author')
+						@laform_display($module, 'author_address')
+						@laform_display($module, 'price')
+						@laform_display($module, 'weight')
+						@laform_display($module, 'pages')
+						@laform_display($module, 'genre')
+						@laform_display($module, 'publisher')
+						@laform_display($module, 'status')
+						@laform_display($module, 'media_type')
+						@laform_display($module, 'description')
+						@laform_display($module, 'restricted')
+						@laform_display($module, 'email')
+						@laform_display($module, 'mobile')
+						@laform_display($module, 'preview')
+						@laform_display($module, 'website')
+						@laform_display($module, 'date_release')
+						@laform_display($module, 'time_started')
+					</div>
+				</div>
+			</div>
+		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-timeline">
 			<ul class="timeline timeline-inverse">
 				<!-- timeline time label -->
@@ -150,282 +216,6 @@
 				</li>
 			</ul>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
-			
-		</div>
-		<div role="tabpanel" class="tab-pane active fade in" id="tab-general-info">
-			<div class="tab-content">
-				{!! Form::model($book, ['route' => ['employee.store', $book->id ], 'method'=>'PUT', 'id' => 'general-info-form', 'class' => 'general-form dashed-row white']) !!}
-					{!! Form::hidden('operation', 'saveProfileGI') !!}
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4> General Info</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								{!! Form::label('name', 'Name :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile2', 'Alternative Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile2', null, ['class'=>'form-control', 'placeholder'=>'Alternative Mobile']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Mobile']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('address', 'Address :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::textarea('address', null, ['class'=>'form-control', 'placeholder'=>'Mailing Address', 'cols' => 40, 'rows' => 10]) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('about', 'About :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::textarea('about', null, ['class'=>'form-control', 'placeholder'=>'About', 'cols' => 40, 'rows' => 10]) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_birth', 'Date of birth :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_birth', null, ['class'=>'form-control', 'placeholder'=>'Date of birth']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_hire', 'Hiring Date :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_hire', null, ['class'=>'form-control', 'placeholder'=>'Hiring Date']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_left', 'Date of Resignation :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_left', null, ['class'=>'form-control', 'placeholder'=>'Date of Resignation']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('salary_cur', 'Current Salary :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('salary_cur', null, ['class'=>'form-control', 'placeholder'=>'Current Salary']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('gender', 'Gender :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									<input type="radio" name="gender" value="male" {{ $book->gender == "male" ? 'checked="checked"' : '' }}> <label for="gender_male" class="mr15">Male</label>
-									<input type="radio" name="gender" value="female" {{ $book->gender == "female" ? 'checked="checked"' : '' }}> <label for="gender_female" class="">Female</label>
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
-					</div>
-				{!! Form::close() !!}
-			</div>
-			@push("scripts")
-<script>
-$(function() {
-	$("#general-info-form").validate({
-		rules: {
-			name: {required: true, minlength: 5}
-		},
-		submitHandler: function(form) {
-			console.log("Test done");
-			return false;
-		}
-	});
-});
-</script>
-			@endpush
-		</div>
-		<div role="tabpanel" class="tab-pane fade" id="tab-social-links">
-			<div class="tab-content">
-				<form action="" id="social-links-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4> Social Links</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="facebook" class=" col-md-2">Facebook</label>
-								<div class=" col-md-10">
-									<input type="text" name="facebook" value="" id="facebook" class="form-control" placeholder="https://www.facebook.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="twitter" class=" col-md-2">Twitter</label>
-								<div class=" col-md-10">
-									<input type="text" name="twitter" value="" id="twitter" class="form-control" placeholder="https://twitter.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="linkedin" class=" col-md-2">Linkedin</label>
-								<div class=" col-md-10">
-									<input type="text" name="linkedin" value="" id="linkedin" class="form-control" placeholder="https://www.linkedin.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="googleplus" class=" col-md-2">Google plus</label>
-								<div class=" col-md-10">
-									<input type="text" name="googleplus" value="" id="googleplus" class="form-control" placeholder="https://plus.google.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="digg" class=" col-md-2">Digg</label>
-								<div class=" col-md-10">
-									<input type="text" name="digg" value="" id="digg" class="form-control" placeholder="http://digg.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="youtube" class=" col-md-2">youtube</label>
-								<div class=" col-md-10">
-									<input type="text" name="youtube" value="" id="youtube" class="form-control" placeholder="https://www.youtube.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="pinterest" class=" col-md-2">Pinterest</label>
-								<div class=" col-md-10">
-									<input type="text" name="pinterest" value="" id="pinterest" class="form-control" placeholder="https://www.pinterest.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="instagram" class=" col-md-2">Instagram</label>
-								<div class=" col-md-10">
-									<input type="text" name="instagram" value="" id="instagram" class="form-control" placeholder="https://instagram.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="github" class=" col-md-2">Github</label>
-								<div class=" col-md-10">
-									<input type="text" name="github" value="" id="github" class="form-control" placeholder="https://github.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="tumblr" class=" col-md-2">Tumblr</label>
-								<div class=" col-md-10">
-									<input type="text" name="tumblr" value="" id="tumblr" class="form-control" placeholder="https://www.tumblr.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="vine" class=" col-md-2">Vine</label>
-								<div class=" col-md-10">
-									<input type="text" name="vine" value="" id="vine" class="form-control" placeholder="https://vine.co/">
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			
-		</div>
-		<div role="tabpanel" class="tab-pane fade" id="tab-job-info">
-			<div class="tab-content">
-				<form action="" id="job-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
-
-					<input name="user_id" type="hidden" value="1">
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4>Job Info</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="job_title" class=" col-md-2">Job Title</label>
-								<div class="col-md-10">
-									<input type="text" name="job_title" value="Admin" id="job_title" class="form-control" placeholder="Job Title">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="salary" class=" col-md-2">Salary</label>
-								<div class="col-md-10">
-									<input type="text" name="salary" value="" id="salary" class="form-control" placeholder="Salary">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="salary_term" class=" col-md-2">Salary term</label>
-								<div class="col-md-10">
-									<input type="text" name="salary_term" value="" id="salary_term" class="form-control" placeholder="Salary term">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="date_of_hire" class=" col-md-2">Date of hire</label>
-								<div class="col-md-10">
-									<input type="text" name="date_of_hire" value="" id="date_of_hire" class="form-control" placeholder="Date of hire">
-								</div>
-							</div>
-						</div>
-
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
-
-					</div>
-				</form>
-			</div>
-			
-		</div>
-		<div role="tabpanel" class="tab-pane fade" id="tab-account-settings">
-			<div class="tab-content">
-				<form action="" id="account-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4>Account settings</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="email" class=" col-md-2">Email</label>
-								<div class=" col-md-10">
-									<input type="text" name="email" value="gdb.sci123@gmail.com" id="email" class="form-control" placeholder="Email" autocomplete="off" data-rule-email="1" data-msg-email="Please enter a valid email address." data-rule-required="1" data-msg-required="This field is required." aria-required="true">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="password" class=" col-md-2">Password</label>
-								<div class=" col-md-10">
-									<input type="password" name="password" value="" id="password" class="form-control" placeholder="Password" autocomplete="off" data-rule-minlength="6" data-msg-minlength="Please enter at least 6 characters.">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="retype_password" class=" col-md-2">Retype password</label>
-								<div class=" col-md-10">
-									<input type="password" name="retype_password" value="" id="retype_password" class="form-control" placeholder="Retype password" autocomplete="off" data-rule-equalto="#password" data-msg-equalto="Please enter the same value again.">
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="role" class=" col-md-2">Role</label>
-								<div class=" col-md-10">
-									<div class="ml15">Admin</div>
-								</div>
-							</div>
-
-						</div>
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			
 		</div>
 		
 	</div>

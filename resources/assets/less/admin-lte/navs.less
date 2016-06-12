@@ -240,17 +240,22 @@
 .nav-tabs.profile>li>a:hover{
     background: transparent;
     border-color: transparent;
-    color: #009688
+    color: @blue;
 }
 .nav-tabs.profile>li.active>a,
 .nav-tabs.profile>li.active>a:active,
 .nav-tabs.profile>li.active>a:hover,
 .nav-tabs.profile>li.active>a:focus{
     border:none;
-    color: #009688;
+    color: @blue;
     background: transparent;
-    border-bottom:2px solid #00b393;
+    border-bottom:2px solid @blue;
     border-radius: 0;
+}
+.nav-tabs.profile>li>a i.fa{
+    width: 14px;
+    text-align: center;
+    margin-right: 4px;
 }
 .nav-tabs.profile.classic{
     margin-bottom: 15px;
@@ -263,7 +268,7 @@
 }
 .nav-tabs.profile>li:not(.title-tab):after {
     display: block;
-    background-color: #00b393;
+    background-color: @blue;
     content: "";
     left: 0;
     bottom: 0px;
