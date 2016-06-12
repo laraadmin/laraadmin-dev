@@ -78,7 +78,14 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Books::find($id);
+        $module = Module::get('Books');
+        return view('books.view', [
+            'module' => $module,
+            'view_col' => $this->view_col,
+            'no_header' => true,
+            'no_padding' => "no-padding"
+        ])->with('book', $book);
     }
 
     /**
