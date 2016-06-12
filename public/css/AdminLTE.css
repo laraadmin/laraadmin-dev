@@ -94,7 +94,7 @@ body {
   z-index: 800;
 }
 .main-footer {
-  background: #fff;
+  background: #F3F3F3;
   padding: 15px;
   color: #444;
   border-top: 1px solid #d2d6de;
@@ -192,6 +192,10 @@ a:focus {
 }
 .strong {
   font-weight: bold;
+}
+.preview img {
+  max-width: 100px;
+  max-height: 100px;
 }
 /*margin and padding*/
 .m0 {
