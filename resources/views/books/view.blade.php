@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			<a href="{{ url('books/'.$book->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-edit"></i></a><br>
+			<a href="{{ url('books/'.$book->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			{{ Form::open(['route' => ['books.destroy', $book->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 			{{ Form::close() }}

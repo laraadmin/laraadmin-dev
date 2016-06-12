@@ -3881,10 +3881,10 @@ table.text-center th {
   transition: all .3s ease;
 }
 .profile2 .actions .btn.btn-edit {
-  color: #FF851B;
+  color: #48B0F7;
 }
 .profile2 .actions .btn.btn-edit:hover {
-  background: #FF851B;
+  background: #48B0F7;
   color: #FFF;
 }
 .profile2 .actions .btn.btn-delete {
