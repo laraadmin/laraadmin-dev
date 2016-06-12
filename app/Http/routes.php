@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+});
+
 Route::get('user/{id}', 'UserController@showProfile');
 Route::get('employee/{id}', 'EmployeeController@showProfile');
 Route::resource('employee', 'EmployeeController');
