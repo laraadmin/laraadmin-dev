@@ -388,48 +388,6 @@ a:focus {
   background: #03BBAA;
   color: #fff;
 }
-/*border*/
-.b-a {
-  border: 1px solid #f2f4f6 !important;
-}
-.b-t {
-  border-top: 1px solid #f2f4f6;
-}
-.b-r {
-  border-right: 1px solid #f2f4f6;
-}
-.b-b {
-  border-bottom: 1px solid #f2f4f6;
-}
-.b-l {
-  border-left: 1px solid #f2f4f6;
-}
-/*avatar*/
-.avatar {
-  display: inline-block;
-  white-space: nowrap;
-}
-.avatar-lg {
-  width: 125px;
-  height: 125px;
-}
-.avatar-md {
-  width: 80px;
-  height: 80px;
-}
-.avatar-sm {
-  width: 50px;
-  height: 50px;
-}
-.avatar-xs {
-  width: 30px;
-  height: 30px;
-}
-.avatar img {
-  height: auto;
-  max-width: 100%;
-  border-radius: 50%;
-}
 /*
  * Component: Main Header
  * ----------------------
@@ -3837,12 +3795,12 @@ table.text-center th {
 .profile2 .row.stats {
   display: block;
 }
-.profile2 .row.stats .col-md-4 {
+.profile2 .row.stats .stat {
   font-size: 18px;
 }
-.profile2 .row.stats .col-md-4 i {
+.profile2 .row.stats .stat i {
   font-size: 18px;
-  width: 20px;
+  width: 15px;
   text-align: center;
   margin-right: 3px;
 }
@@ -3855,7 +3813,7 @@ table.text-center th {
   text-align: center;
   margin-right: 3px;
 }
-.profile2 .dats1 .label2 {
+.profile2 .label2 {
   display: inline-block;
   padding: 0px 7px 1px 7px;
   background: #FFF;
@@ -3863,6 +3821,7 @@ table.text-center th {
   font-size: 14px;
   border-radius: 3px;
   margin-left: 3px;
+  cursor: pointer;
 }
 .profile2 .teamview {
   display: block;

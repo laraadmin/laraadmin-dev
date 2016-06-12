@@ -6,68 +6,84 @@
 
 
 @section('main-content')
-<div id="page-content">
+<div id="page-content" class="profile2">
 	<div class="bg-success clearfix">
-		<div class="col-md-6">
-			<div class="row p20">
-				<div class="box profile">
-					<div class="box-content w200 text-center profile-image">
-						<form action="" id="profile-image-form" class="general-form" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
-							<div class="file-upload btn mt0 p0" style="vertical-align: top;  margin-left: -50px; ">
-								<span><i class="btn fa fa-camera"></i></span>
-								<input id="profile_image_file" class="upload" name="profile_image_file" type="file" data-height="200" data-width="200" data-preview-container="#profile-image-preview" data-input-field="#profile_image">
-							</div>
-							<input type="hidden" id="profile_image" name="profile_image" value="">
-							<span class="avatar avatar-lg"><img id="profile-image-preview" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email, ['size'=>400]) }}" alt="..."></span>
-							<h4 class="">{{ $employee->name }}</h4>
-						</form>
+		
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-3">
+					<img class="profile-image" src="{{ Gravatar::fallback(asset('/img/avatar5.png'))->get(Auth::user()->email, ['size'=>400]) }}" alt="">
+				</div>
+				<div class="col-md-9">
+					<h4 class="name">{{ $employee->$view_col }}</h4>
+					<div class="row stats">
+						<div class="col-md-6 stat"><div class="label2" data-toggle="tooltip" data-placement="top" title="Designation">{{ $employee->designation }}</div></div>
+						<div class="col-md-6 stat"><i class="fa fa-map-marker"></i> {{ $employee->city or "NA" }}</div>
 					</div>
-
-					<div class="box-content pl15">
-						<p class="p10 m0"><label class="label label-info large"><strong> Admin </strong></label></p>
-						<p class="p10 m0"><i class="fa fa-envelope-o"></i> {{ $employee->email }}</p>
-						<p class="p10 m0" title="Since"><i class="fa fa-clock-o"></i> {{ date("M d, Y", strtotime($employee->created_at)) }}</p>
-
-						<div class="p10 m0 clearfix">
-							<div class="pull-left">
-							</div>
-						</div>
+					<p class="desc">{{ substr($employee->about, 0, 33) }}@if(strlen($employee->about) > 33)...@endif</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="dats1"><i class="fa fa-envelope-o"></i> {{ $employee->email }}</div>
+			<div class="dats1"><i class="fa fa-phone"></i> {{ $employee->mobile }}</div>
+			<div class="dats1"><i class="fa fa-clock-o"></i> Joined on {{ date("M d, Y", strtotime($employee->date_hire)) }}</div>
+		</div>
+		<div class="col-md-4">
+			<!--
+			<div class="teamview">
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user1-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user2-160x160.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user3-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user4-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user8-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
+				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
+			</div>
+			-->
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #1</span>
+					<small class="pull-right">20%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">20% Complete</span>
+					</div>
+				</div>
+			</div>
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #2</span>
+					<small class="pull-right">90%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">90% Complete</span>
+					</div>
+				</div>
+			</div>
+			<div class="dats1 pb">
+				<div class="clearfix">
+					<span class="pull-left">Task #3</span>
+					<small class="pull-right">60%</small>
+				</div>
+				<div class="progress progress-xs active">
+					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 60%" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+						<span class="sr-only">60% Complete</span>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="col-md-6 text-center cover-widget">
-			<div class="row p20">
-				<div class="box profile">
-					<div class="box-content widget-container b-r">
-						<div class="panel-body ">
-							<h1 class="">1</h1>
-							<span class="text-off uppercase">Open Projects</span>
-						</div>
-					</div>
-					<div class="box-content widget-container ">
-						<div class="panel-body ">
-							<h1>0</h1>
-							<span class="text-off uppercase">Projects Completed</span>
-						</div>
-					</div>
-				</div>
-				<div class="box profile b-t">
-					<div class="box-content widget-container b-r">
-						<div class="panel-body ">
-							<h1>0</h1>
-							<span class="text-off uppercase">Clients Served</span>
-						</div>
-					</div>
-					<div class="box-content widget-container">
-						<div class="panel-body ">
-							<h1 class="">0</h1>
-							<span class="text-off uppercase">Total project hours</span>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="col-md-1 actions">
+			<a href="{{ url('employee/'.$employee->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-edit"></i></a><br>
+			{{ Form::open(['route' => ['employee.destroy', $employee->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
+			{{ Form::close() }}
 		</div>
 	</div>
 
@@ -76,7 +92,6 @@
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-general-info"> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-social-links"> Social Links</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-account-settings"> Account settings</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-job-info"> Job Info</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -173,112 +188,35 @@
 				</li>
 			</ul>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
-			
 		</div>
+		
 		<div role="tabpanel" class="tab-pane active fade in" id="tab-general-info">
 			<div class="tab-content">
-				{!! Form::model($employee, ['route' => ['employee.store', $employee->id ], 'method'=>'PUT', 'id' => 'general-info-form', 'class' => 'general-form dashed-row white']) !!}
-					{!! Form::hidden('operation', 'saveProfileGI') !!}
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4> General Info</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								{!! Form::label('name', 'Name :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile2', 'Alternative Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile2', null, ['class'=>'form-control', 'placeholder'=>'Alternative Mobile']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('mobile', 'Mobile :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('mobile', null, ['class'=>'form-control', 'placeholder'=>'Mobile']) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('address', 'Address :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::textarea('address', null, ['class'=>'form-control', 'placeholder'=>'Mailing Address', 'cols' => 40, 'rows' => 10]) !!}
-								</div>
-							</div>
-							<div class="form-group">
-								{!! Form::label('about', 'About :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::textarea('about', null, ['class'=>'form-control', 'placeholder'=>'About', 'cols' => 40, 'rows' => 10]) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_birth', 'Date of birth :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_birth', null, ['class'=>'form-control', 'placeholder'=>'Date of birth']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_hire', 'Hiring Date :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_hire', null, ['class'=>'form-control', 'placeholder'=>'Hiring Date']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('date_left', 'Date of Resignation :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('date_left', null, ['class'=>'form-control', 'placeholder'=>'Date of Resignation']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('salary_cur', 'Current Salary :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									{!! Form::text('salary_cur', null, ['class'=>'form-control', 'placeholder'=>'Current Salary']) !!}
-								</div>
-							</div>
-							
-							<div class="form-group">
-								{!! Form::label('gender', 'Gender :', array('class' => 'col-md-2')) !!}
-								<div class=" col-md-10">
-									<input type="radio" name="gender" value="male" {{ $employee->gender == "male" ? 'checked="checked"' : '' }}> <label for="gender_male" class="mr15">Male</label>
-									<input type="radio" name="gender" value="female" {{ $employee->gender == "female" ? 'checked="checked"' : '' }}> <label for="gender_female" class="">Female</label>
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
+				<div class="panel infolist">
+					<div class="panel-default panel-heading">
+						<h4>General Info</h4>
 					</div>
-				{!! Form::close() !!}
+					<div class="panel-body">
+						@laform_display($module, 'name')
+						@laform_display($module, 'designation')
+						@laform_display($module, 'gender')
+						@laform_display($module, 'mobile')
+						@laform_display($module, 'mobile2')
+						@laform_display($module, 'email')
+						@laform_display($module, 'dept')
+						@laform_display($module, 'role')
+						@laform_display($module, 'city')
+						@laform_display($module, 'address')
+						@laform_display($module, 'about')
+						@laform_display($module, 'date_birth')
+						@laform_display($module, 'date_hire')
+						@laform_display($module, 'date_left')
+						@laform_display($module, 'salary_cur')
+					</div>
+				</div>
 			</div>
-			@push("scripts")
-<script>
-$(function() {
-	$("#general-info-form").validate({
-		rules: {
-			name: {required: true, minlength: 5}
-		},
-		submitHandler: function(form) {
-			console.log("Test done");
-			return false;
-		}
-	});
-});
-</script>
-			@endpush
 		</div>
+		
 		<div role="tabpanel" class="tab-pane fade" id="tab-social-links">
 			<div class="tab-content">
 				<form action="" id="social-links-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
@@ -300,6 +238,12 @@ $(function() {
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="github" class=" col-md-2">Github</label>
+								<div class=" col-md-10">
+									<input type="text" name="github" value="" id="github" class="form-control" placeholder="https://github.com/">
+								</div>
+							</div>
+							<div class="form-group">
 								<label for="linkedin" class=" col-md-2">Linkedin</label>
 								<div class=" col-md-10">
 									<input type="text" name="linkedin" value="" id="linkedin" class="form-control" placeholder="https://www.linkedin.com/">
@@ -312,9 +256,9 @@ $(function() {
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="digg" class=" col-md-2">Digg</label>
+								<label for="instagram" class=" col-md-2">Instagram</label>
 								<div class=" col-md-10">
-									<input type="text" name="digg" value="" id="digg" class="form-control" placeholder="http://digg.com/">
+									<input type="text" name="instagram" value="" id="instagram" class="form-control" placeholder="https://instagram.com/">
 								</div>
 							</div>
 							<div class="form-group">
@@ -323,90 +267,12 @@ $(function() {
 									<input type="text" name="youtube" value="" id="youtube" class="form-control" placeholder="https://www.youtube.com/">
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="pinterest" class=" col-md-2">Pinterest</label>
-								<div class=" col-md-10">
-									<input type="text" name="pinterest" value="" id="pinterest" class="form-control" placeholder="https://www.pinterest.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="instagram" class=" col-md-2">Instagram</label>
-								<div class=" col-md-10">
-									<input type="text" name="instagram" value="" id="instagram" class="form-control" placeholder="https://instagram.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="github" class=" col-md-2">Github</label>
-								<div class=" col-md-10">
-									<input type="text" name="github" value="" id="github" class="form-control" placeholder="https://github.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="tumblr" class=" col-md-2">Tumblr</label>
-								<div class=" col-md-10">
-									<input type="text" name="tumblr" value="" id="tumblr" class="form-control" placeholder="https://www.tumblr.com/">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="vine" class=" col-md-2">Vine</label>
-								<div class=" col-md-10">
-									<input type="text" name="vine" value="" id="vine" class="form-control" placeholder="https://vine.co/">
-								</div>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
 						</div>
 					</div>
 				</form>
 			</div>
-			
 		</div>
-		<div role="tabpanel" class="tab-pane fade" id="tab-job-info">
-			<div class="tab-content">
-				<form action="" id="job-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
-
-					<input name="user_id" type="hidden" value="1">
-					<div class="panel">
-						<div class="panel-default panel-heading">
-							<h4>Job Info</h4>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="job_title" class=" col-md-2">Job Title</label>
-								<div class="col-md-10">
-									<input type="text" name="job_title" value="Admin" id="job_title" class="form-control" placeholder="Job Title">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="salary" class=" col-md-2">Salary</label>
-								<div class="col-md-10">
-									<input type="text" name="salary" value="" id="salary" class="form-control" placeholder="Salary">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="salary_term" class=" col-md-2">Salary term</label>
-								<div class="col-md-10">
-									<input type="text" name="salary_term" value="" id="salary_term" class="form-control" placeholder="Salary term">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="date_of_hire" class=" col-md-2">Date of hire</label>
-								<div class="col-md-10">
-									<input type="text" name="date_of_hire" value="" id="date_of_hire" class="form-control" placeholder="Date of hire">
-								</div>
-							</div>
-						</div>
-
-						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
-						</div>
-
-					</div>
-				</form>
-			</div>
-			
-		</div>
+		
 		<div role="tabpanel" class="tab-pane fade" id="tab-account-settings">
 			<div class="tab-content">
 				<form action="" id="account-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
@@ -433,24 +299,29 @@ $(function() {
 									<input type="password" name="retype_password" value="" id="retype_password" class="form-control" placeholder="Retype password" autocomplete="off" data-rule-equalto="#password" data-msg-equalto="Please enter the same value again.">
 								</div>
 							</div>
-
-							<div class="form-group">
-								<label for="role" class=" col-md-2">Role</label>
-								<div class=" col-md-10">
-									<div class="ml15">Admin</div>
-								</div>
-							</div>
-
 						</div>
 						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Save</button>
+							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Change Password</button>
 						</div>
 					</div>
 				</form>
 			</div>
-			
+			@push("scripts")
+<script>
+$(function() {
+	$("#general-info-form").validate({
+		rules: {
+			name: {required: true, minlength: 5}
+		},
+		submitHandler: function(form) {
+			console.log("Test done");
+			return false;
+		}
+	});
+});
+</script>
+			@endpush
 		</div>
-		
 	</div>
 	</div>
 	</div>
