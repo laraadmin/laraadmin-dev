@@ -19,19 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-    Route::get('/home', 'HomeController@index');
-});
+Route::auth();
+Route::get('/home', 'HomeController@index');
+
+/* ================== Users ================== */
 
 Route::get('user/{id}', 'UserController@showProfile');
+
+/* ================== Employees ================== */
+
 Route::get('employee/{id}', 'EmployeeController@showProfile');
 Route::resource('employee', 'EmployeeController');
 
 /* ================== Books ================== */
 Route::resource('books', 'BooksController');
-//Route::controller('book', 'BooksController');
 Route::get('book_dt_ajax', 'BooksController@dtajax');
-// Route::get('book_dt_ajax', function () {
-//     return 'Hello World';
-// });
