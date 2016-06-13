@@ -197,21 +197,21 @@
 						<h4>General Info</h4>
 					</div>
 					<div class="panel-body">
-						@laform_display($module, 'name')
-						@laform_display($module, 'designation')
-						@laform_display($module, 'gender')
-						@laform_display($module, 'mobile')
-						@laform_display($module, 'mobile2')
-						@laform_display($module, 'email')
-						@laform_display($module, 'dept')
-						@laform_display($module, 'role')
-						@laform_display($module, 'city')
-						@laform_display($module, 'address')
-						@laform_display($module, 'about')
-						@laform_display($module, 'date_birth')
-						@laform_display($module, 'date_hire')
-						@laform_display($module, 'date_left')
-						@laform_display($module, 'salary_cur')
+						@la_display($module, 'name')
+						@la_display($module, 'designation')
+						@la_display($module, 'gender')
+						@la_display($module, 'mobile')
+						@la_display($module, 'mobile2')
+						@la_display($module, 'email')
+						@la_display($module, 'dept')
+						@la_display($module, 'role')
+						@la_display($module, 'city')
+						@la_display($module, 'address')
+						@la_display($module, 'about')
+						@la_display($module, 'date_birth')
+						@la_display($module, 'date_hire')
+						@la_display($module, 'date_left')
+						@la_display($module, 'salary_cur')
 					</div>
 				</div>
 			</div>

@@ -125,7 +125,7 @@ class BooksController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();;
         }
-            
+        
         $insert_id = Module::updateRow("Books", $request, $id);
         
         return redirect()->route('books.index');
