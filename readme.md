@@ -3,16 +3,21 @@
 LaraAdmin is a Open source CRM for quick-start Admin based applications with features like Advanced CRUD Generation, Schema Manager and Workflows.
 ##### Website: [laraadmin.com](http://laraadmin.com)
 
-### Module Manager
+--------
+
+### Features:
+##### Module Manager:
 You can create and edit Modules without touching code. It generate CRUD methods and views on the go from your schema, which can be customized. [Schema based migrations done]
 
-### Workflows
+##### Workflows:
 Workflows governs the automation of business processes like Tasks, Events and many others according to set of procedural rules. (Cron Events) [Under Development]
 
-### User Management
+##### User Management:
 Easy user Management with features like Employees, Roles, Groups, Departments and Access Control. [Under Development]
 
-### Snapshots
+--------
+
+### Snapshots:
 
 CRUD Model Listing:
 ![LaraAdmin CRUD Model Listing] (http://laraadmin.com/img/laraadmin-row-listing.jpg)
@@ -37,3 +42,9 @@ npm install
 npm install forever -g
 forever node_modules/gulp/bin/gulp.js watch
 ```
+
+### Credits:
+- https://github.com/almasaeed2010/AdminLTE
+- https://github.com/acacha/adminlte-laravel
+- https://github.com/yajra/laravel-datatables
+- https://github.com/creativeorange/gravatar
