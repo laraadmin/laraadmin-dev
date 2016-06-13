@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Module::generate("Employees", 'employees', [
+        Module::generate("Employees", 'employees', 'name', [
             // ["field_name_db", "Label", "UI Type", "Readonly", "Default_Value", "min_length", "max_length"]
             ["name", 'Name', 'Name', false, '', 5, 256, true],
             ["designation", 'Designation', 'String', false, '', 0, 50, true],

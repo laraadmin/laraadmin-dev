@@ -14,7 +14,7 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Module::generate("Books", 'books', [
+        Module::generate("Books", 'books', 'name', [
             // ["field_name_db", "Label", "UI Type", "Readonly", "Default_Value", "min_length", "max_length", "Required", "Pop_values"]
             ["name", 'Name', 'Name', false, '', 5, 256, true],
             ["author", 'Author', 'String', false, '', 0, 50, true],
