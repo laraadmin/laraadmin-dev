@@ -39,7 +39,7 @@
             <li><a href="#"><i class='fa fa-newspaper-o'></i> <span>Contacts</span> <small class="label pull-right bg-green">2 New</small></a></li>
             <li><a href="#"><i class='fa fa-calendar'></i> <span>Calendar</span></a></li>
             <li><a href="{{ url('books') }}"><i class='fa fa-book'></i> <span>Books</span></a></li>
-            <!-- Menus -->
+            <!-- LAMenus -->
             
             
             <li class="treeview">
