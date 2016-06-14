@@ -10,7 +10,7 @@ use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 
-use App\Books;
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -78,7 +78,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        $book = Books::find($id);
+        $book = Book::find($id);
         $module = Module::get('Books');
         $module->row = $book;
         return view('books.view', [
@@ -97,7 +97,7 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        $book = Books::find($id);
+        $book = Book::find($id);
         
         $module = Module::get('Books');
         
@@ -139,7 +139,7 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        Books::find($id)->delete();
+        Book::find($id)->delete();
         // Redirecting to index() method
         return redirect()->route('books.index');
     }
