@@ -31,8 +31,8 @@ Route::get('user/{id}', 'UserController@showProfile');
 
 /* ================== Employees ================== */
 
-Route::get('employee/{id}', 'EmployeeController@showProfile');
-Route::resource('employee', 'EmployeeController');
+Route::get('employees/{id}', 'EmployeesController@showProfile');
+Route::resource('employees', 'EmployeesController');
 
 /* ================== Books ================== */
 Route::resource('books', 'BooksController');

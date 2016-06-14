@@ -8,7 +8,7 @@ use App\User;
 use App\Employee;
 use Dwij\Laraadmin\Models\Module;
 
-class EmployeeController extends Controller
+class EmployeesController extends Controller
 {
     public $view_col = 'name';
     

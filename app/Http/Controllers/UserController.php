@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if($user['type'] == "employee") {
-            return redirect()->action('EmployeeController@showProfile', [1]);
+            return redirect()->action('EmployeesController@showProfile', [1]);
         } else if($user['type'] == "client") {
             return redirect()->action('ClientController@showProfile', [1]);
         }

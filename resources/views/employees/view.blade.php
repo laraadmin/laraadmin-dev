@@ -80,8 +80,8 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			<a href="{{ url('employee/'.$employee->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
-			{{ Form::open(['route' => ['employee.destroy', $employee->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			<a href="{{ url('employees/'.$employee->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			{{ Form::open(['route' => ['employees.destroy', $employee->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 			{{ Form::close() }}
 		</div>
