@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 <?php
-use Dwij\Laraadmin\Controllers\ModuleController;
+use Dwij\Laraadmin\Models\Module;
 ?>
 
 @section("contentheader_title", "Modules")
@@ -24,12 +24,24 @@ use Dwij\Laraadmin\Controllers\ModuleController;
 		<tr class="success">
 			<th>ID</th>
 			<th>Name</th>
+			<th>Table</th>
 			<th>Items</th>
 			<th>Actions</th>
 		</tr>
 		</thead>
 		<tbody>
 			
+			@foreach ($modules as $module)
+				<tr>
+					<td>{{ $module->id }}</td>
+					<td><a href="{{ url('modules/'.$module->id) }}">{{ $module->name }}</a></td>
+					<td>{{ $module->name_db }}</td>
+					<td>{{ Module::itemCount($module->name) }}</td>
+					<td>
+						<a href="{{ url('modules/'.$module->id.'/edit') }}" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
+					</td>
+				</tr>
+			@endforeach
 		</tbody>
 		</table>
 	</div>
@@ -45,7 +57,15 @@ use Dwij\Laraadmin\Controllers\ModuleController;
 			{!! Form::open(['action' => 'ModuleController@store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
-                    
+					<div class="form-group">
+						<label for="name">Module Name :</label>
+						{{ Form::text("name", null, ['class'=>'form-control', 'placeholder'=>'Module Name', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="name">Table Name (lowercase only) :</label>
+						{{ Form::text("name_db", null, ['class'=>'form-control', 'placeholder'=>'Table Name', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
