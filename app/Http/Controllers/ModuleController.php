@@ -48,16 +48,7 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        $module_name = $request->name;
-        $moduleLabel = $module_name;
-        if (strpos($module_name, ' ') !== false) {
-            $module_name = str_replace(" ", "", $module_name);
-        }
-        $row = new Module;
-        $row->name = $module_name;
-        $row->label = $moduleLabel;
-        $row->name_db = $request->name_db;
-        $row->save();
+        Module::generate($request->name, $request->name_db, '', []);
         
         return redirect()->route('modules.index');
     }
