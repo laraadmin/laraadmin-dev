@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
+/* ================== Modules ================== */
+Route::resource('modules', 'ModuleController');
+
 /* ================== Users ================== */
 
 Route::get('user/{id}', 'UserController@showProfile');
