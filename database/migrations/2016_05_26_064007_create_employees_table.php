@@ -39,7 +39,7 @@ class CreateEmployeesTable extends Migration
             'designation' => "Super Admin",
             'mobile' => "8888888888",
             'mobile2' => "",
-            'email' => "gdb.sci123@gmail.com",
+            'email' => "laraadmin@gmail.com",
             'gender' => 'male',
             'dept' => "0",
             'role' => "1",

@@ -15,7 +15,7 @@ class EmployeesTableSeeder extends Seeder
             'name' => "Super Admin",
             'title' => "Super Admin",
             'mobile' => "8888888888",
-            'email' => "gdb.sci123@gmail.com",
+            'email' => "laraadmin@gmail.com",
             'dept' => "0",
             'role' => "0",
             'city' => "",

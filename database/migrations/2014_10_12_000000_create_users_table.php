@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
         });
         User::create([
             'name' => "Super Admin",
-            'email' => "gdb.sci123@gmail.com",
+            'email' => "laraadmin@gmail.com",
             'password' => bcrypt("12345678"),
             'context_id' => "1",
             'type' => "employee",
