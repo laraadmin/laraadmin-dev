@@ -27,14 +27,14 @@
 					@la_input($module, 'status')
 					@la_input($module, 'media_type')
 					@la_input($module, 'description')
-					@la_input($module, 'restricted')
 					@la_input($module, 'email')
+					@la_input($module, 'restricted')
 					@la_input($module, 'mobile')
 					@la_input($module, 'preview')
 					@la_input($module, 'website')
 					@la_input($module, 'date_release')
 					@la_input($module, 'time_started')
-					<br>
+                    <br>
 					<div class="form-group">
 						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url('/books') }}">Cancel</a></button>
 					</div>

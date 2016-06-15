@@ -1,4 +1,9 @@
 <?php
+/**
+ * Controller genrated using LaraAdmin
+ * Help: http://laraadmin.com
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -24,7 +29,7 @@ class BooksController extends Controller
     }
     
     /**
-     * Display a listing of the books.
+     * Display a listing of the Books.
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,7 +37,7 @@ class BooksController extends Controller
     {
         $module = Module::get('Books');
         
-        return View('books.listing', [
+        return View('books.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
             'module' => $module
@@ -40,7 +45,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new book.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +55,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created book in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -71,7 +76,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified book.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -81,7 +86,7 @@ class BooksController extends Controller
         $book = Book::find($id);
         $module = Module::get('Books');
         $module->row = $book;
-        return view('books.view', [
+        return view('books.show', [
             'module' => $module,
             'view_col' => $this->view_col,
             'no_header' => true,
@@ -90,7 +95,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified book.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -110,7 +115,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified book in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -132,7 +137,7 @@ class BooksController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified book from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
