@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index');
 
 /* ================== Modules ================== */
 Route::resource('modules', 'ModuleController');
+Route::resource('module_fields', 'FieldController');
 
 /* ================== Users ================== */
 

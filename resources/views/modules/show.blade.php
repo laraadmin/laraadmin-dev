@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-	Course View
+	Module View
 @endsection
 
+<?php
+use Dwij\Laraadmin\Models\Module;
+?>
 
 @section('main-content')
 <div id="page-content" class="profile2">
@@ -15,194 +18,197 @@
 					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $course->$view_col }}</h4>
+					<h4 class="name">{{ $module->label }}</h4>
 					<div class="row stats">
-						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
-						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
-						<div class="col-md-4"><i class="fa fa-instagram"></i> 89</div>
+						<div class="col-md-12">{{ Module::itemCount($module->name) }} Items</div>
 					</div>
-					<p class="desc">Test Description in one line</p>
+					<p class="desc">@if(isset($module->is_gen) && $module->is_gen) <div class="label2 success">Module Generated</div> @else <div class="label2 danger">Module not Generated</div> @endif</p>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="dats1"><div class="label2">Admin</div></div>
-			<div class="dats1"><i class="fa fa-envelope-o"></i> superadmin@gmail.com</div>
-			<div class="dats1"><i class="fa fa-map-marker"></i> Pune, India</div>
 		</div>
 		<div class="col-md-4">
-			<!--
-			<div class="teamview">
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user1-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user2-160x160.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user3-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user4-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user8-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user5-128x128.jpg') }}" alt=""></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user6-128x128.jpg') }}" alt=""><i class="status-online"></i></a>
-				<a class="face" data-toggle="tooltip" data-placement="top" title="John Doe"><img src="{{ asset('/img/user7-128x128.jpg') }}" alt=""></a>
-			</div>
-			-->
-			<div class="dats1 pb">
-				<div class="clearfix">
-					<span class="pull-left">Task #1</span>
-					<small class="pull-right">20%</small>
-				</div>
-				<div class="progress progress-xs active">
-					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-						<span class="sr-only">20% Complete</span>
-					</div>
-				</div>
-			</div>
-			<div class="dats1 pb">
-				<div class="clearfix">
-					<span class="pull-left">Task #2</span>
-					<small class="pull-right">90%</small>
-				</div>
-				<div class="progress progress-xs active">
-					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-						<span class="sr-only">90% Complete</span>
-					</div>
-				</div>
-			</div>
-			<div class="dats1 pb">
-				<div class="clearfix">
-					<span class="pull-left">Task #3</span>
-					<small class="pull-right">60%</small>
-				</div>
-				<div class="progress progress-xs active">
-					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 60%" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-						<span class="sr-only">60% Complete</span>
-					</div>
-				</div>
-			</div>
+			<div class="dats1"><i class="fa fa-envelope-o"></i> Controller:  {{ $module->controller }}</div>
+			<div class="dats1"><i class="fa fa-envelope-o"></i> Model: {{ $module->model }}</div>
+			<div class="dats1"><i class="fa fa-map-marker"></i> View Column: {{ $module->view_col or "<span class='text-danger'>Not Set</span>" }}</div>
 		</div>
+		
+		<div class="col-md-3">
+			@if(isset($module->is_gen) && $module->is_gen)
+			@else
+			<div class="dats1"><br><a class="btn btn-success" style="border-color:#FFF;" href="{{ url('/module_generate') }}"><i class="fa fa-paper-plane"></i> Generate CRUD</a></div>
+			@endif
+		</div>
+		
 		<div class="col-md-1 actions">
-			<a href="{{ url('courses/'.$course->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
-			{{ Form::open(['route' => ['courses.destroy', $course->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			<a href="{{ url('modules/'.$module->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			{{ Form::open(['route' => ['modules.destroy', $module->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 			{{ Form::close() }}
 		</div>
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
+		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> Module Fields</a></li>
 	</ul>
 
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active fade in" id="tab-info">
 			<div class="tab-content">
-				<div class="panel infolist">
+				<div class="panel">
 					<div class="panel-default panel-heading">
-						<h4>General Info</h4>
+						<h4>Module Fields</h4>
+						
 					</div>
 					<div class="panel-body">
-						
+						<table id="dt_module_fields" class="table table-bordered">
+						<thead>
+						<tr class="success">
+							<th>ID</th>
+							<th>Label</th>
+							<th>Column</th>
+							<th>UI Type</th>
+							<th>Readonly</th>
+							<th>Default</th>
+							<th>Min</th>
+							<th>Max</th>
+							<th>Required</th>
+							<th>Values</th>
+							<th>Actions</th>
+						</tr>
+						</thead>
+						<tbody>
+							@foreach ($module->fields as $field)
+								<tr>
+									<td>{{ $field['id'] }}</td>
+									<td>{{ $field['label'] }}</td>
+									<td>{{ $field['colname'] }}</td>
+									<td>{{ $ftypes[$field['field_type']] }}</td>
+									<td>{{ $field['readonly'] }}</td>
+									<td>{{ $field['defaultvalue'] }}</td>
+									<td>{{ $field['minlength'] }}</td>
+									<td>{{ $field['maxlength'] }}</td>
+									<td>@if($field['required']) <span class="text-danger">True</span>@endif </td>
+									<td>{{ $field['popup_vals'] }}</td>
+									<td>
+										<a field='{{ json_encode($field) }}'  class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-timeline">
-			<ul class="timeline timeline-inverse">
-				<!-- timeline time label -->
-				<li class="time-label">
-					<span class="bg-red">
-						10 Feb. 2014
-					</span>
-				</li>
-				<!-- /.timeline-label -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-envelope bg-blue"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-					<h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-					<div class="timeline-body">
-					Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-					weebly ning heekya handango imeem plugg dopplr jibjab, movity
-					jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-					quora plaxo ideeli hulu weebly balihoo...
-					</div>
-					<div class="timeline-footer">
-					<a class="btn btn-primary btn-xs">Read more</a>
-					<a class="btn btn-danger btn-xs">Delete</a>
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-user bg-aqua"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-					<h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-					</h3>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-comments bg-yellow"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-					<h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-					<div class="timeline-body">
-					Take me to your leader!
-					Switzerland is small and neutral!
-					We are more like Germany, ambitious and misunderstood!
-					</div>
-					<div class="timeline-footer">
-					<a class="btn btn-warning btn-flat btn-xs">View comment</a>
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline time label -->
-				<li class="time-label">
-					<span class="bg-green">
-						3 Jan. 2014
-					</span>
-				</li>
-				<!-- /.timeline-label -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-camera bg-purple"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-					<h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-					<div class="timeline-body">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<li>
-				<i class="fa fa-clock-o bg-gray"></i>
-				</li>
-			</ul>
-			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
-		</div>
-		
 	</div>
 	</div>
 	</div>
 </div>
 @endsection
+
+<div class="modal fade" id="FieldModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add Module Field</h4>
+			</div>
+			{!! Form::open(['action' => 'FieldController@store', 'id' => 'module-add-form']) !!}
+			{{ Form::hidden("module_id", $module->id) }}
+			<div class="modal-body">
+				<div class="box-body">
+					<div class="form-group">
+						<label for="label">Field Label :</label>
+						{{ Form::text("label", null, ['class'=>'form-control', 'placeholder'=>'Field Label', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="colname">Column Name :</label>
+						{{ Form::text("colname", null, ['class'=>'form-control', 'placeholder'=>'Column Name (lowercase)', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="field_type">UI Type:</label>
+						{{ Form::select("field_type", $ftypes, null, ['class'=>'form-control', 'required' => 'required']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="readonly">Read Only:</label>
+						{{ Form::checkbox("readonly", "readonly", false, []) }}
+						<div class="Switch Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+					</div>
+					
+					<div class="form-group">
+						<label for="defaultvalue">Default Value :</label>
+						{{ Form::text("defaultvalue", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="minlength">Minimum :</label>
+						{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="maxlength">Maximum :</label>
+						{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+					</div>
+					
+					<div class="form-group">
+						<label for="required">Required:</label>
+						{{ Form::checkbox("required", "required", false, []) }}
+						<div class="Switch Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+					</div>
+					
+					<div class="form-group">
+						<label for="popup_vals">Values :</label>
+						{{ Form::text("popup_vals", null, ['class'=>'form-control', 'placeholder'=>'Popup Values (For Radio, Dropdown, Multiselect, Taginput)']) }}
+					</div>
+					
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
+			</div>
+			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+
+@push('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/datatables/datatables.min.css') }}"/>
+@endpush
+
+@push('scripts')
+<script src="{{ asset('/plugins/datatables/datatables.min.js') }}"></script>
+<script>
+$(function () {
+	$("#dt_module_fields").DataTable({
+		
+	});
+	$(".btn-edit-field").on("click", function() {
+		var field = $(this).attr("field");
+		field = JSON.parse(field);
+		$("#myModalLabel").html("Edit Field: "+field.label);
+		$("input[name='label']").val(field.label);
+		$("input[name='colname']").val(field.colname);
+		$("input[name='field_type']").val();
+		if(field.readonly) {
+			$("input[name='readonly']").prop("checked", true);
+		} else {
+			$("input[name='readonly']").prop("checked", false);
+		}
+		$("input[name='defaultvalue']").val(field.defaultvalue);
+		$("input[name='minlength']").val(field.minlength);
+		$("input[name='maxlength']").val(field.maxlength);
+		if(field.required) {
+			$("input[name='required']").prop("checked", true);
+		} else {
+			$("input[name='required']").prop("checked", false);
+		}
+		$("input[name='popup_vals']").val(field.popup_vals);
+		$("#FieldModal").modal({show: true});
+	});
+});
+</script>
+@endpush

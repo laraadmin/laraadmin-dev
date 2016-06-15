@@ -9,7 +9,7 @@ use App\Http\Requests;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
 
-class ModuleController extends Controller
+class FieldController extends Controller
 {
     
     public function __construct() {
@@ -24,11 +24,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::all();
         
-        return View('modules.index', [
-            'modules' => $modules
-        ]);
     }
 
     /**
@@ -49,9 +45,9 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        Module::generate($request->name, $request->name_db, '', []);
-        
-        return redirect()->route('modules.index');
+        $module_id = $request->module_id;
+        //$field = ModuleFieldTypes
+        return redirect()->action('ModuleController@show', [$module_id]);
     }
 
     /**
@@ -62,14 +58,14 @@ class ModuleController extends Controller
      */
     public function show($id)
     {
-        $ftypes = ModuleFieldTypes::getFTypes2();
-        $module = Module::find($id);
-        $module = Module::get($module->name);
-        return view('modules.show', [
-            'no_header' => true,
-            'no_padding' => "no-padding",
-            'ftypes' => $ftypes
-        ])->with('module', $module);
+        // $ftypes = ModuleFieldTypes::getFTypes2();
+        // $module = Module::find($id);
+        // $module = Module::get($module->name);
+        // return view('modules.show', [
+        //     'no_header' => true,
+        //     'no_padding' => "no-padding",
+        //     'ftypes' => $ftypes
+        // ])->with('module', $module);
     }
 
     /**
