@@ -46,6 +46,8 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
+        $module = Module::find($request->module_id);
+        
         $module_id = $request->module_id;
         $field = new ModuleFields;
         $field->colname = $request->colname;
@@ -67,6 +69,12 @@ class FieldController extends Controller
         }
         $field->popup_vals = $request->popup_vals;
         $field->save();
+        
+        // Create Schema for Module Field
+        Schema::table($module->name_db, function($table) {
+            $table->string($field->colname);
+        });
+        
         return redirect()->action('ModuleController@show', [$module_id]);
     }
 
