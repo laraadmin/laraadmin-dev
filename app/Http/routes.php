@@ -28,13 +28,12 @@ Route::resource('module_fields', 'FieldController');
 
 /* ================== Users ================== */
 
-Route::get('user/{id}', 'UserController@showProfile');
-
-/* ================== Employees ================== */
-
-Route::get('employees/{id}', 'EmployeesController@showProfile');
-Route::resource('employees', 'EmployeesController');
+Route::get('user/{id}', 'UserController@show');
 
 /* ================== Books ================== */
 Route::resource('books', 'BooksController');
 Route::get('book_dt_ajax', 'BooksController@dtajax');
+
+/* ================== Employees ================== */
+Route::resource('employees', 'EmployeesController');
+Route::get('employee_dt_ajax', 'EmployeesController@dtajax');
