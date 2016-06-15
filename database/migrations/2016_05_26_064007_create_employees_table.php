@@ -34,7 +34,8 @@ class CreateEmployeesTable extends Migration
             ["salary_cur", 'Current Salary', 'Decimal', false, '0.0', 0, 2, false],
         ]);
         
-        Employee::create([
+        //Employee::create([ Not working - [Illuminate\Database\Eloquent\MassAssignmentException] name
+        DB::table('employees')->insert([
             'name' => "Super Admin",
             'designation' => "Super Admin",
             'mobile' => "8888888888",
