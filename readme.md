@@ -44,6 +44,7 @@ forever node_modules/gulp/bin/gulp.js watch
 ```
 
 ### Credits:
+- Ganesh Khade https://github.com/moraya-re
 - https://github.com/almasaeed2010/AdminLTE
 - https://github.com/acacha/adminlte-laravel
 - https://github.com/yajra/laravel-datatables
