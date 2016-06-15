@@ -7,28 +7,26 @@
 
 @section('main-content')
 <div id="page-content" class="profile2">
-	<div class="bg-primary clearfix">
+	<div class="bg-success clearfix">
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-md-3">
-					<!--<img class="profile-image" src="{{ asset('/img/avatar5.png') }}" alt="">-->
-					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
+					<img class="profile-image" src="{{ Gravatar::fallback(asset('/img/avatar5.png'))->get(Auth::user()->email, ['size'=>400]) }}" alt="">
 				</div>
 				<div class="col-md-9">
 					<h4 class="name">{{ $employee->$view_col }}</h4>
 					<div class="row stats">
-						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
-						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
-						<div class="col-md-4"><i class="fa fa-instagram"></i> 89</div>
+						<div class="col-md-6 stat"><div class="label2" data-toggle="tooltip" data-placement="top" title="Designation">{{ $employee->designation }}</div></div>
+						<div class="col-md-6 stat"><i class="fa fa-map-marker"></i> {{ $employee->city or "NA" }}</div>
 					</div>
-					<p class="desc">Test Description in one line</p>
+					<p class="desc">{{ substr($employee->about, 0, 33) }}@if(strlen($employee->about) > 33)...@endif</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3">
-			<div class="dats1"><div class="label2">Admin</div></div>
-			<div class="dats1"><i class="fa fa-envelope-o"></i> superadmin@gmail.com</div>
-			<div class="dats1"><i class="fa fa-map-marker"></i> Pune, India</div>
+			<div class="dats1"><i class="fa fa-envelope-o"></i> {{ $employee->email }}</div>
+			<div class="dats1"><i class="fa fa-phone"></i> {{ $employee->mobile }}</div>
+			<div class="dats1"><i class="fa fa-clock-o"></i> Joined on {{ date("M d, Y", strtotime($employee->date_hire)) }}</div>
 		</div>
 		<div class="col-md-4">
 			<!--
@@ -90,8 +88,10 @@
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
 		<li class=""><a href="{{ url('/employees') }}" data-toggle="tooltip" data-placement="right" title="Back to Employees"><i class="fa fa-chevron-left"></i></a></li>
-		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
+		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-social-links"><i class="fa fa-twitter"></i> Social Links</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-account-settings"><i class="fa fa-key"></i> Account settings</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -215,7 +215,96 @@
 			</ul>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
+		<div role="tabpanel" class="tab-pane fade" id="tab-social-links">
+			<div class="tab-content">
+				<form action="" id="social-links-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+					<div class="panel">
+						<div class="panel-default panel-heading">
+							<h4> Social Links</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label for="facebook" class=" col-md-2">Facebook</label>
+								<div class=" col-md-10">
+									<input type="text" name="facebook" value="" id="facebook" class="form-control" placeholder="https://www.facebook.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="twitter" class=" col-md-2">Twitter</label>
+								<div class=" col-md-10">
+									<input type="text" name="twitter" value="" id="twitter" class="form-control" placeholder="https://twitter.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="github" class=" col-md-2">Github</label>
+								<div class=" col-md-10">
+									<input type="text" name="github" value="" id="github" class="form-control" placeholder="https://github.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="linkedin" class=" col-md-2">Linkedin</label>
+								<div class=" col-md-10">
+									<input type="text" name="linkedin" value="" id="linkedin" class="form-control" placeholder="https://www.linkedin.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="googleplus" class=" col-md-2">Google plus</label>
+								<div class=" col-md-10">
+									<input type="text" name="googleplus" value="" id="googleplus" class="form-control" placeholder="https://plus.google.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="instagram" class=" col-md-2">Instagram</label>
+								<div class=" col-md-10">
+									<input type="text" name="instagram" value="" id="instagram" class="form-control" placeholder="https://instagram.com/">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="youtube" class=" col-md-2">youtube</label>
+								<div class=" col-md-10">
+									<input type="text" name="youtube" value="" id="youtube" class="form-control" placeholder="https://www.youtube.com/">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 		
+		<div role="tabpanel" class="tab-pane fade" id="tab-account-settings">
+			<div class="tab-content">
+				<form action="" id="account-info-form" class="general-form dashed-row white" role="form" method="post" accept-charset="utf-8" novalidate="novalidate">
+					<div class="panel">
+						<div class="panel-default panel-heading">
+							<h4>Account settings</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label for="email" class=" col-md-2">Email</label>
+								<div class=" col-md-10">
+									<input type="text" name="email" value="laraadmin@gmail.com" id="email" class="form-control" placeholder="Email" autocomplete="off" data-rule-email="1" data-msg-email="Please enter a valid email address." data-rule-required="1" data-msg-required="This field is required." aria-required="true">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="password" class=" col-md-2">Password</label>
+								<div class=" col-md-10">
+									<input type="password" name="password" value="" id="password" class="form-control" placeholder="Password" autocomplete="off" data-rule-minlength="6" data-msg-minlength="Please enter at least 6 characters.">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="retype_password" class=" col-md-2">Retype password</label>
+								<div class=" col-md-10">
+									<input type="password" name="retype_password" value="" id="retype_password" class="form-control" placeholder="Retype password" autocomplete="off" data-rule-equalto="#password" data-msg-equalto="Please enter the same value again.">
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<button type="submit" class="btn btn-primary"><span class="fa fa-check-circle"></span> Change Password</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 	</div>
 	</div>
