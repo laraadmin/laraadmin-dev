@@ -57,8 +57,7 @@ use Dwij\Laraadmin\Models\Module;
 			<div class="tab-content">
 				<div class="panel">
 					<div class="panel-default panel-heading">
-						<h4>Module Fields</h4>
-						
+						<h4>Module Fields <a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:-5px;">Add Field</a></h4>
 					</div>
 					<div class="panel-body">
 						<table id="dt_module_fields" class="table table-bordered">
@@ -91,7 +90,7 @@ use Dwij\Laraadmin\Models\Module;
 									<td>@if($field['required']) <span class="text-danger">True</span>@endif </td>
 									<td>{{ $field['popup_vals'] }}</td>
 									<td>
-										<a field='{{ json_encode($field) }}'  class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
+										<a href="{{ url('module_fields/'.$field['id'].'/edit') }}" class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
 									</td>
 								</tr>
 							@endforeach
@@ -107,14 +106,14 @@ use Dwij\Laraadmin\Models\Module;
 </div>
 @endsection
 
-<div class="modal fade" id="FieldModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="AddFieldModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Module Field</h4>
 			</div>
-			{!! Form::open(['action' => 'FieldController@store', 'id' => 'module-add-form']) !!}
+			{!! Form::open(['action' => 'FieldController@store', 'id' => 'field-form']) !!}
 			{{ Form::hidden("module_id", $module->id) }}
 			<div class="modal-body">
 				<div class="box-body">
@@ -187,35 +186,7 @@ $(function () {
 	$("#dt_module_fields").DataTable({
 		
 	});
-	$(".btn-edit-field").on("click", function() {
-		var field = $(this).attr("field");
-		field = JSON.parse(field);
-		$("#myModalLabel").html("Edit Field: "+field.label);
-		$("input[name='label']").val(field.label);
-		$("input[name='colname']").val(field.colname);
-		$("select[name='field_type']").val(field.field_type);
-		// $("input[name='field_type' option[value="+field.field_type+"]]").attr("selected", "selected");
-		// $("input[name='field_type']").set
-		if(field.readonly == "1") {
-			$("input:checkbox[name='readonly']").attr("checked", !0);
-			$("input:checkbox[name='required']").next().addClass("Off").removeClass("On");
-		} else {
-			$("input:checkbox[name='readonly']").attr("checked", !1);
-			$("input:checkbox[name='required']").next().addClass("On").removeClass("Off");
-		}
-		$("input[name='defaultvalue']").val(field.defaultvalue);
-		$("input[name='minlength']").val(field.minlength);
-		$("input[name='maxlength']").val(field.maxlength);
-		if(field.required == "1") {
-			$("input:checkbox[name='required']").attr("checked", !0);
-			$("input:checkbox[name='required']").next().addClass("Off").removeClass("On");
-		} else {
-			$("input:checkbox[name='required']").attr("checked", !1);
-			$("input:checkbox[name='required']").next().addClass("On").removeClass("Off");
-		}
-		$("input[name='popup_vals']").val(field.popup_vals);
-		$("#FieldModal").modal({show: true});
-	});
+	$("#field-form").validate();
 });
 </script>
 @endpush

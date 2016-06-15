@@ -76,7 +76,7 @@ class FieldController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
