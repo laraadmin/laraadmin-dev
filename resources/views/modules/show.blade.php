@@ -83,7 +83,7 @@ use Dwij\Laraadmin\Models\Module;
 									<td>{{ $field['label'] }}</td>
 									<td>{{ $field['colname'] }}</td>
 									<td>{{ $ftypes[$field['field_type']] }}</td>
-									<td>{{ $field['readonly'] }}</td>
+									<td>@if($field['readonly']) <span class="text-danger">True</span>@endif </td>
 									<td>{{ $field['defaultvalue'] }}</td>
 									<td>{{ $field['minlength'] }}</td>
 									<td>{{ $field['maxlength'] }}</td>
@@ -135,7 +135,7 @@ use Dwij\Laraadmin\Models\Module;
 					<div class="form-group">
 						<label for="readonly">Read Only:</label>
 						{{ Form::checkbox("readonly", "readonly", false, []) }}
-						<div class="Switch Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
 					<div class="form-group">
@@ -156,12 +156,12 @@ use Dwij\Laraadmin\Models\Module;
 					<div class="form-group">
 						<label for="required">Required:</label>
 						{{ Form::checkbox("required", "required", false, []) }}
-						<div class="Switch Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
 					<div class="form-group">
 						<label for="popup_vals">Values :</label>
-						{{ Form::text("popup_vals", null, ['class'=>'form-control', 'placeholder'=>'Popup Values (For Radio, Dropdown, Multiselect, Taginput)']) }}
+						{{ Form::text("popup_vals", null, ['class'=>'form-control', 'placeholder'=>'Popup Values (Only for Radio, Dropdown, Multiselect, Taginput)']) }}
 					</div>
 					
 				</div>
@@ -192,19 +192,25 @@ $(function () {
 		$("#myModalLabel").html("Edit Field: "+field.label);
 		$("input[name='label']").val(field.label);
 		$("input[name='colname']").val(field.colname);
-		$("input[name='field_type']").val();
-		if(field.readonly) {
-			$("input[name='readonly']").prop("checked", true);
+		$("select[name='field_type']").val(field.field_type);
+		// $("input[name='field_type' option[value="+field.field_type+"]]").attr("selected", "selected");
+		// $("input[name='field_type']").set
+		if(field.readonly == "1") {
+			$("input:checkbox[name='readonly']").attr("checked", !0);
+			$("input:checkbox[name='required']").next().addClass("Off").removeClass("On");
 		} else {
-			$("input[name='readonly']").prop("checked", false);
+			$("input:checkbox[name='readonly']").attr("checked", !1);
+			$("input:checkbox[name='required']").next().addClass("On").removeClass("Off");
 		}
 		$("input[name='defaultvalue']").val(field.defaultvalue);
 		$("input[name='minlength']").val(field.minlength);
 		$("input[name='maxlength']").val(field.maxlength);
-		if(field.required) {
-			$("input[name='required']").prop("checked", true);
+		if(field.required == "1") {
+			$("input:checkbox[name='required']").attr("checked", !0);
+			$("input:checkbox[name='required']").next().addClass("Off").removeClass("On");
 		} else {
-			$("input[name='required']").prop("checked", false);
+			$("input:checkbox[name='required']").attr("checked", !1);
+			$("input:checkbox[name='required']").next().addClass("On").removeClass("Off");
 		}
 		$("input[name='popup_vals']").val(field.popup_vals);
 		$("#FieldModal").modal({show: true});
