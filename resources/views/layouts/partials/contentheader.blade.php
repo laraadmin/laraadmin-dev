@@ -11,7 +11,7 @@
     @else 
         @hasSection('section')
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> @yield('section')</a></li>
+            <li><a href="@yield('section_url')"><i class="fa fa-dashboard"></i> @yield('section')</a></li>
             @hasSection('sub_section')<li class="active"> @yield('sub_section') </li>@endif
         </ol>
         @endif
