@@ -1129,6 +1129,12 @@ mark,
 .text-muted {
   color: #777777;
 }
+.text-white {
+  color: #FFF;
+}
+a.text-white:hover {
+  color: #e6e6e6;
+}
 .text-primary {
   color: #337ab7;
 }
