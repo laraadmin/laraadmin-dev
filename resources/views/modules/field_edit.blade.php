@@ -63,7 +63,16 @@
 					
 					<div class="form-group">
 						<label for="popup_vals">Values :</label>
-						{{ Form::text("popup_vals", null, ['class'=>'form-control', 'placeholder'=>'Popup Values (Only for Radio, Dropdown, Multiselect, Taginput)']) }}
+						<div class="radio" style="margin-bottom:20px;">
+							<label>{{ Form::radio("popup_value_type", "table", false) }} From Table</label>
+							<label>{{ Form::radio("popup_value_type", "list", true) }} From List</label>
+						</div>
+						{{ Form::select("popup_vals_table", $tables, [], ['class'=>'form-control', 'rel' => '']) }}
+						{{ Form::select("popup_vals_list[]", [], [], ['class'=>'form-control popup_vals_list', 'rel' => 'taginput', 'multiple' => true, 'data-placeholder'=> 'Add Multiple values (Press Enter to add)']) }}
+						
+						<?php
+						// print_r($tables);
+						?>
 					</div>
 					
                     <br>
@@ -89,6 +98,22 @@
 @push('scripts')
 <script>
 $(function () {
+	$("select.popup_vals_list").show();
+	$("select.popup_vals_list").next().show();
+	$("select[name='popup_vals_table']").hide();
+	
+	$("input[name='popup_value_type']").on("change", function() {
+		console.log($(this).val());
+		if($(this).val() == "list") {
+			$("select.popup_vals_list").show();
+			$("select.popup_vals_list").next().show();
+			$("select[name='popup_vals_table']").hide();
+		} else {
+			$("select[name='popup_vals_table']").show();
+			$("select.popup_vals_list").hide();
+			$("select.popup_vals_list").next().hide();
+		}
+	})
 	$("#field-edit-form").validate({
 		
 	});

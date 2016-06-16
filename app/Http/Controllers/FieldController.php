@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use DB;
+use Dwij\Laraadmin\Helpers\LAHelper;
 
 class FieldController extends Controller
 {
@@ -109,9 +111,12 @@ class FieldController extends Controller
         $module = Module::find($field->module);
         $ftypes = ModuleFieldTypes::getFTypes2();
         
+        $tables = LAHelper::getDBTables([]);
+        
         return view('modules.field_edit', [
             'module' => $module,
             'ftypes' => $ftypes,
+            'tables' => $tables
         ])->with('field', $field);
     }
 
