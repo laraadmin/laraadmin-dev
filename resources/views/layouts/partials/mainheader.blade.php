@@ -34,7 +34,7 @@
                                     <a href="#">
                                         <div class="pull-left">
                                             <!-- User Image -->
-                                            <img src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email) }}" class="img-circle" alt="User Image"/>
+                                            <img src="@if(isset(Auth::user()->email)) {{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email) }} @else asset('/img/user2-160x160.jpg' @endif" class="img-circle" alt="User Image"/>
                                         </div>
                                         <!-- Message title and timestamp -->
                                         <h4>
