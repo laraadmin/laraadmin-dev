@@ -64,7 +64,6 @@
                     <li><a href="#"><i class="fa fa-circle-o text-red"></i> Company Profile</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Work Types</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Task Modeling</a></li>
-                    <li><a href="{{ url("modules") }}"><i class="fa fa-cube"></i> <span>Module Manager</span></a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

@@ -138,11 +138,8 @@
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
+                                <div class="col-xs-8 text-center">
+                                    <a href="{{ url("modules") }}"><i class="fa fa-cubes"></i> <span>Module Manager</span></a>
                                 </div>
                             </li>
                             <!-- Menu Footer-->
