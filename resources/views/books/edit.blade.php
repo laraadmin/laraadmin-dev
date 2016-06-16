@@ -3,6 +3,7 @@
 @section("contentheader_title", "Edit book: ")
 @section("contentheader_description", $book->$view_col)
 @section("section", "Books")
+@section("section_url", url('/books'))
 @section("sub_section", "Edit")
 
 @section("htmlheader_title", "Book Edit : ".$book->$view_col)
@@ -16,6 +17,9 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				{!! Form::model($book, ['route' => ['books.update', $book->id ], 'method'=>'PUT', 'id' => 'book-edit-form']) !!}
+					@la_form($module)
+					
+					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'author')
 					@la_input($module, 'author_address')
@@ -34,6 +38,7 @@
 					@la_input($module, 'website')
 					@la_input($module, 'date_release')
 					@la_input($module, 'time_started')
+					--}}
                     <br>
 					<div class="form-group">
 						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url('/books') }}">Cancel</a></button>

@@ -43,7 +43,10 @@
 			{!! Form::open(['action' => 'BooksController@store', 'id' => 'book-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
-                    @la_input($module, 'name')
+                    @la_form($module)
+					
+					{{--
+					@la_input($module, 'name')
 					@la_input($module, 'author')
 					@la_input($module, 'author_address')
 					@la_input($module, 'price')
@@ -61,6 +64,7 @@
 					@la_input($module, 'website')
 					@la_input($module, 'date_release')
 					@la_input($module, 'time_started')
+					--}}
 				</div>
 			</div>
 			<div class="modal-footer">
