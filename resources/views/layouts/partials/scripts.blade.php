@@ -8,6 +8,8 @@
 <!-- jquery.validate + select2 -->
 <script src="{{ asset('/plugins/jquery-validation/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/select2/select2.full.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/bootstrap-datetimepicker/moment.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
 
 <!-- AdminLTE App -->
 <script src="{{ asset('/js/app.min.js') }}" type="text/javascript"></script>
