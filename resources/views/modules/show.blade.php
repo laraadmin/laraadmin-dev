@@ -10,7 +10,7 @@ use Dwij\Laraadmin\Models\Module;
 
 @section('main-content')
 <div id="page-content" class="profile2">
-	<div class="bg-primary clearfix">
+	<div class="bg-danger clearfix">
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-md-3">
@@ -27,9 +27,9 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="dats1"><i class="fa fa-envelope-o"></i> Controller:  {{ $module->controller }}</div>
-			<div class="dats1"><i class="fa fa-envelope-o"></i> Model: {{ $module->model }}</div>
-			<div class="dats1"><i class="fa fa-map-marker"></i> View Column: {{ $module->view_col or "<span class='text-danger'>Not Set</span>" }}</div>
+			<div class="dats1"><i class="fa fa-anchor"></i> Controller:  {{ $module->controller }}</div>
+			<div class="dats1"><i class="fa fa-database"></i> Model: {{ $module->model }}</div>
+			<div class="dats1"><i class="fa fa-eye"></i> View Column: {{ $module->view_col or "<span class='text-danger'>Not Set</span>" }}</div>
 		</div>
 		
 		<div class="col-md-3">
@@ -50,30 +50,31 @@ use Dwij\Laraadmin\Models\Module;
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
 		<li class=""><a href="{{ url('/modules') }}" data-toggle="tooltip" data-placement="right" title="Back to Modules"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> Module Fields</a></li>
+		<a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:10px;margin-right:10px;">Add Field</a>
 	</ul>
 
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active fade in" id="tab-info">
 			<div class="tab-content">
 				<div class="panel">
-					<div class="panel-default panel-heading">
-						<h4>Module Fields <a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:-5px;">Add Field</a></h4>
-					</div>
+					<!--<div class="panel-default panel-heading">
+						<h4>Module Fields</h4>
+					</div>-->
 					<div class="panel-body">
 						<table id="dt_module_fields" class="table table-bordered">
 						<thead>
 						<tr class="success">
-							<th>ID</th>
+							<th>#</th>
 							<th>Label</th>
 							<th>Column</th>
-							<th>UI Type</th>
+							<th>Type</th>
 							<th>Readonly</th>
 							<th>Default</th>
 							<th>Min</th>
 							<th>Max</th>
 							<th>Required</th>
 							<th>Values</th>
-							<th>Actions</th>
+							<th><i class="fa fa-cogs"></i></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -182,11 +183,18 @@ use Dwij\Laraadmin\Models\Module;
 @push('scripts')
 <script src="{{ asset('/plugins/datatables/datatables.min.js') }}"></script>
 <script>
-$(function () {
-	$("#dt_module_fields").DataTable({
-		
+$("#dt_module_fields").DataTable({
+		"initComplete": function(settings, json) {
+			console.log( 'DataTables has finished its initialisation.' );
+			console.log("Win: "+$(window).height()+" header: "+$(".main-header").height());
+			$(".sidebar").slimscroll({
+				height: ($(window).height() - $(".main-header").height()) + "px",
+				color: "rgba(0,0,0,0.2)",
+				size: "3px"
+			});
+		}
 	});
 	$("#field-form").validate();
-});
+
 </script>
 @endpush

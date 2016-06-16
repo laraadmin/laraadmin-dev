@@ -16,6 +16,7 @@ table.dataTable {
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: separate !important;
+  font-size: 14px;
 }
 table.dataTable td,
 table.dataTable th {

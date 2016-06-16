@@ -3044,6 +3044,7 @@ body.IE7 .Switch.Round {
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   border-top: 1px solid #f4f4f4;
+  padding: 6px;
 }
 .table > thead > tr > th {
   border-bottom: 2px solid #f4f4f4;
