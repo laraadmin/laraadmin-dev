@@ -18,7 +18,7 @@ use Dwij\Laraadmin\Models\Module;
 					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $module->label }}</h4>
+					<a class="text-white" href="{{ url('/'.$module->name_db) }}"><h4 class="name">{{ $module->label }}</h4></a>
 					<div class="row stats">
 						<div class="col-md-12">{{ Module::itemCount($module->name) }} Items</div>
 					</div>
@@ -26,13 +26,13 @@ use Dwij\Laraadmin\Models\Module;
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<div class="dats1"><i class="fa fa-anchor"></i> Controller:  {{ $module->controller }}</div>
-			<div class="dats1"><i class="fa fa-database"></i> Model: {{ $module->model }}</div>
-			<div class="dats1"><i class="fa fa-eye"></i> View Column: {{ $module->view_col or "<span class='text-danger'>Not Set</span>" }}</div>
+		<div class="col-md-3">
+			<div class="dats1" data-toggle="tooltip" data-placement="left" title="Controller"><i class="fa fa-anchor"></i> {{ $module->controller }}</div>
+			<div class="dats1" data-toggle="tooltip" data-placement="left" title="Model"><i class="fa fa-database"></i> {{ $module->model }}</div>
+			<div class="dats1" data-toggle="tooltip" data-placement="left" title="View Column Name"><i class="fa fa-eye"></i> {{ $module->view_col or "<span class='text-danger'>Not Set</span>" }}</div>
 		</div>
 		
-		<div class="col-md-3">
+		<div class="col-md-4">
 			@if(isset($module->is_gen) && $module->is_gen)
 			@else
 			<div class="dats1"><br><a class="btn btn-success" style="border-color:#FFF;" href="{{ url('/module_generate') }}"><i class="fa fa-paper-plane"></i> Generate CRUD</a></div>
@@ -89,7 +89,7 @@ use Dwij\Laraadmin\Models\Module;
 									<td>{{ $field['minlength'] }}</td>
 									<td>{{ $field['maxlength'] }}</td>
 									<td>@if($field['required']) <span class="text-danger">True</span>@endif </td>
-									<td>{{ $field['popup_vals'] }}</td>
+									<td><?php echo LAHelper::parseValues($field['popup_vals']) ?></td>
 									<td>
 										<a href="{{ url('module_fields/'.$field['id'].'/edit') }}" class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
 									</td>

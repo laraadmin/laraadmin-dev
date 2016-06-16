@@ -3,6 +3,7 @@
 @section("contentheader_title", "Edit employee: ")
 @section("contentheader_description", $employee->$view_col)
 @section("section", "Employees")
+@section("section_url", url('/employees'))
 @section("sub_section", "Edit")
 
 @section("htmlheader_title", "Employee Edit : ".$employee->$view_col)
