@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use Dwij\Laraadmin\CodeGenerator;
 
 class ModuleController extends Controller
 {
@@ -112,10 +113,12 @@ class ModuleController extends Controller
      * @param  int  $module_id
      * @return \Illuminate\Http\Response
      */
-    public function generate_crud($model_id)
+    public function generate_crud($module_id)
     {
-        //return "Hi...".$model_id;
-        
+        //return "Hi...".$module_id;
+        $module = Module::find($module_id);
+        $module = Module::get($module->name);
+        CodeGenerator::generateCRUD($table, $module->name_db);
     }
     
     /**
@@ -126,6 +129,8 @@ class ModuleController extends Controller
      */
     public function generate_migr($module_id)
     {
-        
+        $module = Module::find($module_id);
+        $module = Module::get($module->name);
+        CodeGenerator::generateMigration($module->name_db, true);
     }
 }

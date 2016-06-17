@@ -194,6 +194,16 @@ $(function () {
 			}
 		});
 	});
+	
+	$("#generate_migr").on("click", function() {
+		$.ajax({
+			url: "{{ url('/module_generate_migr') }}/"+{{ $module->id }},
+			method: 'GET',
+			success: function( data ) {
+				console.log(data);
+			}
+		});
+	});
 	$("#dt_module_fields").DataTable({
 		"initComplete": function(settings, json) {
 			console.log( 'DataTables has finished its initialisation.' );
