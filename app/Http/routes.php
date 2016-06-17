@@ -25,6 +25,11 @@ Route::get('/home', 'HomeController@index');
 /* ================== Modules ================== */
 Route::resource('modules', 'ModuleController');
 Route::resource('module_fields', 'FieldController');
+// Route::get('module_generate_crud', function() {
+//     return redirect()->action('ModuleController@generate_crud', [1]);
+// });
+Route::get('module_generate_crud/{model_id}', 'ModuleController@generate_crud');
+Route::get('module_generate_migr/{model_id}', 'ModuleController@generate_migr');
 
 /* ================== Users ================== */
 

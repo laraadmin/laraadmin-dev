@@ -105,4 +105,27 @@ class ModuleController extends Controller
     {
         //
     }
+    
+    /**
+     * Generate Modules CRUD + Model
+     *
+     * @param  int  $module_id
+     * @return \Illuminate\Http\Response
+     */
+    public function generate_crud($model_id)
+    {
+        //return "Hi...".$model_id;
+        
+    }
+    
+    /**
+     * Generate Modules Migrations
+     *
+     * @param  int  $module_id
+     * @return \Illuminate\Http\Response
+     */
+    public function generate_migr($module_id)
+    {
+        
+    }
 }

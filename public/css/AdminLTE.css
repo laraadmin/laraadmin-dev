@@ -1482,7 +1482,7 @@ label.error {
 .input-sm + .form-control-feedback.fa,
 .input-group-sm + .form-control-feedback.fa,
 .form-group-sm .form-control + .form-control-feedback.fa {
-  line-height: 30px;
+  line-height: 27px;
 }
 .dashed-row .form-group {
   border-bottom: 1px dashed #e2e4e8;
@@ -4341,19 +4341,19 @@ table.text-center th {
   font-size: 1.8em;
 }
 .btn-social.btn-sm {
-  padding-left: 38px;
+  padding-left: 33px;
 }
 .btn-social.btn-sm > :first-child {
-  line-height: 28px;
-  width: 28px;
+  line-height: 25px;
+  width: 25px;
   font-size: 1.4em;
 }
 .btn-social.btn-xs {
-  padding-left: 30px;
+  padding-left: 27px;
 }
 .btn-social.btn-xs > :first-child {
-  line-height: 20px;
-  width: 20px;
+  line-height: 19px;
+  width: 19px;
   font-size: 1.2em;
 }
 .btn-social-icon {
@@ -4389,19 +4389,19 @@ table.text-center th {
   font-size: 1.8em;
 }
 .btn-social-icon.btn-sm {
-  padding-left: 38px;
+  padding-left: 33px;
 }
 .btn-social-icon.btn-sm > :first-child {
-  line-height: 28px;
-  width: 28px;
+  line-height: 25px;
+  width: 25px;
   font-size: 1.4em;
 }
 .btn-social-icon.btn-xs {
-  padding-left: 30px;
+  padding-left: 27px;
 }
 .btn-social-icon.btn-xs > :first-child {
-  line-height: 20px;
-  width: 20px;
+  line-height: 19px;
+  width: 19px;
   font-size: 1.2em;
 }
 .btn-social-icon > :first-child {
@@ -4416,14 +4416,14 @@ table.text-center th {
   padding-right: 0;
 }
 .btn-social-icon.btn-sm {
-  height: 30px;
-  width: 30px;
+  height: 27px;
+  width: 27px;
   padding-left: 0;
   padding-right: 0;
 }
 .btn-social-icon.btn-xs {
-  height: 22px;
-  width: 22px;
+  height: 21px;
+  width: 21px;
   padding-left: 0;
   padding-right: 0;
 }

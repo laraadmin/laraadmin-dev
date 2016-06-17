@@ -18,11 +18,11 @@ use Dwij\Laraadmin\Models\Module;
 					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
 				</div>
 				<div class="col-md-9">
-					<a class="text-white" href="{{ url('/'.$module->name_db) }}"><h4 class="name">{{ $module->label }}</h4></a>
+					<a class="text-white" href="{{ url('/'.$module->name_db) }}"><h4 data-toggle="tooltip" data-placement="left" title="Open {{ $module->model }} Module" class="name">{{ $module->label }}</h4></a>
 					<div class="row stats">
 						<div class="col-md-12">{{ Module::itemCount($module->name) }} Items</div>
 					</div>
-					<p class="desc">@if(isset($module->is_gen) && $module->is_gen) <div class="label2 success">Module Generated</div> @else <div class="label2 danger">Module not Generated</div> @endif</p>
+					<p class="desc">@if(isset($module->is_gen) && $module->is_gen) <div class="label2 success">Module Generated</div> @else <div class="label2 danger" style="border:solid 1px #FFF;">Module not Generated</div> @endif</p>
 				</div>
 			</div>
 		</div>
@@ -35,8 +35,9 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="col-md-4">
 			@if(isset($module->is_gen) && $module->is_gen)
 			@else
-			<div class="dats1"><br><a class="btn btn-success" style="border-color:#FFF;" href="{{ url('/module_generate') }}"><i class="fa fa-paper-plane"></i> Generate CRUD</a></div>
+			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate CRUD + Module" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_crud" href="#"><i class="fa fa-paper-plane"></i> Generate CRUD + M</a></div>
 			@endif
+			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate Migration File" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr" href="#"><i class="fa fa-paper-plane"></i> Generate Migration</a></div>
 		</div>
 		
 		<div class="col-md-1 actions">
@@ -183,7 +184,17 @@ use Dwij\Laraadmin\Models\Module;
 @push('scripts')
 <script src="{{ asset('/plugins/datatables/datatables.min.js') }}"></script>
 <script>
-$("#dt_module_fields").DataTable({
+$(function () {
+	$("#generate_crud").on("click", function() {
+		$.ajax({
+			url: "{{ url('/module_generate_crud') }}/"+{{ $module->id }},
+			method: 'GET',
+			success: function( data ) {
+				console.log(data);
+			}
+		});
+	});
+	$("#dt_module_fields").DataTable({
 		"initComplete": function(settings, json) {
 			console.log( 'DataTables has finished its initialisation.' );
 			console.log("Win: "+$(window).height()+" header: "+$(".main-header").height());
@@ -195,6 +206,6 @@ $("#dt_module_fields").DataTable({
 		}
 	});
 	$("#field-form").validate();
-
+});
 </script>
 @endpush
