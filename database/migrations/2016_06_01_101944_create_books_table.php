@@ -32,8 +32,8 @@ class CreateBooksTable extends Migration
             ["mobile", 'Mobile', 'Mobile', false, '', 0, 0, false],
             ["preview", 'Preview Image', 'Image', false, '', 0, 0, false],
             ["website", 'Website', 'URL', false, '', 0, 0, false],
-            ["date_release", 'Date of Release', 'Date', false, date("Y-m-d"), 0, 0, false],
-            ["time_started", 'Start Time', 'Datetime', false, date("Y-m-d H:i:s"), 0, 0, false]
+            ["date_release", 'Date of Release', 'Date', false, "date('Y-m-d')", 0, 0, false],
+            ["time_started", 'Start Time', 'Datetime', false, "date('Y-m-d H:i:s')", 0, 0, false]
         ]);
 
     }
