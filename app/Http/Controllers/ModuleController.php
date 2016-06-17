@@ -115,10 +115,16 @@ class ModuleController extends Controller
      */
     public function generate_crud($module_id)
     {
-        //return "Hi...".$module_id;
         $module = Module::find($module_id);
         $module = Module::get($module->name);
-        CodeGenerator::generateCRUD($table, $module->name_db);
+        
+        $config = CodeGenerator::generateConfig($module->name);
+        
+        CodeGenerator::createController($config);
+        CodeGenerator::createModel($config);
+        CodeGenerator::createViews($config);
+        CodeGenerator::appendRoutes($config);
+        CodeGenerator::addMenu($config);
     }
     
     /**
