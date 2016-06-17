@@ -35,9 +35,9 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="col-md-4">
 			@if(isset($module->is_gen) && $module->is_gen)
 			@else
-			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate CRUD + Module" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_crud" href="#"><i class="fa fa-paper-plane"></i> Generate CRUD + M</a></div>
+			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate CRUD + Module" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_crud" href="#"><i class="fa fa-cube"></i> Generate CRUD + M</a></div>
 			@endif
-			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate Migration File" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr" href="#"><i class="fa fa-paper-plane"></i> Generate Migration</a></div>
+			<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate Migration File" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr" href="#"><i class="fa fa-database"></i> Generate Migration</a></div>
 		</div>
 		
 		<div class="col-md-1 actions">
@@ -186,18 +186,25 @@ use Dwij\Laraadmin\Models\Module;
 <script>
 $(function () {
 	$("#generate_crud").on("click", function() {
+		var $fa = $(this).find("i");
+		$fa.removeClass("fa-cube");
+		$fa.addClass("fa-refresh");
+		$fa.addClass("fa-spin");
 		$.ajax({
 			url: "{{ url('/module_generate_crud') }}/"+{{ $module->id }},
 			method: 'GET',
 			success: function( data ) {
+				$fa.removeClass("fa-refresh");
+				$fa.removeClass("fa-spin");
+				$fa.addClass("fa-check");
 				console.log(data);
 			}
 		});
 	});
 	
 	$("#generate_migr").on("click", function() {
-		$fa = $(this).find("i");
-		$fa.removeClass("fa-paper-plane");
+		var $fa = $(this).find("i");
+		$fa.removeClass("fa-database");
 		$fa.addClass("fa-refresh");
 		$fa.addClass("fa-spin");
 		$.ajax({
