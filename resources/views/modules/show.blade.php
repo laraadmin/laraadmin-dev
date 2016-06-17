@@ -196,10 +196,17 @@ $(function () {
 	});
 	
 	$("#generate_migr").on("click", function() {
+		$fa = $(this).find("i");
+		$fa.removeClass("fa-paper-plane");
+		$fa.addClass("fa-refresh");
+		$fa.addClass("fa-spin");
 		$.ajax({
 			url: "{{ url('/module_generate_migr') }}/"+{{ $module->id }},
 			method: 'GET',
 			success: function( data ) {
+				$fa.removeClass("fa-refresh");
+				$fa.removeClass("fa-spin");
+				$fa.addClass("fa-check");
 				console.log(data);
 			}
 		});
