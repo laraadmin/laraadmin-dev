@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 @section("contentheader_title", "Books")
 @section("contentheader_description", "books listing")
@@ -40,7 +40,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Book</h4>
 			</div>
-			{!! Form::open(['action' => 'BooksController@store', 'id' => 'book-add-form']) !!}
+			{!! Form::open(['action' => 'LA\BooksController@store', 'id' => 'book-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
@@ -89,7 +89,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url('book_dt_ajax') }}",
+        ajax: "{{ url('la/book_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",

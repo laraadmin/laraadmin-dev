@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('la.layouts.auth')
 
 @section('htmlheader_title')
     Log in
@@ -57,7 +57,7 @@
 
 </div><!-- /.login-box -->
 
-    @include('layouts.partials.scripts_auth')
+    @include('la.layouts.partials.scripts_auth')
 
     <script>
         $(function () {

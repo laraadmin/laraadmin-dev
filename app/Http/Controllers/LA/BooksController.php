@@ -4,8 +4,9 @@
  * Help: http://laraadmin.com
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\LA;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
@@ -37,7 +38,7 @@ class BooksController extends Controller
     {
         $module = Module::get('Books');
         
-        return View('books.index', [
+        return View('la.books.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
             'module' => $module
@@ -72,7 +73,7 @@ class BooksController extends Controller
             
         $insert_id = Module::insert("Books", $request);
         
-        return redirect()->route('books.index');
+        return redirect()->route('la.books.index');
     }
 
     /**
@@ -86,7 +87,7 @@ class BooksController extends Controller
         $book = Book::find($id);
         $module = Module::get('Books');
         $module->row = $book;
-        return view('books.show', [
+        return view('la.books.show', [
             'module' => $module,
             'view_col' => $this->view_col,
             'no_header' => true,
@@ -108,7 +109,7 @@ class BooksController extends Controller
         
         $module->row = $book;
         
-        return view('books.edit', [
+        return view('la.books.edit', [
             'module' => $module,
             'view_col' => $this->view_col,
         ])->with('book', $book);
@@ -164,15 +165,15 @@ class BooksController extends Controller
             for ($j=0; $j < count($this->listing_cols); $j++) { 
                 $col = $this->listing_cols[$j];
                 if($col == $this->view_col) {
-                    $data->data[$i][$j] = '<a href="'.url('books/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+                    $data->data[$i][$j] = '<a href="'.url('la/books/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
                 }
                 // else if($col == "author") {
                 //    $data->data[$i][$j];
                 // }
             }
             if($this->show_action) {
-                $output = '<a href="'.url('books/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => ['books.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                $output = '<a href="'.url('la/books/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+                $output .= Form::open(['route' => ['la.books.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                 $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                 $output .= Form::close();
                 $data->data[$i][] = (string)$output;
