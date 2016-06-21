@@ -26,16 +26,16 @@
     <title>{{ Config::get('sitename') }}</title>
     
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/la-assets/css/bootstrap.css') }}" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('/la-assets/css/main.css') }}" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
-    <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('/js/smoothscroll.js') }}"></script>
+    <script src="{{ asset('/la-assets/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('/la-assets/js/smoothscroll.js') }}"></script>
 
 
 </head>
@@ -65,7 +65,7 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <!--<li><a href="{{ url('/register') }}">Register</a></li>-->
                 @else
-                    <li><a href="{{ url('/la') }}">{{ Auth::user()->name }}</a></li>
+                    <li><a href="{{ url('/la-assets') }}">{{ Auth::user()->name }}</a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->
@@ -85,14 +85,14 @@
             <div class="col-lg-2">
                 <h5>Amazing Functionalities</h5>
                 <p>based on Advanced Technologies</p>
-                <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow1.png') }}">
+                <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/la-assets/img/arrow1.png') }}">
             </div>
             <div class="col-lg-8">
-                <img class="img-responsive" src="{{ asset('/img/app-bg.png') }}" alt="">
+                <img class="img-responsive" src="{{ asset('/la-assets/img/app-bg.png') }}" alt="">
             </div>
             <div class="col-lg-2">
                 <br>
-                <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow2.png') }}">
+                <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/la-assets/img/arrow2.png') }}">
                 <h5>Completely Packaged...</h5>
                 <p>for Future expantion of Modules</p>
             </div>
@@ -110,17 +110,17 @@
             <br>
             <br>
             <div class="col-lg-4">
-                <img src="{{ asset('/img/intro01.png') }}" alt="">
+                <img src="{{ asset('/la-assets/img/intro01.png') }}" alt="">
                 <h3>Communicate</h3>
                 <p>For Proper internal communication.</p>
             </div>
             <div class="col-lg-4">
-                <img src="{{ asset('/img/intro02.png') }}" alt="">
+                <img src="{{ asset('/la-assets/img/intro02.png') }}" alt="">
                 <h3>Schedule</h3>
                 <p>Schedule your work efficiently.</p>
             </div>
             <div class="col-lg-4">
-                <img src="{{ asset('/img/intro03.png') }}" alt="">
+                <img src="{{ asset('/la-assets/img/intro03.png') }}" alt="">
                 <h3>Monitoring</h3>
                 <p>Monitor your business on the go.</p>
             </div>
@@ -138,7 +138,7 @@
             <br>
             <br>
             <div class="col-lg-6 centered">
-                <img class="centered" src="{{ asset('/img/mobile.png') }}" alt="">
+                <img class="centered" src="{{ asset('/la-assets/img/mobile.png') }}" alt="">
             </div>
 
             <div class="col-lg-6">
@@ -225,10 +225,10 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="{{ asset('/img/item-01.png') }}" alt="">
+                            <img src="{{ asset('/la-assets/img/item-01.png') }}" alt="">
                         </div>
                         <div class="item">
-                            <img src="{{ asset('/img/item-02.png') }}" alt="">
+                            <img src="{{ asset('/la-assets/img/item-02.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ asset('/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/la-assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script>
     $('.carousel').carousel({
         interval: 3500

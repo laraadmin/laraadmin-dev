@@ -6,5 +6,4 @@ Homestead.yaml
 Homestead.json
 .env
 *.map
-/mypkgs
 /docs
