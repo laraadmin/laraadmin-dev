@@ -34,11 +34,11 @@ use Dwij\Laraadmin\Models\Module;
 			@foreach ($modules as $module)
 				<tr>
 					<td>{{ $module->id }}</td>
-					<td><a href="{{ url('modules/'.$module->id) }}">{{ $module->name }}</a></td>
+					<td><a href="{{ url('la/modules/'.$module->id) }}">{{ $module->name }}</a></td>
 					<td>{{ $module->name_db }}</td>
 					<td>{{ Module::itemCount($module->name) }}</td>
 					<td>
-						<a href="{{ url('modules/'.$module->id.'/edit') }}" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
+						<a href="{{ url('la/modules/'.$module->id.'/edit') }}" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
 					</td>
 				</tr>
 			@endforeach
@@ -54,7 +54,7 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Module</h4>
 			</div>
-			{!! Form::open(['action' => 'ModuleController@store', 'id' => 'module-add-form']) !!}
+			{!! Form::open(['action' => 'LA\ModuleController@store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
 					<div class="form-group">

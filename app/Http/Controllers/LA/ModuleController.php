@@ -31,7 +31,7 @@ class ModuleController extends Controller
     {
         $modules = Module::all();
         
-        return View('modules.index', [
+        return View('la.modules.index', [
             'modules' => $modules
         ]);
     }
@@ -56,7 +56,7 @@ class ModuleController extends Controller
     {
         Module::generate($request->name, $request->name_db, '', []);
         
-        return redirect()->route('modules.index');
+        return redirect()->route('la.modules.index');
     }
 
     /**
@@ -70,7 +70,7 @@ class ModuleController extends Controller
         $ftypes = ModuleFieldTypes::getFTypes2();
         $module = Module::find($id);
         $module = Module::get($module->name);
-        return view('modules.show', [
+        return view('la.modules.show', [
             'no_header' => true,
             'no_padding' => "no-padding",
             'ftypes' => $ftypes

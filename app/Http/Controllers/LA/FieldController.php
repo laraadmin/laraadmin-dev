@@ -81,7 +81,7 @@ class FieldController extends Controller
             $table->string($field->colname);
         });
         
-        return redirect()->action('ModuleController@show', [$module_id]);
+        return redirect()->action('LA\ModuleController@show', [$module_id]);
     }
 
     /**
@@ -95,7 +95,7 @@ class FieldController extends Controller
         // $ftypes = ModuleFieldTypes::getFTypes2();
         // $module = Module::find($id);
         // $module = Module::get($module->name);
-        // return view('modules.show', [
+        // return view('la.modules.show', [
         //     'no_header' => true,
         //     'no_padding' => "no-padding",
         //     'ftypes' => $ftypes
@@ -117,7 +117,7 @@ class FieldController extends Controller
         
         $tables = LAHelper::getDBTables([]);
         
-        return view('modules.field_edit', [
+        return view('la.modules.field_edit', [
             'module' => $module,
             'ftypes' => $ftypes,
             'tables' => $tables
@@ -156,7 +156,7 @@ class FieldController extends Controller
         }
         $field->popup_vals = $request->popup_vals;
         $field->save();
-        return redirect()->action('ModuleController@show', [$module_id]);
+        return redirect()->action('LA\ModuleController@show', [$module_id]);
     }
 
     /**
