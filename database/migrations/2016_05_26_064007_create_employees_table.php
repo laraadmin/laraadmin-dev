@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
         Module::generate("Employees", 'employees', 'name', [
             ["name", "Name", "Name", false, "", 5, 256, true],
             ["designation", "Designation", "String", false, "", 0, 50, true],
-            ["gender", "Gender", "Radio", false, "male", 0, 0, true],
+            ["gender", "Gender", "Radio", false, "Male", 0, 0, true, ["Male","Female"]],
             ["mobile", "Mobile", "Mobile", false, "", 10, 20, true],
             ["mobile2", "Alernative Mobile", "Mobile", false, "", 10, 20, false],
             ["email", "Email", "Email", false, "", 5, 100, true],
@@ -77,7 +77,7 @@ class CreateEmployeesTable extends Migration
             'mobile' => "8888888888",
             'mobile2' => "",
             'email' => "laraadmin@gmail.com",
-            'gender' => 'male',
+            'gender' => 'Male',
             'dept' => "0",
             'role' => "1",
             'city' => "Pune",
