@@ -42,7 +42,7 @@ use Dwij\Laraadmin\Models\Module;
 		
 		<div class="col-md-1 actions">
 			<a href="{{ url('la/modules/'.$module->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
-			{{ Form::open(['route' => ['modules.destroy', $module->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			{{ Form::open(['route' => ['la.modules.destroy', $module->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 			{{ Form::close() }}
 		</div>
@@ -115,7 +115,7 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add {{ $module->model }} Field</h4>
 			</div>
-			{!! Form::open(['action' => 'FieldController@store', 'id' => 'field-form']) !!}
+			{!! Form::open(['action' => 'LA\FieldController@store', 'id' => 'field-form']) !!}
 			{{ Form::hidden("module_id", $module->id) }}
 			<div class="modal-body">
 				<div class="box-body">
