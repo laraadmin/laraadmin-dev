@@ -1,9 +1,9 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 @section("contentheader_title", "Edit employee: ")
 @section("contentheader_description", $employee->$view_col)
 @section("section", "Employees")
-@section("section_url", url('/employees'))
+@section("section_url", url('/la/employees'))
 @section("sub_section", "Edit")
 
 @section("htmlheader_title", "Employee Edit : ".$employee->$view_col)
@@ -16,7 +16,7 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				{!! Form::model($employee, ['route' => ['employees.update', $employee->id ], 'method'=>'PUT', 'id' => 'employee-edit-form']) !!}
+				{!! Form::model($employee, ['route' => ['la.employees.update', $employee->id ], 'method'=>'PUT', 'id' => 'employee-edit-form']) !!}
 					@la_input($module, 'name')
 					@la_input($module, 'designation')
 					@la_input($module, 'gender')
@@ -34,7 +34,7 @@
 					@la_input($module, 'salary_cur')
                     <br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url('/employees') }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url('/la/employees') }}">Cancel</a></button>
 					</div>
 				{!! Form::close() !!}
 				

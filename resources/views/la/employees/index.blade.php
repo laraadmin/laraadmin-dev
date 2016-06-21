@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 @section("contentheader_title", "Employees")
 @section("contentheader_description", "employees listing")
@@ -40,7 +40,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Employee</h4>
 			</div>
-			{!! Form::open(['action' => 'EmployeesController@store', 'id' => 'employee-add-form']) !!}
+			{!! Form::open(['action' => 'LA\EmployeesController@store', 'id' => 'employee-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_input($module, 'name')
@@ -82,7 +82,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url('employee_dt_ajax') }}",
+        ajax: "{{ url('la/employee_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",

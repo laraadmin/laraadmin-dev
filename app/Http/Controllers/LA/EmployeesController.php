@@ -4,8 +4,9 @@
  * Help: http://laraadmin.com
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\LA;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
@@ -38,7 +39,7 @@ class EmployeesController extends Controller
     {
         $module = Module::get('Employees');
         
-        return View('employees.index', [
+        return View('la.employees.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
             'module' => $module
@@ -73,7 +74,7 @@ class EmployeesController extends Controller
             
         $insert_id = Module::insert("Employees", $request);
         
-        return redirect()->route('employees.index');
+        return redirect()->route('la.employees.index');
     }
 
     /**
@@ -91,7 +92,7 @@ class EmployeesController extends Controller
         // Get User Table Information
         $user = User::where('context_id', '=', $id)->firstOrFail();
         
-        return view('employees.show', [
+        return view('la.employees.show', [
             'user' => $user,
             'module' => $module,
             'view_col' => $this->view_col,
@@ -114,7 +115,7 @@ class EmployeesController extends Controller
         
         $module->row = $employee;
         
-        return view('employees.edit', [
+        return view('la.employees.edit', [
             'module' => $module,
             'view_col' => $this->view_col,
         ])->with('employee', $employee);
@@ -139,7 +140,7 @@ class EmployeesController extends Controller
         
         $insert_id = Module::updateRow("Employees", $request, $id);
         
-        return redirect()->route('employees.index');
+        return redirect()->route('la.employees.index');
     }
 
     /**
@@ -152,7 +153,7 @@ class EmployeesController extends Controller
     {
         Employee::find($id)->delete();
         // Redirecting to index() method
-        return redirect()->route('employees.index');
+        return redirect()->route('la.employees.index');
     }
     
     /**
@@ -170,15 +171,15 @@ class EmployeesController extends Controller
             for ($j=0; $j < count($this->listing_cols); $j++) { 
                 $col = $this->listing_cols[$j];
                 if($col == $this->view_col) {
-                    $data->data[$i][$j] = '<a href="'.url('employees/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+                    $data->data[$i][$j] = '<a href="'.url('la/employees/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
                 }
                 // else if($col == "author") {
                 //    $data->data[$i][$j];
                 // }
             }
             if($this->show_action) {
-                $output = '<a href="'.url('employees/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => ['employees.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                $output = '<a href="'.url('la/employees/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+                $output .= Form::open(['route' => ['la.employees.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                 $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                 $output .= Form::close();
                 $data->data[$i][] = (string)$output;

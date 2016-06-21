@@ -1,4 +1,4 @@
-@extends('la.layouts.app')
+@extends("la.layouts.app")
 
 @section('htmlheader_title')
 	Employee View
