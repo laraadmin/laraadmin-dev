@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 <?php
 use Dwij\Laraadmin\Models\Module;

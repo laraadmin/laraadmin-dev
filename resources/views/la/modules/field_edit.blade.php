@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 @section("contentheader_title", "Edit Field: ".$field->label)
 @section("contentheader_description", "from ".$module->model." module")

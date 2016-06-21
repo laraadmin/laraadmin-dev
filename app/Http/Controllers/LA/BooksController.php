@@ -134,7 +134,7 @@ class BooksController extends Controller
         
         $insert_id = Module::updateRow("Books", $request, $id);
         
-        return redirect()->route('books.index');
+        return redirect()->route('la.books.index');
     }
 
     /**
@@ -147,7 +147,7 @@ class BooksController extends Controller
     {
         Book::find($id)->delete();
         // Redirecting to index() method
-        return redirect()->route('books.index');
+        return redirect()->route('la.books.index');
     }
     
     /**

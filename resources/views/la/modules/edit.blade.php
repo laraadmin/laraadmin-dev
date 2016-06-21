@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("la.layouts.app")
 
 @section("contentheader_title", "Edit course: ")
 @section("contentheader_description", $course->$view_col)
