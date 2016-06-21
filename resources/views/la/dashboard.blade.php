@@ -96,7 +96,7 @@
                 <div class="box-body chat" id="chat-box">
                   <!-- chat item -->
                   <div class="item">
-                    <img src="{{asset('/img/user4-128x128.jpg')}}" alt="user image" class="online">
+                    <img src="{{asset('/la-assets/img/user4-128x128.jpg')}}" alt="user image" class="online">
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
@@ -118,7 +118,7 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                   <div class="item">
-                    <img src="{{asset('/img/user3-128x128.jpg')}}" alt="user image" class="offline">
+                    <img src="{{asset('/la-assets/img/user3-128x128.jpg')}}" alt="user image" class="offline">
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
@@ -131,7 +131,7 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                   <div class="item">
-                    <img src="{{asset('/img/user2-160x160.jpg')}}" alt="user image" class="offline">
+                    <img src="{{asset('/la-assets/img/user2-160x160.jpg')}}" alt="user image" class="offline">
                     <p class="message">
                       <a href="#" class="name">
                         <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
@@ -433,15 +433,15 @@
 
 @push('styles')
 <!-- Morris chart -->
-<link rel="stylesheet" href="{{ asset('plugins/morris/morris.css') }}">
+<link rel="stylesheet" href="{{ asset('la-assets/plugins/morris/morris.css') }}">
 <!-- jvectormap -->
-<link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
+<link rel="stylesheet" href="{{ asset('la-assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
 <!-- Date Picker -->
-<link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
+<link rel="stylesheet" href="{{ asset('la-assets/plugins/datepicker/datepicker3.css') }}">
 <!-- Daterange picker -->
-<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker-bs3.css') }}">
+<link rel="stylesheet" href="{{ asset('la-assets/plugins/daterangepicker/daterangepicker-bs3.css') }}">
 <!-- bootstrap wysihtml5 - text editor -->
-<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+<link rel="stylesheet" href="{{ asset('la-assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 @endpush
 
 
@@ -454,25 +454,25 @@
 </script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/morris/morris.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ asset('plugins/sparkline/jquery.sparkline.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
 <!-- jvectormap -->
-<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{ asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
 <!-- jQuery Knob Chart -->
-<script src="{{ asset('plugins/knob/jquery.knob.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/knob/jquery.knob.js') }}"></script>
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- datepicker -->
-<script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- FastClick -->
-<script src="{{ asset('plugins/fastclick/fastclick.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/fastclick/fastclick.js') }}"></script>
 <!-- dashboard -->
-<script src="{{ asset('js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('la-assets/js/pages/dashboard.js') }}"></script>
 @endpush
 
 @push('scripts')
@@ -485,7 +485,7 @@
 		position: "top-right",
 		timeout: 0,
 		type: "success",
-		thumbnail: '<img width="40" height="40" style="display: inline-block;" src="{{ Gravatar::fallback(asset('/img/user2-160x160.jpg'))->get(Auth::user()->email, 'default') }}" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" alt="">'
+		thumbnail: '<img width="40" height="40" style="display: inline-block;" src="{{ Gravatar::fallback(asset('la-assets/img/user2-160x160.jpg'))->get(Auth::user()->email, 'default') }}" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" alt="">'
 	}).show();
 })(window.jQuery);
 </script>
