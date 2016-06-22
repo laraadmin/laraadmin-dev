@@ -49,3 +49,7 @@ forever node_modules/gulp/bin/gulp.js watch
 - https://github.com/acacha/adminlte-laravel
 - https://github.com/yajra/laravel-datatables
 - https://github.com/creativeorange/gravatar
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
