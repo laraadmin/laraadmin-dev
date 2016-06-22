@@ -21,6 +21,10 @@ Route::get('/home', 'HomeController@index');
 Route::auth();
 Route::get('/la', 'LA\DashboardController@index');
 Route::get('/la/dashboard', 'LA\DashboardController@index');
+Route::get('/dashboard', 'LA\DashboardController@index');
+
+/* ================== Files ================== */
+Route::get('/la/folder_files/{folder_name}', 'LA\FileController@get_folder_files');
 
 /* ================== Modules ================== */
 Route::resource('/la/modules', 'LA\ModuleController');

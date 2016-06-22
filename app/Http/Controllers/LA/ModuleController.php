@@ -19,7 +19,7 @@ class ModuleController extends Controller
     
     public function __construct() {
         // for authentication (optional)
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     
     /**

@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-white fixed">
+<body class="skin-white fixed" bsurl="{{ url('') }}">
 <div class="wrapper">
 
     @include('la.layouts.partials.mainheader')
@@ -56,6 +56,8 @@ desired effect
     @include('la.layouts.partials.footer')
 
 </div><!-- ./wrapper -->
+
+@include('la.layouts.partials.file_manager')
 
 @section('scripts')
     @include('la.layouts.partials.scripts')
