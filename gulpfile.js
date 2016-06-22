@@ -27,6 +27,6 @@ gulp.task('compress', function() {
  */
 
 elixir(function(mix) {
-    mix.less('admin-lte/AdminLTE.less');
-    mix.less('bootstrap/bootstrap.less');
+    mix.less('admin-lte/AdminLTE.less', 'public/la-assets/css');
+    mix.less('bootstrap/bootstrap.less', 'public/la-assets/css');
 });
