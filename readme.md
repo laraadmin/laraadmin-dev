@@ -1,5 +1,8 @@
 # LaraAdmin 0.1
 
+[![Total Downloads](https://poser.pugx.org/dwij/laraadmin/d/total.svg)](https://packagist.org/packages/dwij/laraadmin)
+[![License](https://poser.pugx.org/dwij/laraadmin/license.svg)](https://packagist.org/packages/dwij/laraadmin)
+
 LaraAdmin is a Open source CRM for quick-start Admin based applications with features like Advanced CRUD Generation, Schema Manager and Workflows.
 ##### Website: [laraadmin.com](http://laraadmin.com)
 
@@ -26,24 +29,24 @@ CRUD Model Add:
 CRUD Model View:
 ![LaraAdmin CRUD Model View] (http://laraadmin.com/img/laraadmin-row-view.jpg)
 
-### Installation:
-```
-git clone https://github.com/gdbhosale/laraadmin.git
-cd laraadmin
-composer install
-cp .env.example .env
-# Configure .env
-nano .env
-php artisan key:generate
-php artisan migrate
+## Installation & Documentation
 
-# for less -> css
-npm install
-npm install forever -g
-forever node_modules/gulp/bin/gulp.js watch
-```
+Documentation for the LaraAdmin can be found on the [LaraAdmin website](http://laraadmin.com/documentation).
+
+## Contributing
+
+Thank you for considering contributing to the LaraAdmin !!!
+
+## Bugs, improvements & Security Vulnerabilities
+
+If you discover a bug or security vulnerability within LaraAdmin, please send an e-mail to Ganesh Bhosale at ganesh@dwij.in. All requests will beaddressed promptly.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ### Credits:
+- Ganesh Bhosale https://github.com/gdbhosale
 - Ganesh Khade https://github.com/moraya-re
 - https://github.com/almasaeed2010/AdminLTE
 - https://github.com/acacha/adminlte-laravel
