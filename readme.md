@@ -29,31 +29,7 @@ CRUD Model Add:
 CRUD Model View:
 ![LaraAdmin CRUD Model View] (http://laraadmin.com/img/laraadmin-row-view.jpg)
 
-### Installation:
-```
-git clone https://github.com/gdbhosale/laraadmin.git
-cd laraadmin
-composer install
-cp .env.example .env
-# Configure .env
-nano .env
-php artisan key:generate
-php artisan migrate
-
-# for less -> css
-npm install
-npm install forever -g
-forever node_modules/gulp/bin/gulp.js watch
-```
-
-### Credits:
-- Ganesh Khade https://github.com/moraya-re
-- https://github.com/almasaeed2010/AdminLTE
-- https://github.com/acacha/adminlte-laravel
-- https://github.com/yajra/laravel-datatables
-- https://github.com/creativeorange/gravatar
-
-## Documentation
+## Installation & Documentation
 
 Documentation for the LaraAdmin can be found on the [LaraAdmin website](http://laraadmin.com/documentation).
 
@@ -68,3 +44,11 @@ If you discover a bug or security vulnerability within LaraAdmin, please send an
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+### Credits:
+- Ganesh Bhosale https://github.com/gdbhosale
+- Ganesh Khade https://github.com/moraya-re
+- https://github.com/almasaeed2010/AdminLTE
+- https://github.com/acacha/adminlte-laravel
+- https://github.com/yajra/laravel-datatables
+- https://github.com/creativeorange/gravatar
