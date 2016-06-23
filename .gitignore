@@ -1,9 +1,8 @@
 /vendor
 /node_modules
-/bootstrap
-/storage
 Homestead.yaml
 Homestead.json
 .env
 *.map
 /docs
+/public/uploads

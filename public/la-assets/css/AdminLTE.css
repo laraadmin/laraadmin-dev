@@ -2009,13 +2009,26 @@ body.IE7 .Switch.Round {
 .input-group.file .input-group-addon {
   cursor: pointer;
 }
+.input-group-addon.preview {
+  display: none;
+  cursor: pointer;
+  padding: 0px;
+  width: 34px;
+  height: 34px;
+  border-left: 0px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 40px;
+  z-index: 10;
+}
 #fm .col-md-3 {
   border-right: solid 1px #F4F4F4;
 }
 #fm .fm_folder_selector {
   padding: 15px 0px;
-  cursor: pointer;
-  min-height: 250px;
+  min-height: 341px;
 }
 #fm .fm_folder_selector .fm_folder_title {
   display: block;
@@ -2028,12 +2041,36 @@ body.IE7 .Switch.Round {
   padding: 4px 15px;
   color: #666;
   max-width: 120px;
+  cursor: pointer;
+}
+#fm .fm_folder_selector .fm_folder_sel:hover {
+  color: #48B0F7;
 }
 #fm .fm_folder_selector .fm_folder_sel.selected {
   border: solid 1px #EEE;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background: #EEE;
+}
+#fm .fm_folder_selector form#fm_dropzone {
+  border: 1px dashed #0087F7;
+  border-radius: 5px;
+  background: white;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 15px;
+  min-height: 200px;
+  padding: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#fm .fm_folder_selector form#fm_dropzone div.dz-message {
+  display: block;
+  padding: 51px 0px;
+  color: #999;
+}
+#fm .fm_folder_selector form#fm_dropzone div.dz-message i.fa {
+  font-size: 40px;
 }
 #fm .nav {
   background: #EEE;
@@ -2065,6 +2102,7 @@ body.IE7 .Switch.Round {
   margin-bottom: 5px;
   margin-right: 5px;
   overflow: hidden;
+  border: solid 1px #EEE;
 }
 #fm .fm_file_selector ul li a {
   display: block;
@@ -2072,10 +2110,20 @@ body.IE7 .Switch.Round {
   cursor: pointer;
 }
 #fm .fm_file_selector ul li a img {
-  height: 104px;
+  height: 102px;
   display: block;
   transform: translateX(-50%);
   margin-left: 50%;
+}
+#fm .fm_file_selector ul li a i.fa {
+  height: 102px;
+  width: 102px;
+  font-size: 96px;
+  text-align: center;
+  padding-top: 3px;
+}
+#fm .fm_file_selector ul li:hover {
+  border-color: #48B0F7;
 }
 /*
  * Component: Progress Bar

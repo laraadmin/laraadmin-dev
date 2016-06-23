@@ -25,6 +25,7 @@ Route::get('/dashboard', 'LA\DashboardController@index');
 
 /* ================== Files ================== */
 Route::get('/la/folder_files/{folder_name}', 'LA\FileController@get_folder_files');
+Route::post('/la/upload_files', 'LA\FileController@upload_files');
 
 /* ================== Modules ================== */
 Route::resource('/la/modules', 'LA\ModuleController');
