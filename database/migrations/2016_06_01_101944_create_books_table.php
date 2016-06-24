@@ -8,6 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
+use App\Book;
 
 class CreateBooksTable extends Migration
 {
@@ -54,6 +55,7 @@ class CreateBooksTable extends Migration
             ["publisher", "Publisher", "Dropdown", false, "Marvel", 0, 0, false, ["Bloomsbury","Marvel","Universal"]],
             ["publisher", "Publisher", "Dropdown", false, 3, 0, 0, false, "@publishers"],
             ["email", "Email", "Email", false, "", 0, 0, false],
+            ["file", "File", "File", false, "", 0, 256, false],
             ["weight", "Weight", "Float", false, 0.0, 0, 20.00, true],
             ["biography", "Biography", "HTML", false, "<p>This is description</p>", 0, 0, true],
             ["profile_image", "Profile Image", "Image", false, "img_path.jpg", 0, 256, false],
