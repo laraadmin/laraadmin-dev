@@ -160,8 +160,6 @@ return [
         /*
          * Dev. Providers
          */
-        Collective\Html\HtmlServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
         Dwij\Laraadmin\LAProvider::class
     ],
 
@@ -208,16 +206,6 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
-
-        /*
-         * Acacha AdminLTE template alias
-         */
-        'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-        'LAFormMaker' => Dwij\Laraadmin\LAFormMaker::class,
-        'LAHelper' => Dwij\Laraadmin\Helpers\LAHelper::class
     ],
 
 ];
