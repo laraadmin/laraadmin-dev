@@ -43,7 +43,10 @@
 			{!! Form::open(['action' => 'LA\EmployeesController@store', 'id' => 'employee-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
-                    @la_input($module, 'name')
+                    @la_form($module)
+					
+					{{--
+					@la_input($module, 'name')
 					@la_input($module, 'designation')
 					@la_input($module, 'gender')
 					@la_input($module, 'mobile')
@@ -58,6 +61,7 @@
 					@la_input($module, 'date_hire')
 					@la_input($module, 'date_left')
 					@la_input($module, 'salary_cur')
+					--}}
 				</div>
 			</div>
 			<div class="modal-footer">

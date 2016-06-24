@@ -17,6 +17,9 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				{!! Form::model($employee, ['route' => [config('laraadmin.adminRoute') . '.employees.update', $employee->id ], 'method'=>'PUT', 'id' => 'employee-edit-form']) !!}
+					@la_form($module)
+					
+					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'designation')
 					@la_input($module, 'gender')
@@ -32,6 +35,7 @@
 					@la_input($module, 'date_hire')
 					@la_input($module, 'date_left')
 					@la_input($module, 'salary_cur')
+					--}}
                     <br>
 					<div class="form-group">
 						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}">Cancel</a></button>
