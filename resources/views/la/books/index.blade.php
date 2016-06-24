@@ -89,7 +89,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url('la/book_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/book_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",

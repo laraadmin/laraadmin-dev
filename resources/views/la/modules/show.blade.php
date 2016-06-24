@@ -18,7 +18,7 @@ use Dwij\Laraadmin\Models\Module;
 					<div class="profile-icon text-primary"><i class="fa fa-cube"></i></div>
 				</div>
 				<div class="col-md-9">
-					<a class="text-white" href="{{ url('/la/'.$module->name_db) }}"><h4 data-toggle="tooltip" data-placement="left" title="Open {{ $module->model }} Module" class="name">{{ $module->label }}</h4></a>
+					<a class="text-white" href="{{ url(config('laraadmin.adminRoute') . '/'.$module->name_db) }}"><h4 data-toggle="tooltip" data-placement="left" title="Open {{ $module->model }} Module" class="name">{{ $module->label }}</h4></a>
 					<div class="row stats">
 						<div class="col-md-12">{{ Module::itemCount($module->name) }} Items</div>
 					</div>
@@ -41,15 +41,15 @@ use Dwij\Laraadmin\Models\Module;
 		</div>
 		
 		<div class="col-md-1 actions">
-			<a href="{{ url('la/modules/'.$module->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
-			{{ Form::open(['route' => ['la.modules.destroy', $module->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			<a href="{{ url(config('laraadmin.adminRoute') . '/modules/'.$module->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.modules.destroy', $module->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 				<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 			{{ Form::close() }}
 		</div>
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url('la/modules') }}" data-toggle="tooltip" data-placement="right" title="Back to Modules"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/modules') }}" data-toggle="tooltip" data-placement="right" title="Back to Modules"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> Module Fields</a></li>
 		<a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:10px;margin-right:10px;">Add Field</a>
 	</ul>
@@ -92,7 +92,7 @@ use Dwij\Laraadmin\Models\Module;
 									<td>@if($field['required']) <span class="text-danger">True</span>@endif </td>
 									<td><?php echo LAHelper::parseValues($field['popup_vals']) ?></td>
 									<td>
-										<a href="{{ url('la/module_fields/'.$field['id'].'/edit') }}" class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
+										<a href="{{ url(config('laraadmin.adminRoute') . '/module_fields/'.$field['id'].'/edit') }}" class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>
 									</td>
 								</tr>
 							@endforeach
@@ -191,7 +191,7 @@ $(function () {
 		$fa.addClass("fa-refresh");
 		$fa.addClass("fa-spin");
 		$.ajax({
-			url: "{{ url('/la/module_generate_crud') }}/"+{{ $module->id }},
+			url: "{{ url(config('laraadmin.adminRoute') . '/module_generate_crud') }}/"+{{ $module->id }},
 			method: 'GET',
 			success: function( data ) {
 				$fa.removeClass("fa-refresh");
@@ -208,7 +208,7 @@ $(function () {
 		$fa.addClass("fa-refresh");
 		$fa.addClass("fa-spin");
 		$.ajax({
-			url: "{{ url('/la/module_generate_migr') }}/"+{{ $module->id }},
+			url: "{{ url(config('laraadmin.adminRoute') . '/module_generate_migr') }}/"+{{ $module->id }},
 			method: 'GET',
 			success: function( data ) {
 				$fa.removeClass("fa-refresh");

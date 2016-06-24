@@ -16,7 +16,7 @@
 							<a class="fm_folder_title">Select Folder</a>
 							<a class="fm_folder_sel" folder="img">img</a>
 							<a class="fm_folder_sel selected" folder="uploads">uploads</a>
-							<form action="{{ url('la/upload_files')}}" id="fm_dropzone" enctype="multipart/form-data" method="POST">
+							<form action="{{ url(config('laraadmin.adminRoute') . '/upload_files')}}" id="fm_dropzone" enctype="multipart/form-data" method="POST">
 								{{ csrf_field() }}
 								<div class="dz-message"><i class="fa fa-cloud-upload"></i><br>Drop files here to upload</div>
 							</form>

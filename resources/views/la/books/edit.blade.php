@@ -3,7 +3,7 @@
 @section("contentheader_title", "Edit book: ")
 @section("contentheader_description", $book->$view_col)
 @section("section", "Books")
-@section("section_url", url('/la/books'))
+@section("section_url", url(config('laraadmin.adminRoute') . '/books'))
 @section("sub_section", "Edit")
 
 @section("htmlheader_title", "Book Edit : ".$book->$view_col)
@@ -16,7 +16,7 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				{!! Form::model($book, ['route' => ['la.books.update', $book->id ], 'method'=>'PUT', 'id' => 'book-edit-form']) !!}
+				{!! Form::model($book, ['route' => [config('laraadmin.adminRoute') . '.books.update', $book->id ], 'method'=>'PUT', 'id' => 'book-edit-form']) !!}
 					@la_form($module)
 					
 					{{--

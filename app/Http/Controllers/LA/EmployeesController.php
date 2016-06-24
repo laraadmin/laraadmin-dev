@@ -74,7 +74,7 @@ class EmployeesController extends Controller
             
         $insert_id = Module::insert("Employees", $request);
         
-        return redirect()->route('la.employees.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.employees.index');
     }
 
     /**
@@ -140,7 +140,7 @@ class EmployeesController extends Controller
         
         $insert_id = Module::updateRow("Employees", $request, $id);
         
-        return redirect()->route('la.employees.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.employees.index');
     }
 
     /**
@@ -153,7 +153,7 @@ class EmployeesController extends Controller
     {
         Employee::find($id)->delete();
         // Redirecting to index() method
-        return redirect()->route('la.employees.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.employees.index');
     }
     
     /**
@@ -179,7 +179,7 @@ class EmployeesController extends Controller
             }
             if($this->show_action) {
                 $output = '<a href="'.url('la/employees/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => ['la.employees.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.employees.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                 $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                 $output .= Form::close();
                 $data->data[$i][] = (string)$output;

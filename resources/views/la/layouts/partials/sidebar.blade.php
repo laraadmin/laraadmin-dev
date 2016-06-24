@@ -38,14 +38,14 @@
             <li><a href="#"><i class='fa fa-building'></i> <span>Organisations</span></a></li>
             <li><a href="#"><i class='fa fa-newspaper-o'></i> <span>Contacts</span> <small class="label pull-right bg-green">2 New</small></a></li>
             <li><a href="#"><i class='fa fa-calendar'></i> <span>Calendar</span></a></li>
-            <li><a href="{{ url('la/books') }}"><i class='fa fa-book'></i> <span>Books</span></a></li>
+            <li><a href="{{ url(config('laraadmin.adminRoute') . '/books') }}"><i class='fa fa-book'></i> <span>Books</span></a></li>
             <!-- LAMenus -->
             
             
             <li class="treeview">
                 <a href="#"><i class='fa fa-group'></i> <span>Team</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('la/employees') }}"><i class="fa fa-circle-o text-green"></i> <span>Employees</span></a></li>
+                    <li><a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}"><i class="fa fa-circle-o text-green"></i> <span>Employees</span></a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Departments</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Roles</a></li>
                     <li><a href="#"><i class="fa fa-circle-o text-red"></i> Access Control</a></li>

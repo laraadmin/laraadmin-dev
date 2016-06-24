@@ -139,13 +139,13 @@
                                     <a href="#">Followers</a>
                                 </div>
                                 <div class="col-xs-8 text-center">
-                                    <a href="{{ url('/la/modules') }}"><i class="fa fa-cubes"></i> <span>Module Manager</span></a>
+                                    <a href="{{ url(config('laraadmin.adminRoute') . '/modules') }}"><i class="fa fa-cubes"></i> <span>Module Manager</span></a>
                                 </div>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/la/user/') }}/{{ Auth::user()->id }}" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ url(config('laraadmin.adminRoute') . '/user/') }}/{{ Auth::user()->id }}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>

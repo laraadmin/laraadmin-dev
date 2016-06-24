@@ -15,11 +15,11 @@
 	<div class="box-body">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				{!! Form::model($course, ['route' => ['la.modules.update', $course->id ], 'method'=>'PUT', 'id' => 'course-edit-form']) !!}
+				{!! Form::model($course, ['route' => [config('laraadmin.adminRoute') . '.modules.update', $course->id ], 'method'=>'PUT', 'id' => 'course-edit-form']) !!}
 					
                     <br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url('/la/courses') }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/courses') }}">Cancel</a></button>
 					</div>
 				{!! Form::close() !!}
 				
