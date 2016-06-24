@@ -54,7 +54,7 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Module</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\ModuleController@store', 'id' => 'module-add-form']) !!}
+			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.modules.store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
 					<div class="form-group">
@@ -80,11 +80,11 @@ use Dwij\Laraadmin\Models\Module;
 @endsection
 
 @push('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/datatables/datatables.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/datatables/datatables.min.css') }}"/>
 @endpush
 
 @push('scripts')
-<script src="{{ asset('/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
 $(function () {
 	$("#dt_modules").DataTable({

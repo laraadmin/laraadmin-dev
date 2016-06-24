@@ -115,7 +115,7 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add {{ $module->model }} Field</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\FieldController@store', 'id' => 'field-form']) !!}
+			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.module_fields.store', 'id' => 'field-form']) !!}
 			{{ Form::hidden("module_id", $module->id) }}
 			<div class="modal-body">
 				<div class="box-body">
@@ -178,11 +178,11 @@ use Dwij\Laraadmin\Models\Module;
 </div>
 
 @push('styles')
-<link rel="stylesheet" type="text/css" href="{{ asset('/plugins/datatables/datatables.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/datatables/datatables.min.css') }}"/>
 @endpush
 
 @push('scripts')
-<script src="{{ asset('/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
 $(function () {
 	$("#generate_crud").on("click", function() {
