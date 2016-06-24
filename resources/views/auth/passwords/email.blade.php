@@ -9,7 +9,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>{{ Config::get('sitename2')[0] }} </b>{{ Config::get('sitename2')[1] }}</a>
+            <a href="{{ url('/home') }}"><b>{{ config('laraadmin.sitename2')[0] }} </b>{{ config('laraadmin.sitename2')[1] }}</a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))

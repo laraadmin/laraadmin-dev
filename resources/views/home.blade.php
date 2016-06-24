@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ Config::get('sitename') }} - {{ Config::get('sitedesc') }}">
+    <meta name="description" content="{{ config('laraadmin.sitename') }} - {{ config('laraadmin.sitedesc') }}">
     <meta name="author" content="Dwij IT Solutions">
 
-    <meta property="og:title" content="{{ Config::get('sitename') }}" />
+    <meta property="og:title" content="{{ config('laraadmin.sitename') }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="{{ Config::get('sitename') }} - {{ Config::get('sitedesc') }}" />
+    <meta property="og:description" content="{{ config('laraadmin.sitename') }} - {{ config('laraadmin.sitedesc') }}" />
     
     <!--
     <meta property="og:url" content="http://demo.adminlte.acacha.org/" />
@@ -23,7 +23,7 @@
     <meta name="twitter:site" content="@dwijitsolutions" />
     <meta name="twitter:creator" content="@dwijitsolutions" />
     
-    <title>{{ Config::get('sitename') }}</title>
+    <title>{{ config('laraadmin.sitename') }}</title>
     
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/la-assets/css/bootstrap.css') }}" rel="stylesheet">
@@ -51,7 +51,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><b>{{ Config::get('sitename') }}</b></a>
+            <a class="navbar-brand" href="#"><b>{{ config('laraadmin.sitename') }}</b></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -78,8 +78,8 @@
     <div class="container">
         <div class="row centered">
             <div class="col-lg-12">
-                <h1>{{ Config::get('sitename2')[0] }} <b><a>{{ Config::get('sitename2')[1] }}</a></b></h1>
-                <h3>{{ Config::get('sitedesc') }}</h3>
+                <h1>{{ config('laraadmin.sitename2')[0] }} <b><a>{{ config('laraadmin.sitename2')[1] }}</a></b></h1>
+                <h3>{{ config('laraadmin.sitedesc') }}</h3>
                 <h3><a href="{{ url('/login') }}" class="btn btn-lg btn-success">Get Started!</a></h3><br>
             </div>
             <div class="col-lg-2">

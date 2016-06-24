@@ -251,13 +251,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gdbhosale/laraadmin-package.git",
-                "reference": "94746ff4e2888caf77a7b265691b8288f2f5956d"
+                "url": "https://github.com/dwijitsolutions/laraadmin.git",
+                "reference": "7aa687eebce24fa7fc1765435144475965036b2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gdbhosale/laraadmin-package/zipball/94746ff4e2888caf77a7b265691b8288f2f5956d",
-                "reference": "94746ff4e2888caf77a7b265691b8288f2f5956d",
+                "url": "https://api.github.com/repos/dwijitsolutions/laraadmin/zipball/7aa687eebce24fa7fc1765435144475965036b2c",
+                "reference": "7aa687eebce24fa7fc1765435144475965036b2c",
                 "shasum": ""
             },
             "require": {
@@ -281,11 +281,18 @@
             "authors": [
                 {
                     "name": "Ganesh Bhosale",
-                    "email": "gdb.sci123@gmail.com"
+                    "email": "ganesh@dwij.in"
                 }
             ],
-            "description": "This is main package for LaraAdmin for Migrations, CRUD generation and Form Maker.",
-            "time": "2016-06-11 17:58:24"
+            "description": "LaraAdmin is a Open source CRM for quick-start Admin based applications with features like Advanced CRUD Generation, Schema Manager and Workflows.",
+            "homepage": "http://laraadmin.com",
+            "keywords": [
+                "admin",
+                "crm",
+                "laraadmin",
+                "laravel"
+            ],
+            "time": "2016-06-23 21:11:12"
         },
         {
             "name": "jakub-onderka/php-console-color",
