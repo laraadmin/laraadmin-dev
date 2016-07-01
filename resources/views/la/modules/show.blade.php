@@ -150,17 +150,23 @@ use Dwij\Laraadmin\Models\Module;
 					
 					<div class="form-group">
 						<label for="minlength">Minimum :</label>
-						{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+						{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>'Minimum Value']) }}
 					</div>
 					
 					<div class="form-group">
 						<label for="maxlength">Maximum :</label>
-						{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+						{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>'Maximum Value']) }}
 					</div>
 					
 					<div class="form-group">
 						<label for="required">Required:</label>
 						{{ Form::checkbox("required", "required", false, []) }}
+						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+					</div>
+					
+					<div class="form-group">
+						<label for="required">Unique:</label>
+						{{ Form::checkbox("unique", "unique", false, []) }}
 						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
