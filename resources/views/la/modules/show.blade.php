@@ -138,9 +138,23 @@ use Dwij\Laraadmin\Models\Module;
 					</div>
 					
 					<div class="form-group">
-						<label for="readonly">Read Only:</label>
-						{{ Form::checkbox("readonly", "readonly", false, []) }}
-						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+						<label for="popup_vals">Values :</label>
+						
+						<div class="radio">
+							<label><input name="popup_val_type" type="radio" value="none" checked="checked"> None </label>
+							<label><input name="popup_val_type" type="radio" value="module"> From Module </label>
+							<label><input name="popup_val_type" type="radio" value="direct"> Direct Values </label>
+							<label><input name="popup_val_type" type="radio" value="table"> From Table </label>
+							<br><br>
+							{{ Form::select("popup_vals_table", $tables, null, ['class'=>'form-control', 'required' => 'required']) }}
+							<div id="popup_vals_direct">
+								{{ Form::select("popup_vals_direct[]", [], [], ['class'=>'form-control', 'multiple' => 'true', 'rel' => 'taginput', 'data-placeholder' => 'Add multiple Values']) }}
+							</div>
+							{{ Form::select("popup_vals_module", $modules, null, ['class'=>'form-control', 'required' => 'required']) }}
+							
+						</div>
+						
+						
 					</div>
 					
 					<div class="form-group">
@@ -171,8 +185,9 @@ use Dwij\Laraadmin\Models\Module;
 					</div>
 					
 					<div class="form-group">
-						<label for="popup_vals">Values :</label>
-						{{ Form::text("popup_vals", null, ['class'=>'form-control', 'placeholder'=>'Popup Values (Only for Radio, Dropdown, Multiselect, Taginput)']) }}
+						<label for="readonly">Read Only:</label>
+						{{ Form::checkbox("readonly", "readonly", false, []) }}
+						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
 				</div>
@@ -194,6 +209,34 @@ use Dwij\Laraadmin\Models\Module;
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script>
 $(function () {
+	
+	$("select[name=popup_vals_table]").hide();
+	$("select[name=popup_vals_module]").hide();
+	$("#popup_vals_direct").hide();
+	
+	$("input[name=popup_val_type]").on("change", function() {
+		var vtype = $(this).val();
+		console.log(vtype);
+		
+		if(vtype == "none") {
+			$("select[name=popup_vals_table]").hide();
+			$("select[name=popup_vals_module]").hide();
+			$("#popup_vals_direct").hide();
+		} else if(vtype == "module") {
+			$("select[name=popup_vals_table]").hide();
+			$("select[name=popup_vals_module]").show();
+			$("#popup_vals_direct").hide();
+		} else if(vtype == "direct") {
+			$("select[name=popup_vals_table]").hide();
+			$("select[name=popup_vals_module]").hide();
+			$("#popup_vals_direct").show();
+		} else if(vtype == "table") {
+			$("select[name=popup_vals_table]").show();
+			$("select[name=popup_vals_module]").hide();
+			$("#popup_vals_direct").hide();
+		}
+	});
+	
 	$("#generate_crud").on("click", function() {
 		var $fa = $(this).find("i");
 		$fa.removeClass("fa-cube");
