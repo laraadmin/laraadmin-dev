@@ -6,7 +6,6 @@
 		"**/*.DS_Store": true,
 		"vendor/**": true,
 		"bootstrap/**": true,
-		"storage/**":true,
 		"node_modules/**":true,
 		"tests/**":true
 	},
