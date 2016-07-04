@@ -39,3 +39,6 @@ Route::get(config('laraadmin.adminRoute') . '/department_dt_ajax', 'LA\Departmen
 /* ================== Employees ================== */
 Route::resource(config('laraadmin.adminRoute') . '/employees', 'LA\EmployeesController');
 Route::get(config('laraadmin.adminRoute') . '/employee_dt_ajax', 'LA\EmployeesController@dtajax');
+
+/* ================== Uploads ================== */
+Route::resource(config('laraadmin.adminRoute') . '/uploads', 'LA\UploadsController');
