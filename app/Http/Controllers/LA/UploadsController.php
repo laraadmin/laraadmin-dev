@@ -84,13 +84,13 @@ class UploadsController extends Controller
                 if(!is_numeric($size)) {
                     $size = 150;
                 }
-                $thumbpath = storage_path("thumbnails".basename($upload->path)."-".$size."x".$size);
+                $thumbpath = storage_path("thumbnails/".basename($upload->path)."-".$size."x".$size);
                 
                 if(File::exists($thumbpath)) {
                     $path = $thumbpath;
                 } else {
                     // Create Thumbnail
-                    LAHelper::createThumbnail($upload->path, $thumbpath, $size, $size);
+                    LAHelper::createThumbnail($upload->path, $thumbpath, $size, $size, "transparent");
                     $path = $thumbpath;
                 }
             }
