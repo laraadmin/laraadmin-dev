@@ -32,7 +32,48 @@
 	<!--<div class="box-header"></div>-->
 	<div class="box-body">
 		<ul class="files_container">
+
         </ul>
+	</div>
+</div>
+
+
+<div class="modal fade" id="EditFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document" style="width:70%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+                <button type="button" class="next"><i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="prev"><i class="fa fa-chevron-left"></i></button>
+				<h4 class="modal-title" id="myModalLabel">File: </h4>
+			</div>
+			<div class="modal-body p0">
+                    <div class="row m0">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="fileObject">
+                                
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <form class="file-info-form">
+                                <div class="form-group">
+                                    <label for="url">URL</label>
+                                    <input class="form-control" placeholder="URL" name="url" type="text" readonly value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="label">Label</label>
+                                    <input class="form-control" placeholder="Label" name="label" type="text" value="">
+                                </div>
+                            </form>
+                        </div>
+                    </div><!--.row-->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -68,6 +109,18 @@ $(function () {
     });
     $("#closeDZ1").on("click", function() {
         $("#fm_dropzone_main").slideUp();
+    });
+    $("body").on("click", "ul.files_container .fm_file_sel", function() {
+        var upload = $(this).attr("upload");
+        upload = JSON.parse(upload);
+        $("#EditFileModal .fileObject").empty();
+
+        if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
+            $("#EditFileModal .fileObject").append('<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">');
+        } else {
+
+        }
+        $("#EditFileModal").modal('show');
     });
     loadUploadedFiles();
 });
@@ -106,7 +159,7 @@ function formatFile(upload) {
                 break;
         }
     }
-    return '<li><a class="fm_file_sel" data-toggle="tooltip" data-placement="top" title="'+upload.name+'" fpath="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">'+image+'</a></li>';
+    return '<li><a class="fm_file_sel" data-toggle="tooltip" data-placement="top" title="'+upload.name+'" upload=\''+JSON.stringify(upload)+'\'>'+image+'</a></li>';
 }
 </script>
 @endpush
