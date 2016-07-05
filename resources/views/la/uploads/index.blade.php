@@ -62,12 +62,12 @@ $(function () {
             });
         }
     });
-    $("#fm_dropzone_main").hide();
+    $("#fm_dropzone_main").slideUp();
     $("#AddNewUploads").on("click", function() {
-        $("#fm_dropzone_main").show();
+        $("#fm_dropzone_main").slideDown();
     });
     $("#closeDZ1").on("click", function() {
-        $("#fm_dropzone_main").hide();
+        $("#fm_dropzone_main").slideUp();
     });
     loadUploadedFiles();
 });
