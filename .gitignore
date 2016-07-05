@@ -6,3 +6,4 @@ Homestead.json
 *.map
 /docs
 /public/uploads
+/storage/uploads

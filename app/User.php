@@ -38,10 +38,19 @@ class User extends Authenticatable
     /**
      * @return mixed
      */
+    public function uploads()
+    {
+        return $this->hasMany('App\Upload');
+    }
+
+    /**
+     * @return mixed
+     */
     public function roles()
     {
         return $this->belongsToMany('App\Role')->withTimestamps();
     }
+    
 
     /**
      * Does the user have a particular role?
