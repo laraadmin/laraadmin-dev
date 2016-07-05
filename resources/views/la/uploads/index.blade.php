@@ -44,8 +44,8 @@
 			<div class="modal-header">
 				
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-                <button type="button" class="next"><i class="fa fa-chevron-right"></i></button>
-                <button type="button" class="prev"><i class="fa fa-chevron-left"></i></button>
+                <!--<button type="button" class="next"><i class="fa fa-chevron-right"></i></button>
+                <button type="button" class="prev"><i class="fa fa-chevron-left"></i></button>-->
 				<h4 class="modal-title" id="myModalLabel">File: </h4>
 			</div>
 			<div class="modal-body p0">
@@ -56,16 +56,21 @@
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">
-                            <form class="file-info-form">
+                            {!! Form::open(['class' => 'file-info-form']) !!}
+                                <input type="hidden" name="file_id" value="0">
+                                <div class="form-group">
+                                    <label for="filename">File Name</label>
+                                    <input class="form-control" placeholder="File Name" name="filename" type="text" @if(!config('laraadmin.uploads.allow_filename_change')) readonly @endif value="">
+                                </div>
                                 <div class="form-group">
                                     <label for="url">URL</label>
                                     <input class="form-control" placeholder="URL" name="url" type="text" readonly value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="label">Label</label>
-                                    <input class="form-control" placeholder="Label" name="label" type="text" value="">
+                                    <label for="caption">Label</label>
+                                    <input class="form-control" placeholder="Caption" name="caption" type="text" value="">
                                 </div>
-                            </form>
+                            {!! Form::close() !!}
                         </div>
                     </div><!--.row-->
 			</div>
@@ -113,12 +118,53 @@ $(function () {
     $("body").on("click", "ul.files_container .fm_file_sel", function() {
         var upload = $(this).attr("upload");
         upload = JSON.parse(upload);
-        $("#EditFileModal .fileObject").empty();
 
+        $("#EditFileModal .modal-title").html("File: "+upload.name);
+        $(".file-info-form input[name=file_id]").val(upload.id);
+        $(".file-info-form input[name=filename]").val(upload.name);
+        $(".file-info-form input[name=url]").val(bsurl+'/files/'+upload.hash+'/'+upload.name);
+        $(".file-info-form input[name=caption]").val(upload.caption);
+
+        $(".file-info-form input[name=caption]").on("blur", function() {
+            // TODO: Update Caption
+            $.ajax({
+                url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_caption') }}",
+                method: 'POST',
+                data: $("form.file-info-form").serialize(),
+                success: function( data ) {
+                    console.log(data);
+                    loadUploadedFiles();
+                }
+            });
+        });
+
+        @if(config('laraadmin.uploads.allow_filename_change'))
+        $(".file-info-form input[name=filename]").on("blur", function() {
+            // TODO: Change Filename
+            $.ajax({
+                url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_filename') }}",
+                method: 'POST',
+                data: $("form.file-info-form").serialize(),
+                success: function( data ) {
+                    console.log(data);
+                    loadUploadedFiles();
+                }
+            });
+        });
+        @endif
+
+        $("#EditFileModal .fileObject").empty();
         if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
             $("#EditFileModal .fileObject").append('<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">');
         } else {
-
+            switch (upload.extension) {
+                case "pdf":
+                    // TODO: Object PDF
+                    break;
+                default:
+                    $("#EditFileModal .fileObject").append('<i class="fa fa-file-text-o"></i>');
+                    break;
+            }
         }
         $("#EditFileModal").modal('show');
     });
@@ -128,7 +174,7 @@ function loadUploadedFiles() {
     // load folder files
     $.ajax({
         dataType: 'json',
-        url: $('body').attr("bsurl")+"/admin/uploaded_files",
+        url: "{{ url(config('laraadmin.adminRoute') . '/uploaded_files') }}",
         success: function ( json ) {
             console.log(json);
             cntFiles = json.uploads;
