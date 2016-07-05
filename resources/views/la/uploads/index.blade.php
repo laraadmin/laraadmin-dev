@@ -75,7 +75,7 @@
                     </div><!--.row-->
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger">Delete</button>
+				<button type="button" class="btn btn-danger" id="delFileBtn">Delete</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
@@ -125,34 +125,6 @@ $(function () {
         $(".file-info-form input[name=url]").val(bsurl+'/files/'+upload.hash+'/'+upload.name);
         $(".file-info-form input[name=caption]").val(upload.caption);
 
-        $(".file-info-form input[name=caption]").on("blur", function() {
-            // TODO: Update Caption
-            $.ajax({
-                url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_caption') }}",
-                method: 'POST',
-                data: $("form.file-info-form").serialize(),
-                success: function( data ) {
-                    console.log(data);
-                    loadUploadedFiles();
-                }
-            });
-        });
-
-        @if(config('laraadmin.uploads.allow_filename_change'))
-        $(".file-info-form input[name=filename]").on("blur", function() {
-            // TODO: Change Filename
-            $.ajax({
-                url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_filename') }}",
-                method: 'POST',
-                data: $("form.file-info-form").serialize(),
-                success: function( data ) {
-                    console.log(data);
-                    loadUploadedFiles();
-                }
-            });
-        });
-        @endif
-
         $("#EditFileModal .fileObject").empty();
         if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
             $("#EditFileModal .fileObject").append('<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">');
@@ -167,6 +139,47 @@ $(function () {
             }
         }
         $("#EditFileModal").modal('show');
+    });
+    $(".file-info-form input[name=caption]").on("blur", function() {
+        // TODO: Update Caption
+        $.ajax({
+            url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_caption') }}",
+            method: 'POST',
+            data: $("form.file-info-form").serialize(),
+            success: function( data ) {
+                console.log(data);
+                loadUploadedFiles();
+            }
+        });
+    });
+
+    @if(config('laraadmin.uploads.allow_filename_change'))
+    $(".file-info-form input[name=filename]").on("blur", function() {
+        // TODO: Change Filename
+        $.ajax({
+            url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_filename') }}",
+            method: 'POST',
+            data: $("form.file-info-form").serialize(),
+            success: function( data ) {
+                console.log(data);
+                loadUploadedFiles();
+            }
+        });
+    });
+    @endif
+    $("#EditFileModal #delFileBtn").on("click", function() {
+        if(confirm("Delete image "+$(".file-info-form input[name=filename]").val()+" ?")) {
+            $.ajax({
+                url: "{{ url(config('laraadmin.adminRoute') . '/uploads_delete_file') }}",
+                method: 'POST',
+                data: $("form.file-info-form").serialize(),
+                success: function( data ) {
+                    console.log(data);
+                    loadUploadedFiles();
+                    $("#EditFileModal").modal('hide');
+                }
+            });
+        }
     });
     loadUploadedFiles();
 });
