@@ -95,7 +95,7 @@ function loadUploadedFiles() {
 function formatFile(upload) {
     var image = '';
     if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
-        image = '<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">';
+        image = '<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'?s=130">';
     } else {
         switch (upload.extension) {
             case "pdf":

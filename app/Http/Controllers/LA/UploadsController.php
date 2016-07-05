@@ -18,6 +18,7 @@ use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Helpers\LAHelper;
 
 use App\Upload;
 
@@ -79,52 +80,21 @@ class UploadsController extends Controller
             
             // Check if thumbnail
             $size = Input::get('s');
-            if(isset($size) && is_numeric($size)) {
-                $file = $upload->path
-                $thumbpath = $upload->path."-".$size."x".$size;
-
-                if(!File::exists($thumbpath)) {
-
+            if(isset($size)) {
+                if(!is_numeric($size)) {
+                    $size = 150;
+                }
+                $thumbpath = storage_path("thumbnails".basename($upload->path)."-".$size."x".$size);
+                
+                if(File::exists($thumbpath)) {
+                    $path = $thumbpath;
+                } else {
+                    // Create Thumbnail
+                    LAHelper::createThumbnail($upload->path, $thumbpath, $size, $size);
+                    $path = $thumbpath;
                 }
             }
 
-            $file = File::get($path);
-            $type = File::mimeType($path);
-
-            $response = FacadeResponse::make($file, 200);
-            $response->header("Content-Type", $type);
-
-            return $response;
-        } else {
-            echo "Unauthorized Access";
-        }
-    }
-
-    /**
-     * Get file thumbnail
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function get_thumb($hash, $name)
-    {
-        $upload = Upload::where("hash", $hash)->first();
-
-        if(isset($upload->id) && $upload->name == $name) {
-            // Check if main file exists
-            if(!File::exists($path)) {
-                abort(404);
-            }
-            $size = 150;
-
-            $input = Input::all();
-
-            $thumbpath = $upload->path."-".$size."x".$size;
-
-            if(!File::exists($thumbpath)) {
-                
-            }
-                abort(404);
-            
             $file = File::get($path);
             $type = File::mimeType($path);
 
