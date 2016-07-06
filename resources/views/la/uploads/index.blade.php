@@ -39,7 +39,7 @@
 
 
 <div class="modal fade" id="EditFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document" style="width:70%;">
+	<div class="modal-dialog" role="document" style="width:90%;">
 		<div class="modal-content">
 			<div class="modal-header">
 				
@@ -148,14 +148,17 @@ $(function () {
         $("#EditFileModal .fileObject").empty();
         if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
             $("#EditFileModal .fileObject").append('<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">');
+            $("#EditFileModal .fileObject").css("padding", "15px 0px");
         } else {
             switch (upload.extension) {
                 case "pdf":
                     // TODO: Object PDF
-                    $("#EditFileModal .fileObject").append('<object width="100%" height="290" data="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'"></object>');
+                    $("#EditFileModal .fileObject").append('<object width="100%" height="325" data="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'"></object>');
+                    $("#EditFileModal .fileObject").css("padding", "0px");
                     break;
                 default:
                     $("#EditFileModal .fileObject").append('<i class="fa fa-file-text-o"></i>');
+                    $("#EditFileModal .fileObject").css("padding", "15px 0px");
                     break;
             }
         }
@@ -163,29 +166,6 @@ $(function () {
     });
     @if(!config('laraadmin.uploads.private_uploads'))
     $('#EditFileModal .Switch.Ajax').click(function() {
-        // var state = "false";
-        // if ($(this).hasClass('On')){
-        //     state = "false";
-        // } else {
-        //     state = "true";
-        // }
-        // var _token = $(this).parent().find('#inquiryAddModal input[name=_token]').val();
-        // $.ajax({
-        //     type: "POST",
-        //     url : "{{ url('/inquiries/update_ajax') }}",
-        //     xhrFields: {
-        //         withCredentials: true
-        //     },
-        //     data : {
-        //         _token: _token,
-        //         type: "UPDATE_REF",
-        //         inqid: $(this).attr("inqid"),
-        //         state: state,
-        //     },
-        //     success : function(data){
-        //         console.log(data);
-        //     }
-        // });
         $.ajax({
             url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_public') }}",
             method: 'POST',
