@@ -22,7 +22,7 @@
     </div>
 @endif
 
-<form action="{{ url(config('laraadmin.adminRoute') . '/upload_files')}}" id="fm_dropzone_main" enctype="multipart/form-data" method="POST">
+<form action="{{ url(config('laraadmin.adminRoute') . '/upload_files') }}" id="fm_dropzone_main" enctype="multipart/form-data" method="POST">
     {{ csrf_field() }}
     <a id="closeDZ1"><i class="fa fa-times"></i></a>
     <div class="dz-message"><i class="fa fa-cloud-upload"></i><br>Drop files here to upload</div>
@@ -72,7 +72,7 @@
                                 </div>
                                 @if(!config('laraadmin.uploads.private_uploads'))
                                     <div class="form-group">
-                                        <label for="public">Is Public</label>
+                                        <label for="public">Is Public ?</label>
                                         {{ Form::checkbox("public", "public", false, []) }}
                                         <div class="Switch Ajax Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
                                     </div>
