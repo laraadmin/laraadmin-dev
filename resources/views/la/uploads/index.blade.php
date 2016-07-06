@@ -70,6 +70,13 @@
                                     <label for="caption">Label</label>
                                     <input class="form-control" placeholder="Caption" name="caption" type="text" value="">
                                 </div>
+                                @if(!config('laraadmin.uploads.private_uploads'))
+                                    <div class="form-group">
+                                        <label for="public">Is Public</label>
+                                        {{ Form::checkbox("public", "public", false, []) }}
+                                        <div class="Switch Ajax Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
+                                    </div>
+                                @endif
                             {!! Form::close() !!}
                         </div>
                     </div><!--.row-->
@@ -125,6 +132,16 @@ $(function () {
         $(".file-info-form input[name=url]").val(bsurl+'/files/'+upload.hash+'/'+upload.name);
         $(".file-info-form input[name=caption]").val(upload.caption);
 
+        @if(!config('laraadmin.uploads.private_uploads'))
+        if(upload.public == "1") {
+            $(".file-info-form input[name=public]").attr("checked", !0);
+            $(".file-info-form input[name=public]").next().removeClass("On").addClass("Off");
+        } else {
+            $(".file-info-form input[name=public]").attr("checked", !1);
+            $(".file-info-form input[name=public]").next().removeClass("Off").addClass("On");
+        }
+        @endif
+
         $("#EditFileModal .fileObject").empty();
         if($.inArray(upload.extension, ["jpg", "jpeg", "png", "gif", "bmp"]) > -1) {
             $("#EditFileModal .fileObject").append('<img src="'+bsurl+'/files/'+upload.hash+'/'+upload.name+'">');
@@ -140,6 +157,43 @@ $(function () {
         }
         $("#EditFileModal").modal('show');
     });
+    @if(!config('laraadmin.uploads.private_uploads'))
+    $('#EditFileModal .Switch.Ajax').click(function() {
+        // var state = "false";
+        // if ($(this).hasClass('On')){
+        //     state = "false";
+        // } else {
+        //     state = "true";
+        // }
+        // var _token = $(this).parent().find('#inquiryAddModal input[name=_token]').val();
+        // $.ajax({
+        //     type: "POST",
+        //     url : "{{ url('/inquiries/update_ajax') }}",
+        //     xhrFields: {
+        //         withCredentials: true
+        //     },
+        //     data : {
+        //         _token: _token,
+        //         type: "UPDATE_REF",
+        //         inqid: $(this).attr("inqid"),
+        //         state: state,
+        //     },
+        //     success : function(data){
+        //         console.log(data);
+        //     }
+        // });
+        $.ajax({
+            url: "{{ url(config('laraadmin.adminRoute') . '/uploads_update_public') }}",
+            method: 'POST',
+            data: $("form.file-info-form").serialize(),
+            success: function( data ) {
+                console.log(data);
+                loadUploadedFiles();
+            }
+        });
+        
+    });
+    @endif
     $(".file-info-form input[name=caption]").on("blur", function() {
         // TODO: Update Caption
         $.ajax({
@@ -167,6 +221,7 @@ $(function () {
         });
     });
     @endif
+
     $("#EditFileModal #delFileBtn").on("click", function() {
         if(confirm("Delete image "+$(".file-info-form input[name=filename]").val()+" ?")) {
             $.ajax({
