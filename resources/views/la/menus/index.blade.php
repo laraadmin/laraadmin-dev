@@ -59,9 +59,12 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 			<div class="col-md-8 col-lg-8">
 				<div class="dd" id="menu-nestable">
-					{{ json_encode($menus) }}
-					{{ LAHelper::print_menu_editor($menus) }}
 					<ol class="dd-list">
+						@foreach ($menus as $menu)
+							<?php echo LAHelper::print_menu_editor($menu); ?>
+						@endforeach
+						
+						<!--
 						<li class="dd-item dd3-item" data-id="13">
 							<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 13 <button class="btn btn-xs btn-danger pull-right"><i class="fa fa-times"></i></button> <button class="btn btn-xs btn-success pull-right"><i class="fa fa-edit"></i></button></div>
 						</li>
@@ -82,6 +85,7 @@ use Dwij\Laraadmin\Models\Module;
 								</li>
 							</ol>
 						</li>
+						-->
 					</ol>
 				</div>
 			</div>

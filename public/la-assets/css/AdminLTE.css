@@ -2472,9 +2472,15 @@ ul.files_container li:hover {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+.dd3-content i.fa {
+  width: 15px;
+  text-align: center;
+  margin-right: 3px;
+}
 .dd3-content .btn {
   display: none;
   padding: 0px 4px;
+  padding-right: 0px;
   margin-left: 3px;
   margin-top: -1px;
 }
