@@ -84,10 +84,23 @@ $(function () {
 	$('#menu-nestable').nestable({
         group: 1
     });
+	$('#menu-nestable').on('change', function() {
+		var jsonData = $('#menu-nestable').nestable('serialize');
+		console.log(jsonData);
+		$.ajax({
+			url: "{{ url(config('laraadmin.adminRoute') . '/la_menus/update_hierarchy') }}",
+			method: 'POST',
+			data: {
+				jsonData: jsonData,
+				"_token": '{{ csrf_token() }}'
+			},
+			success: function( data ) {
+				console.log(data);
+			}
+		});
+	});
 	$("#menu-custom-form").validate({
-		submitHandler: function(form) {
-			$(form).submit();
-		}
+		
 	});
 	$("#tab-modules .addModuleMenu").on("click", function() {
 		var module_id = $(this).attr("module_id");
