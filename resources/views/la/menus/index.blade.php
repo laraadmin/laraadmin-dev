@@ -30,19 +30,21 @@ use Dwij\Laraadmin\Models\Module;
 						<div class="tab-pane active" id="tab-modules">
 							<ul>
 							@foreach ($modules as $module)
-								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->name }} <a class="addModuleMenu pull-right"><i class="fa fa-plus"></i></a></li>
+								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->name }} <a module_id="{{ $module->id }}" class="addModuleMenu pull-right"><i class="fa fa-plus"></i></a></li>
 							@endforeach
 							</ul>
 						</div>
 						<div class="tab-pane" id="tab-custom-link">
-							{!! Form::open(['id' => 'menu-custom-form']) !!}
+							
+							{!! Form::open(['action' => '\Dwij\Laraadmin\Controllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
+								<input type="hidden" name="type" value="custom">
 								<div class="form-group">
 									<label for="url" style="font-weight:normal;">URL</label>
 									<input class="form-control" placeholder="URL" name="url" type="text" value="http://" data-rule-minlength="1" required>
 								</div>
 								<div class="form-group">
-									<label for="label" style="font-weight:normal;">Label</label>
-									<input class="form-control" placeholder="Label" name="label" type="text" value=""  data-rule-minlength="1" required>
+									<label for="name" style="font-weight:normal;">Label</label>
+									<input class="form-control" placeholder="Label" name="name" type="text" value=""  data-rule-minlength="1" required>
 								</div>
 								<div class="form-group">
 									<label for="icon" style="font-weight:normal;">Icon</label>
@@ -83,10 +85,25 @@ $(function () {
         group: 1
     });
 	$("#menu-custom-form").validate({
-		
+		submitHandler: function(form) {
+			$(form).submit();
+		}
 	});
-	#("#tab-modules .addModuleMenu").on("click", function() {
-		
+	$("#tab-modules .addModuleMenu").on("click", function() {
+		var module_id = $(this).attr("module_id");
+		$.ajax({
+			url: "{{ url(config('laraadmin.adminRoute') . '/la_menus') }}",
+			method: 'POST',
+			data: {
+				type: 'module',
+				module_id: module_id,
+				"_token": '{{ csrf_token() }}'
+			},
+			success: function( data ) {
+				console.log(data);
+				window.location.reload();
+			}
+		});
 	});
 });
 </script>
