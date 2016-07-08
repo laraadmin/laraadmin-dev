@@ -30,7 +30,7 @@ use Dwij\Laraadmin\Models\Module;
 						<div class="tab-pane active" id="tab-modules">
 							<ul>
 							@foreach ($modules as $module)
-								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->name }} <a class="pull-right"><i class="fa fa-plus"></i></a></li>
+								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->name }} <a class="addModuleMenu pull-right"><i class="fa fa-plus"></i></a></li>
 							@endforeach
 							</ul>
 						</div>
@@ -63,29 +63,6 @@ use Dwij\Laraadmin\Models\Module;
 						@foreach ($menus as $menu)
 							<?php echo LAHelper::print_menu_editor($menu); ?>
 						@endforeach
-						
-						<!--
-						<li class="dd-item dd3-item" data-id="13">
-							<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 13 <button class="btn btn-xs btn-danger pull-right"><i class="fa fa-times"></i></button> <button class="btn btn-xs btn-success pull-right"><i class="fa fa-edit"></i></button></div>
-						</li>
-						<li class="dd-item dd3-item" data-id="14">
-							<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 14</div>
-						</li>
-						<li class="dd-item dd3-item" data-id="15">
-							<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 15</div>
-							<ol class="dd-list">
-								<li class="dd-item dd3-item" data-id="16">
-									<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 16</div>
-								</li>
-								<li class="dd-item dd3-item" data-id="17">
-									<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 17</div>
-								</li>
-								<li class="dd-item dd3-item" data-id="18">
-									<div class="dd-handle dd3-handle">Drag</div><div class="dd3-content">Item 18</div>
-								</li>
-							</ol>
-						</li>
-						-->
 					</ol>
 				</div>
 			</div>
@@ -106,6 +83,9 @@ $(function () {
         group: 1
     });
 	$("#menu-custom-form").validate({
+		
+	});
+	#("#tab-modules .addModuleMenu").on("click", function() {
 		
 	});
 });
