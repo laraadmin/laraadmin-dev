@@ -61,7 +61,7 @@
 						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group values">
 						<label for="popup_vals">Values :</label>
 						<div class="radio" style="margin-bottom:20px;">
 							<label>{{ Form::radio("popup_value_type", "table", false) }} From Table</label>
@@ -101,6 +101,20 @@ $(function () {
 	$("select.popup_vals_list").show();
 	$("select.popup_vals_list").next().show();
 	$("select[name='popup_vals_table']").hide();
+	
+	function showValuesSection() {
+		if($("select[name='field_type']").val() == 7 || $("select[name='field_type']").val() == 15 || $("select[name='field_type']").val() == 18 || $("select[name='field_type']").val() == 20) {
+			$(".form-group.values").show();
+		} else {
+			$(".form-group.values").hide();
+		}
+	}
+
+	$("select[name='field_type']").on("change", function() {
+		showValuesSection();
+	});
+
+	showValuesSection();
 	
 	$("input[name='popup_value_type']").on("change", function() {
 		console.log($(this).val());
