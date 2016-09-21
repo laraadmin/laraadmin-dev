@@ -67,6 +67,7 @@ use Dwij\Laraadmin\Models\Module;
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
 		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/modules') }}" data-toggle="tooltip" data-placement="right" title="Back to Modules"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> Module Fields</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-access"><i class="fa fa-key"></i> Access</a></li>
 		<a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:10px;margin-right:10px;">Add Field</a>
 	</ul>
 
@@ -120,6 +121,51 @@ use Dwij\Laraadmin\Models\Module;
 					</div>
 				</div>
 			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
+			<table class="table table-bordered no-footer">
+				<thead>
+					<tr class="blockHeader">
+						<th width="14%">
+							<input class="alignTop" type="checkbox" id="role_select_all" checked="checked">&nbsp; Roles
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="view_all" checked="checked">&nbsp; View
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
+						</th>
+						<th width="14%">
+							<input class="alignTop" type="checkbox" id="delete_all" checked="checked">&nbsp; Delete
+						</th>
+						<th width="14%"></th>
+					</tr>
+				</thead>
+				<?php
+				$roles = App\Role::all();
+				?>
+				@foreach($roles as $role)
+					<tr class="tr-access-basic" role_id="{{ $role->id }}">
+						<td><input class="role_checkb" type="checkbox" id="module_{{$role->id}}" checked="checked">&nbsp; {{ $role->name }}</td>
+						<td><input class="view_checkb" type="checkbox" id="module_view_{{$role->id}}" checked="checked"></td>
+						<td><input class="create_checkb" type="checkbox" id="module_create_{{$role->id}}" checked="checked"></td>
+						<td><input class="edit_checkb" type="checkbox" id="module_edit_{{$role->id}}" checked="checked"></td>
+						<td><input class="delete_checkb" type="checkbox" id="module_delete_{{$role->id}}" checked="checked"></td>
+						<td>
+							<a role_id="{{ $role->id }}" class="toggle-adv-access btn btn-default btn-sm"><i class="fa fa-chevron-down"></i></a>
+						</td>
+					</tr>
+					<tr class="tr-access-adv" role_id="{{ $role->id }}">
+						<td colspan=6>
+							
+						</td>
+					</tr>
+				@endforeach
+			</table>
+			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
 	</div>
 	</div>
@@ -208,9 +254,11 @@ use Dwij\Laraadmin\Models\Module;
 
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
+<style>
+.btn-default{border-color:#D6D3D3}
+</style>
 <script>
 $(function () {
-	
 	$("#generate_migr").on("click", function() {
 		var $fa = $(this).find("i");
 		$fa.removeClass("fa-database");
@@ -258,6 +306,27 @@ $(function () {
 		}
 	});
 	$("#field-form").validate();
+	
+	/* ================== Access Control ================== */
+	
+	$("#role_select_all").on("change", function() {
+		$(".role_checkb").prop('checked', this.checked)
+	});
+	
+	$("#view_all").on("change", function() {
+		$(".view_checkb").prop('checked', this.checked)
+	});
+	
+	$("#create_all").on("change", function() {
+		$(".create_checkb").prop('checked', this.checked)
+	});
+	$("#edit_all").on("change", function() {
+		$(".edit_checkb").prop('checked', this.checked)
+	});
+	
+	$("#delete_all").on("change", function() {
+		$(".delete_checkb").prop('checked', this.checked)
+	});
 });
 </script>
 @endpush
