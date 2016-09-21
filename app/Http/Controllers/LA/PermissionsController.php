@@ -17,6 +17,7 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 
 use App\Permission;
+use App\Role;
 
 class PermissionsController extends Controller
 {
@@ -87,14 +88,18 @@ class PermissionsController extends Controller
         $permission = Permission::find($id);
         $module = Module::get('Permissions');
         $module->row = $permission;
+        
+        $roles = Role::all();
+        
         return view('la.permissions.show', [
             'module' => $module,
             'view_col' => $this->view_col,
             'no_header' => true,
-            'no_padding' => "no-padding"
+            'no_padding' => "no-padding",
+            'roles' => $roles
         ])->with('permission', $permission);
     }
-
+    
     /**
      * Show the form for editing the specified permission.
      *
@@ -181,5 +186,36 @@ class PermissionsController extends Controller
         }
         $out->setData($data);
         return $out;
+    }
+    
+    /**
+     * Save the  permissions for role in permission view.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function save_permissions(Request $request, $id)
+    {
+		$permission = Permission::find($id);
+        $module = Module::get('Permissions');
+        $module->row = $permission;
+		$roles = Role::all();
+		
+		foreach ($roles as $role) {
+			$permi_role_id = 'permi_role_'.$role->id;
+			$permission_set = $request->$permi_role_id;
+			if(isset($permission_set)) {
+				$query = DB::table('permission_role')->where('permission_id', $id)->where('role_id', $role->id);
+				if($query->count() == 0) {
+					DB::insert('insert into permission_role (permission_id, role_id) values (?, ?)', [$id, $role->id]);		
+				}
+			} else {
+				$query = DB::table('permission_role')->where('permission_id', $id)->where('role_id', $role->id);
+				if($query->count() > 0) {
+					DB::delete('delete from permission_role where permission_id = "'.$id.'" AND role_id = "'.$role->id.'" ');		
+				}
+			}
+		}
+		return redirect(config('laraadmin.adminRoute') . '/permissions/'.$id);
     }
 }
