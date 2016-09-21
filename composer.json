@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
-        "dwij/laraadmin": "1.0.26",
+        "dwij/laraadmin": "dev-master",
         "doctrine/dbal": "~2.3"
     },
     "require-dev": {

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3c55e5063569c1cd0dd0372b4c318b70",
-    "content-hash": "c7e8bd0230229f077e2ed1d8d491d0cb",
+    "hash": "5770e4b38949dd4f60d90a05b0855659",
+    "content-hash": "cec8fbdf1ea4ae427fd6f0d6862b97c9",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -670,16 +670,16 @@
         },
         {
             "name": "dwij/laraadmin",
-            "version": "1.0.26",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dwijitsolutions/laraadmin.git",
-                "reference": "37ef5a6d89769bec8bb7dee7b6dce13d3f06e8fc"
+                "reference": "775379d70db62a725ac176afe7e397f0f5e03e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dwijitsolutions/laraadmin/zipball/37ef5a6d89769bec8bb7dee7b6dce13d3f06e8fc",
-                "reference": "37ef5a6d89769bec8bb7dee7b6dce13d3f06e8fc",
+                "url": "https://api.github.com/repos/dwijitsolutions/laraadmin/zipball/775379d70db62a725ac176afe7e397f0f5e03e81",
+                "reference": "775379d70db62a725ac176afe7e397f0f5e03e81",
                 "shasum": ""
             },
             "require": {
@@ -716,7 +716,7 @@
                 "laraadmin",
                 "laravel"
             ],
-            "time": "2016-09-10 07:07:32"
+            "time": "2016-09-15 12:36:52"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1195,16 +1195,16 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "2.1.4",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "b5c91156f6bd29f68f4f2c51186faae4310a5a68"
+                "reference": "700eba02f76f2971c81726a4f6a04121c1977e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/b5c91156f6bd29f68f4f2c51186faae4310a5a68",
-                "reference": "b5c91156f6bd29f68f4f2c51186faae4310a5a68",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/700eba02f76f2971c81726a4f6a04121c1977e64",
+                "reference": "700eba02f76f2971c81726a4f6a04121c1977e64",
                 "shasum": ""
             },
             "require": {
@@ -1258,7 +1258,7 @@
                 "import",
                 "laravel"
             ],
-            "time": "2016-08-28 20:25:51"
+            "time": "2016-09-15 21:03:21"
         },
         {
             "name": "monolog/monolog",
@@ -1431,16 +1431,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3"
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
-                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4dd659edadffdc2143e4753df655d866dbfeedf0",
+                "reference": "4dd659edadffdc2143e4753df655d866dbfeedf0",
                 "shasum": ""
             },
             "require": {
@@ -1478,7 +1478,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-04-19 13:41:41"
+            "time": "2016-09-16 12:04:44"
         },
         {
             "name": "paragonie/random_compat",
@@ -1655,22 +1655,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1684,12 +1692,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2016-09-19 16:02:08"
         },
         {
             "name": "psy/psysh",
@@ -2747,16 +2756,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v6.18.1",
+            "version": "v6.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "979415e6cb437b89ad5f5242aa4050bb3859c726"
+                "reference": "1b8c50b9e33a738ecc630e2cbf65138a32932ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/979415e6cb437b89ad5f5242aa4050bb3859c726",
-                "reference": "979415e6cb437b89ad5f5242aa4050bb3859c726",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/1b8c50b9e33a738ecc630e2cbf65138a32932ba7",
+                "reference": "1b8c50b9e33a738ecc630e2cbf65138a32932ba7",
                 "shasum": ""
             },
             "require": {
@@ -2803,7 +2812,7 @@
                 "laravel4",
                 "laravel5"
             ],
-            "time": "2016-09-05 09:52:31"
+            "time": "2016-09-13 07:59:37"
         },
         {
             "name": "zizaco/entrust",
@@ -4196,7 +4205,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "dwij/laraadmin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
