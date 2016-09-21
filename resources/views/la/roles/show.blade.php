@@ -91,7 +91,7 @@
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
 		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/roles') }}" data-toggle="tooltip" data-placement="right" title="Back to Roles"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="" data-target="#tab-access"><i class="fa fa-key"></i> Access</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -111,98 +111,40 @@
 				</div>
 			</div>
 		</div>
-		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-timeline">
-			<ul class="timeline timeline-inverse">
-				<!-- timeline time label -->
-				<li class="time-label">
-					<span class="bg-red">
-						10 Feb. 2014
-					</span>
-				</li>
-				<!-- /.timeline-label -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-envelope bg-blue"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-					<h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-					<div class="timeline-body">
-					Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-					weebly ning heekya handango imeem plugg dopplr jibjab, movity
-					jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-					quora plaxo ideeli hulu weebly balihoo...
-					</div>
-					<div class="timeline-footer">
-					<a class="btn btn-primary btn-xs">Read more</a>
-					<a class="btn btn-danger btn-xs">Delete</a>
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-user bg-aqua"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-					<h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-					</h3>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-comments bg-yellow"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-					<h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-					<div class="timeline-body">
-					Take me to your leader!
-					Switzerland is small and neutral!
-					We are more like Germany, ambitious and misunderstood!
-					</div>
-					<div class="timeline-footer">
-					<a class="btn btn-warning btn-flat btn-xs">View comment</a>
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<!-- timeline time label -->
-				<li class="time-label">
-					<span class="bg-green">
-						3 Jan. 2014
-					</span>
-				</li>
-				<!-- /.timeline-label -->
-				<!-- timeline item -->
-				<li>
-				<i class="fa fa-camera bg-purple"></i>
-
-				<div class="timeline-item">
-					<span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-					<h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-					<div class="timeline-body">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					<img src="http://placehold.it/150x100" alt="..." class="margin">
-					</div>
-				</div>
-				</li>
-				<!-- END timeline item -->
-				<li>
-				<i class="fa fa-clock-o bg-gray"></i>
-				</li>
-			</ul>
+		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
+			<table class="table table-bordered dataTable no-footer">
+				<thead>
+					<tr class="blockHeader">
+						<th width="30%">
+							<input class="alignTop" type="checkbox" id="modules" checked="checked">&nbsp; Modules
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="module_view" checked="checked">&nbsp; View
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="module_create" checked="checked">&nbsp; Create
+						</th>
+						<th width="14%">
+							<input type="checkbox" id="module_edit" checked="checked">&nbsp; Edit
+						</th>
+						<th width="14%">
+							<input class="alignTop" type="checkbox" id="module_delete" checked="checked">&nbsp; Delete
+						</th>
+					</tr>
+				</thead>
+				<?php
+				$modules = DB::table('modules')->get();
+				?>
+				@foreach($modules as $module)
+					<tr>
+						<td><input class="alignTop" type="checkbox" id="module_{{$module->id}}" checked="checked">&nbsp; {{ $module->name }}</td>
+						<td><input class="alignTop" type="checkbox" id="module_view_{{$module->id}}" checked="checked"></td>
+						<td><input class="alignTop" type="checkbox" id="module_create_{{$module->id}}" checked="checked"></td>
+						<td><input class="alignTop" type="checkbox" id="module_edit_{{$module->id}}" checked="checked"></td>
+						<td><input class="alignTop" type="checkbox" id="module_delete_{{$module->id}}" checked="checked"></td>
+					</tr>
+				@endforeach
+			</table>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
 		
