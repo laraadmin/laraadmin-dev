@@ -123,57 +123,66 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
-			<table class="table table-bordered no-footer">
-				<thead>
-					<tr class="blockHeader">
-						<th width="14%">
-							<input class="alignTop" type="checkbox" id="role_select_all" checked="checked">&nbsp; Roles
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="view_all" checked="checked">&nbsp; View
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
-						</th>
-						<th width="14%">
-							<input class="alignTop" type="checkbox" id="delete_all" checked="checked">&nbsp; Delete
-						</th>
-						<th width="14%"></th>
-					</tr>
-				</thead>
-				<?php
-				$roles = App\Role::all();
-				?>
-				@foreach($roles as $role)
-					<tr class="tr-access-basic" role_id="{{ $role->id }}">
-						<td><input class="role_checkb" type="checkbox" id="module_{{$role->id}}" checked="checked">&nbsp; {{ $role->name }}</td>
-						<td><input class="view_checkb" type="checkbox" id="module_view_{{$role->id}}" checked="checked"></td>
-						<td><input class="create_checkb" type="checkbox" id="module_create_{{$role->id}}" checked="checked"></td>
-						<td><input class="edit_checkb" type="checkbox" id="module_edit_{{$role->id}}" checked="checked"></td>
-						<td><input class="delete_checkb" type="checkbox" id="module_delete_{{$role->id}}" checked="checked"></td>
-						<td>
-							<a role_id="{{ $role->id }}" class="toggle-adv-access btn btn-default btn-sm"><i class="fa fa-chevron-down"></i></a>
-						</td>
-					</tr>
-					<tr class="tr-access-adv" role_id="{{ $role->id }}">
-						<td colspan=6>
-							<table class="table table-bordered">
-							@foreach (array_chunk($module->fields, 3, true) as $fields)
-								<tr>
-									@foreach ($fields as $field)
-										<td>{{ $field['label'] }}</td>
-									@endforeach
-								</tr>
-							@endforeach
-							</table>
-						</td>
-					</tr>
-				@endforeach
-			</table>
-			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
+			<form action="{{ url(config('laraadmin.adminRoute') . '/save_module_permissions/'.$module->id) }}" method="post">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<table class="table table-bordered no-footer">
+					<thead>
+						<tr class="blockHeader">
+							<th width="14%">
+								<input class="alignTop" type="checkbox" id="role_select_all" checked="checked">&nbsp; Roles
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="view_all" checked="checked">&nbsp; View
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
+							</th>
+							<th width="14%">
+								<input class="alignTop" type="checkbox" id="delete_all" checked="checked">&nbsp; Delete
+							</th>
+							<th width="14%"></th>
+						</tr>
+					</thead>
+					<?php
+					$roles = App\Role::all();
+					?>
+					@foreach($roles as $role)
+						<tr class="tr-access-basic" role_id="{{ $role->id }}">
+							<td><input class="role_checkb" type="checkbox" name="module_{{$role->id}}" id="module_{{$role->id}}" checked="checked">&nbsp; {{ $role->name }}</td>
+							<td><input class="view_checkb" type="checkbox" name="module_view_{{$role->id}}" id="module_view_{{$role->id}}" checked="checked"></td>
+							<td><input class="create_checkb" type="checkbox" name="module_create_{{$role->id}}" id="module_create_{{$role->id}}" checked="checked"></td>
+							<td><input class="edit_checkb" type="checkbox" name="module_edit_{{$role->id}}" id="module_edit_{{$role->id}}" checked="checked"></td>
+							<td><input class="delete_checkb" type="checkbox" name="module_delete_{{$role->id}}" id="module_delete_{{$role->id}}" checked="checked"></td>
+							<td>
+								<a role_id="{{ $role->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
+							</td>
+						</tr>
+						<tr class="tr-access-adv module_fields{{ $role->id }} hide" role_id="{{ $role->id }}" >
+							<td colspan=6>
+								<table class="table table-bordered">
+								@foreach (array_chunk($module->fields, 3, true) as $fields)
+									<tr>
+										@foreach ($fields as $field)
+											<td>
+												<div class="col-md-3">
+													<input type="text" name="{{ $field['colname'] }}_{{ $role->id }}" value="" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">			
+												</div>
+												{{ $field['label'] }}
+											</td>
+										@endforeach
+									</tr>
+								@endforeach
+								</table>
+							</td>
+						</tr>
+					@endforeach
+				</table>
+				<input type="submit" name="submit">
+			</form>
+		<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
 	</div>
 	</div>
@@ -258,10 +267,15 @@ use Dwij\Laraadmin\Models\Module;
 
 @push('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/datatables/datatables.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/bootstrap-slider/slider.css') }}"/>
+<style>
+#red .slider-selection{background:none;}
+</style>
 @endpush
 
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/bootstrap-slider/bootstrap-slider.js') }}"></script>
 <style>
 .btn-default{border-color:#D6D3D3}
 </style>
@@ -317,23 +331,58 @@ $(function () {
 	
 	/* ================== Access Control ================== */
 	
-	$("#role_select_all").on("change", function() {
-		$(".role_checkb").prop('checked', this.checked)
-	});
+	$('.slider').slider();
 	
-	$("#view_all").on("change", function() {
-		$(".view_checkb").prop('checked', this.checked)
+	$("#role_select_all,  #view_all").on("change", function() {
+		$(".role_checkb").prop('checked', this.checked);
+		$(".view_checkb").prop('checked', this.checked);
+		$(".edit_checkb").prop('checked', this.checked)
+		$(".create_checkb").prop('checked', this.checked);
+		$(".delete_checkb").prop('checked', this.checked);
+		$("#role_select_all").prop('checked', this.checked);
+		$("#view_all").prop('checked', this.checked);
+		$("#create_all").prop('checked', this.checked);
+		$("#edit_all").prop('checked', this.checked);
+		$("#delete_all").prop('checked', this.checked);		
 	});
 	
 	$("#create_all").on("change", function() {
-		$(".create_checkb").prop('checked', this.checked)
+		$(".create_checkb").prop('checked', this.checked);
+		if($('#create_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#role_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
 	});
+	
 	$("#edit_all").on("change", function() {
-		$(".edit_checkb").prop('checked', this.checked)
+		$(".edit_checkb").prop('checked', this.checked);
+		if($('#edit_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#role_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
 	});
 	
 	$("#delete_all").on("change", function() {
-		$(".delete_checkb").prop('checked', this.checked)
+		$(".delete_checkb").prop('checked', this.checked);
+		if($('#delete_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#role_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
+	}); 
+	
+	$(".hide_row").on("click", function() { 
+		var val = $(this).attr( "role_id" );
+		if($('.module_fields'+val).hasClass('hide')) {
+			$('.module_fields'+val).removeClass('hide');
+		} else {
+			$('.module_fields'+val).addClass('hide');
+		}
 	});
 });
 </script>
