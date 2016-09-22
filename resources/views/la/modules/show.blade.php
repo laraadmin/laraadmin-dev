@@ -160,7 +160,15 @@ use Dwij\Laraadmin\Models\Module;
 					</tr>
 					<tr class="tr-access-adv" role_id="{{ $role->id }}">
 						<td colspan=6>
-							
+							<table class="table table-bordered">
+							@foreach (array_chunk($module->fields, 3, true) as $fields)
+								<tr>
+									@foreach ($fields as $field)
+										<td>{{ $field['label'] }}</td>
+									@endforeach
+								</tr>
+							@endforeach
+							</table>
 						</td>
 					</tr>
 				@endforeach
