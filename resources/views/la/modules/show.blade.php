@@ -160,18 +160,13 @@ use Dwij\Laraadmin\Models\Module;
 								<a role_id="{{ $role->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
 							</td>
 						</tr>
-						<tr class="tr-access-adv module_fields{{ $role->id }} hide" role_id="{{ $role->id }}" >
+						<tr class="tr-access-adv module_fields_{{ $role->id }} hide" role_id="{{ $role->id }}" >
 							<td colspan=6>
 								<table class="table table-bordered">
 								@foreach (array_chunk($module->fields, 3, true) as $fields)
 									<tr>
 										@foreach ($fields as $field)
-											<td>
-												<div class="col-md-3">
-													<input type="text" name="{{ $field['colname'] }}_{{ $role->id }}" value="" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show" data-slider-id="red">			
-												</div>
-												{{ $field['label'] }}
-											</td>
+											<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $role->id }}" value="" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-id="{{ $field['colname'] }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
 										@endforeach
 									</tr>
 								@endforeach
@@ -269,16 +264,19 @@ use Dwij\Laraadmin\Models\Module;
 <link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/datatables/datatables.min.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/bootstrap-slider/slider.css') }}"/>
 <style>
-#red .slider-selection{background:none;}
+.btn-default{border-color:#D6D3D3}
+.slider .tooltip{display:none !important;}
+.tr-access-adv {background:#b9b9b9;}
+.tr-access-adv .table{margin:0px;}
+.slider.gray .slider-handle{background-color:#888;}
+.slider.orange .slider-handle{background-color:#FF9800;}
+.slider.green .slider-handle{background-color:#8BC34A;}
 </style>
 @endpush
 
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('la-assets/plugins/bootstrap-slider/bootstrap-slider.js') }}"></script>
-<style>
-.btn-default{border-color:#D6D3D3}
-</style>
 <script>
 $(function () {
 	$("#generate_migr").on("click", function() {
@@ -332,7 +330,28 @@ $(function () {
 	/* ================== Access Control ================== */
 	
 	$('.slider').slider();
-	
+
+	$('.slider').bind('slideStop', function(event) {
+		if($(this).next().attr("name")) {
+			var field = $(this).next().attr("name");
+			var value = $(this).next().val();
+			console.log(""+field+" = "+value);
+			if(value == 0) {
+				$(this).removeClass("orange");
+				$(this).removeClass("green");
+				$(this).addClass("gray");
+			} else if(value == 1) {
+				$(this).removeClass("gray");
+				$(this).removeClass("green");
+				$(this).addClass("orange");
+			} else if(value == 2) {
+				$(this).removeClass("gray");
+				$(this).removeClass("orange");
+				$(this).addClass("green");
+			}
+		}
+	});
+
 	$("#role_select_all,  #view_all").on("change", function() {
 		$(".role_checkb").prop('checked', this.checked);
 		$(".view_checkb").prop('checked', this.checked);
@@ -374,14 +393,19 @@ $(function () {
 			$("#role_select_all").prop('checked', this.checked);
 			$("#view_all").prop('checked', this.checked);
 		}
-	}); 
+	});
 	
 	$(".hide_row").on("click", function() { 
 		var val = $(this).attr( "role_id" );
-		if($('.module_fields'+val).hasClass('hide')) {
-			$('.module_fields'+val).removeClass('hide');
+		var $icon = $(".hide_row[role_id="+val+"] > i");
+		if($('.module_fields_'+val).hasClass('hide')) {
+			$('.module_fields_'+val).removeClass('hide');
+			$icon.removeClass('fa-chevron-down');
+			$icon.addClass('fa-chevron-up');
 		} else {
-			$('.module_fields'+val).addClass('hide');
+			$('.module_fields_'+val).addClass('hide');
+			$icon.removeClass('fa-chevron-up');
+			$icon.addClass('fa-chevron-down');
 		}
 	});
 });
