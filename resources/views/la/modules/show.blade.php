@@ -123,39 +123,37 @@ use Dwij\Laraadmin\Models\Module;
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
-			<form action="{{ url(config('laraadmin.adminRoute') . '/save_module_permissions/'.$module->id) }}" method="post">
+			<form action="{{ url(config('laraadmin.adminRoute') . '/save_role_module_permissions/'.$module->id) }}" method="post">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<table class="table table-bordered no-footer">
 					<thead>
 						<tr class="blockHeader">
 							<th width="14%">
-								<input class="alignTop" type="checkbox" id="role_select_all" checked="checked">&nbsp; Roles
+								<input class="alignTop" type="checkbox" id="role_select_all" >&nbsp; Roles
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="view_all" checked="checked">&nbsp; View
+								<input type="checkbox" id="view_all" >&nbsp; View
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
+								<input type="checkbox" id="create_all" >&nbsp; Create
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
+								<input type="checkbox" id="edit_all" >&nbsp; Edit
 							</th>
 							<th width="14%">
-								<input class="alignTop" type="checkbox" id="delete_all" checked="checked">&nbsp; Delete
+								<input class="alignTop" type="checkbox" id="delete_all" >&nbsp; Delete
 							</th>
 							<th width="14%"></th>
 						</tr>
 					</thead>
-					<?php
-					$roles = App\Role::all();
-					?>
 					@foreach($roles as $role)
 						<tr class="tr-access-basic" role_id="{{ $role->id }}">
-							<td><input class="role_checkb" type="checkbox" name="module_{{$role->id}}" id="module_{{$role->id}}" checked="checked">&nbsp; {{ $role->name }}</td>
-							<td><input class="view_checkb" type="checkbox" name="module_view_{{$role->id}}" id="module_view_{{$role->id}}" checked="checked"></td>
-							<td><input class="create_checkb" type="checkbox" name="module_create_{{$role->id}}" id="module_create_{{$role->id}}" checked="checked"></td>
-							<td><input class="edit_checkb" type="checkbox" name="module_edit_{{$role->id}}" id="module_edit_{{$role->id}}" checked="checked"></td>
-							<td><input class="delete_checkb" type="checkbox" name="module_delete_{{$role->id}}" id="module_delete_{{$role->id}}" checked="checked"></td>
+							<td><input class="role_checkb" type="checkbox" name="module_{{ $role->id }}" id="module_{{ $role->id }}" checked="checked"> {{ $role->name }}</td>
+							
+							<td><input class="view_checkb" type="checkbox" name="module_view_{{$role->id}}" id="module_view_{{$role->id}}" <?php if($role->view == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="create_checkb" type="checkbox" name="module_create_{{$role->id}}" id="module_create_{{$role->id}}" <?php if($role->create == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="edit_checkb" type="checkbox" name="module_edit_{{$role->id}}" id="module_edit_{{$role->id}}" <?php if($role->edit == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="delete_checkb" type="checkbox" name="module_delete_{{$role->id}}" id="module_delete_{{$role->id}}" <?php if($role->delete == 1) { echo 'checked="checked"'; } ?> ></td>
 							<td>
 								<a role_id="{{ $role->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
 							</td>
@@ -166,7 +164,7 @@ use Dwij\Laraadmin\Models\Module;
 								@foreach (array_chunk($module->fields, 3, true) as $fields)
 									<tr>
 										@foreach ($fields as $field)
-											<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $role->id }}" value="" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-id="{{ $field['colname'] }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
+											<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $role->id }}" value="{{ $role->fields[$field['id']] }}" data-slider-value="{{ $role->fields[$field['id']] }}" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal"  data-slider-id="{{ $field['colname'] }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
 										@endforeach
 									</tr>
 								@endforeach
@@ -175,7 +173,7 @@ use Dwij\Laraadmin\Models\Module;
 						</tr>
 					@endforeach
 				</table>
-				<input type="submit" name="submit">
+				<center><input class="btn btn-success" type="submit" name="Save"></center>
 			</form>
 		<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
@@ -330,7 +328,30 @@ $(function () {
 	/* ================== Access Control ================== */
 	
 	$('.slider').slider();
-
+	
+	$(".slider.slider-horizontal").each(function(index) {
+		var field = $(this).next().attr("name");
+		var value = $(this).next().val();
+		console.log(""+field+" ^^^ "+value);
+		switch (value) {
+			case '0':
+				$(this).removeClass("orange");
+				$(this).removeClass("green");
+				$(this).addClass("gray");
+				break;
+			case '1':
+				$(this).removeClass("gray");
+				$(this).removeClass("green");
+				$(this).addClass("orange");
+				break;
+			case '2':
+				$(this).removeClass("gray");
+				$(this).removeClass("orange");
+				$(this).addClass("green");
+				break;
+		}
+	});
+	
 	$('.slider').bind('slideStop', function(event) {
 		if($(this).next().attr("name")) {
 			var field = $(this).next().attr("name");
