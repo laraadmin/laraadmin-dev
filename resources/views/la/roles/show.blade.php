@@ -112,6 +112,7 @@
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
+			{{ json_encode($modules_access) }}
 			<table class="table table-bordered dataTable no-footer">
 				<thead>
 					<tr class="blockHeader">

@@ -88,11 +88,19 @@ class RolesController extends Controller
         $role = Role::find($id);
         $module = Module::get('Roles');
         $module->row = $role;
+        
+        $modules_arr = DB::table('modules')->get();
+        $modules_access = array();
+        foreach ($modules_arr as $module_obj) {
+            $module_obj->accesses = Module::getRoleAccess($module_obj->id, $id)[0];
+            $modules_access[] = $module_obj;
+        }
         return view('la.roles.show', [
             'module' => $module,
             'view_col' => $this->view_col,
             'no_header' => true,
-            'no_padding' => "no-padding"
+            'no_padding' => "no-padding",
+            'modules_access' => $modules_access
         ])->with('role', $role);
     }
 
