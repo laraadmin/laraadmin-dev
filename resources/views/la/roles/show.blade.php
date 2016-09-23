@@ -112,37 +112,50 @@
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
-			{{ json_encode($modules_access) }}
 			<table class="table table-bordered dataTable no-footer">
 				<thead>
 					<tr class="blockHeader">
 						<th width="30%">
-							<input class="alignTop" type="checkbox" id="modules" checked="checked">&nbsp; Modules
+							<input class="alignTop" type="checkbox" id="module_select_all" id="module_select_all" checked="checked">&nbsp; Modules
 						</th>
 						<th width="14%">
-							<input type="checkbox" id="module_view" checked="checked">&nbsp; View
+							<input type="checkbox" id="view_all" checked="checked">&nbsp; View
 						</th>
 						<th width="14%">
-							<input type="checkbox" id="module_create" checked="checked">&nbsp; Create
+							<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
 						</th>
 						<th width="14%">
-							<input type="checkbox" id="module_edit" checked="checked">&nbsp; Edit
+							<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
 						</th>
 						<th width="14%">
-							<input class="alignTop" type="checkbox" id="module_delete" checked="checked">&nbsp; Delete
+						<input class="alignTop" id="delete_all" type="checkbox"  checked="checked">&nbsp; Delete
 						</th>
+						<th width="14%"></th>
 					</tr>
 				</thead>
-				<?php
-				$modules = DB::table('modules')->get();
-				?>
-				@foreach($modules as $module)
+				@foreach($modules_access as $module)		
 					<tr>
-						<td><input class="alignTop" type="checkbox" id="module_{{$module->id}}" checked="checked">&nbsp; {{ $module->name }}</td>
-						<td><input class="alignTop" type="checkbox" id="module_view_{{$module->id}}" checked="checked"></td>
-						<td><input class="alignTop" type="checkbox" id="module_create_{{$module->id}}" checked="checked"></td>
-						<td><input class="alignTop" type="checkbox" id="module_edit_{{$module->id}}" checked="checked"></td>
-						<td><input class="alignTop" type="checkbox" id="module_delete_{{$module->id}}" checked="checked"></td>
+						<td><input class="role_checkb" type="checkbox" id="module_{{$module->id}}" checked="checked">&nbsp; {{ $module->name }}</td>
+						<td><input class="view_checkb" type="checkbox" id="module_view_{{$module->id}}" checked="checked"></td>
+						<td><input class="create_checkb" type="checkbox" id="module_create_{{$module->id}}" checked="checked"></td>
+						<td><input class="edit_checkb" type="checkbox" id="module_edit_{{$module->id}}" checked="checked"></td>
+						<td><input class="delete_checkb" type="checkbox" id="module_delete_{{$module->id}}" checked="checked"></td>
+						<td>
+							<a role_id="{{ $module->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
+						</td>
+					</tr>
+					<tr class="tr-access-adv module_fields_{{ $module->id }} hide" module_id="{{ $module->id }}" >
+						<td colspan=6>
+							<table class="table table-bordered">
+							@foreach (array_chunk($module->accesses->fields, 3, true) as $fields)
+								<tr>
+									@foreach ($fields as $field)
+										<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}" value="{{ $field['access'] }}" data-slider-value="{{ $field['access'] }}" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal"  data-slider-id="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
+									@endforeach
+								</tr>
+							@endforeach
+							</table>
+						</td>
 					</tr>
 				@endforeach
 			</table>
@@ -154,3 +167,131 @@
 	</div>
 </div>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/datatables/datatables.min.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('la-assets/plugins/bootstrap-slider/slider.css') }}"/>
+<style>
+.btn-default{border-color:#D6D3D3}
+.slider .tooltip{display:none !important;}
+.tr-access-adv {background:#b9b9b9;}
+.tr-access-adv .table{margin:0px;}
+.slider.gray .slider-handle{background-color:#888;}
+.slider.orange .slider-handle{background-color:#FF9800;}
+.slider.green .slider-handle{background-color:#8BC34A;}
+</style>
+@endpush
+
+@push('scripts')
+<script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('la-assets/plugins/bootstrap-slider/bootstrap-slider.js') }}"></script>
+<script>
+$(function () {
+	/* ================== Access Control ================== */
+	
+	$('.slider').slider();
+	
+	$(".slider.slider-horizontal").each(function(index) {
+		var field = $(this).next().attr("name");
+		var value = $(this).next().val();
+		console.log(""+field+" ^^^ "+value);
+		switch (value) {
+			case '0':
+				$(this).removeClass("orange");
+				$(this).removeClass("green");
+				$(this).addClass("gray");
+				break;
+			case '1':
+				$(this).removeClass("gray");
+				$(this).removeClass("green");
+				$(this).addClass("orange");
+				break;
+			case '2':
+				$(this).removeClass("gray");
+				$(this).removeClass("orange");
+				$(this).addClass("green");
+				break;
+		}
+	});
+	
+	$('.slider').bind('slideStop', function(event) {
+		if($(this).next().attr("name")) {
+			var field = $(this).next().attr("name");
+			var value = $(this).next().val();
+			console.log(""+field+" = "+value);
+			if(value == 0) {
+				$(this).removeClass("orange");
+				$(this).removeClass("green");
+				$(this).addClass("gray");
+			} else if(value == 1) {
+				$(this).removeClass("gray");
+				$(this).removeClass("green");
+				$(this).addClass("orange");
+			} else if(value == 2) {
+				$(this).removeClass("gray");
+				$(this).removeClass("orange");
+				$(this).addClass("green");
+			}
+		}
+	});
+
+	$("#module_select_all,  #view_all").on("change", function() {
+		$(".role_checkb").prop('checked', this.checked);
+		$(".view_checkb").prop('checked', this.checked);
+		$(".edit_checkb").prop('checked', this.checked)
+		$(".create_checkb").prop('checked', this.checked);
+		$(".delete_checkb").prop('checked', this.checked);
+		$("#module_select_all").prop('checked', this.checked);
+		$("#view_all").prop('checked', this.checked);
+		$("#create_all").prop('checked', this.checked);
+		$("#edit_all").prop('checked', this.checked);
+		$("#delete_all").prop('checked', this.checked);		
+	});
+	
+	$("#create_all").on("change", function() {
+		$(".create_checkb").prop('checked', this.checked);
+		if($('#create_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#module_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
+	});
+	
+	$("#edit_all").on("change", function() {
+		$(".edit_checkb").prop('checked', this.checked);
+		if($('#edit_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#module_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
+	});
+	
+	$("#delete_all").on("change", function() {
+		$(".delete_checkb").prop('checked', this.checked);
+		if($('#delete_all').is(':checked')){
+			$(".role_checkb").prop('checked', this.checked);
+			$(".view_checkb").prop('checked', this.checked);
+			$("#module_select_all").prop('checked', this.checked);
+			$("#view_all").prop('checked', this.checked);
+		}
+	});
+	
+	$(".hide_row").on("click", function() { 
+		var val = $(this).attr( "role_id" );
+		var $icon = $(".hide_row[role_id="+val+"] > i");
+		if($('.module_fields_'+val).hasClass('hide')) {
+			$('.module_fields_'+val).removeClass('hide');
+			$icon.removeClass('fa-chevron-down');
+			$icon.addClass('fa-chevron-up');
+		} else {
+			$('.module_fields_'+val).addClass('hide');
+			$icon.removeClass('fa-chevron-up');
+			$icon.addClass('fa-chevron-down');
+		}
+	});
+});
+</script>
+@endpush
+
