@@ -58,6 +58,3 @@ Route::get(config('laraadmin.adminRoute') . '/employee_dt_ajax', 'LA\EmployeesCo
 /* ================== Organizations ================== */
 Route::resource(config('laraadmin.adminRoute') . '/organizations', 'LA\OrganizationsController');
 Route::get(config('laraadmin.adminRoute') . '/organization_dt_ajax', 'LA\OrganizationsController@dtajax');
-
-/* ================== Modules ================== */
-Route::post(config('laraadmin.adminRoute') . '/save_module_permissions/{id}', 'LA\PermissionsController@save_module_permissions');
