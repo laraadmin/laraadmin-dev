@@ -112,53 +112,57 @@
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
-			<table class="table table-bordered dataTable no-footer">
-				<thead>
-					<tr class="blockHeader">
-						<th width="30%">
-							<input class="alignTop" type="checkbox" id="module_select_all" id="module_select_all" checked="checked">&nbsp; Modules
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="view_all" checked="checked">&nbsp; View
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
-						</th>
-						<th width="14%">
-							<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
-						</th>
-						<th width="14%">
-						<input class="alignTop" id="delete_all" type="checkbox"  checked="checked">&nbsp; Delete
-						</th>
-						<th width="14%"></th>
-					</tr>
-				</thead>
-				@foreach($modules_access as $module)		
-					<tr>
-						<td><input class="role_checkb" type="checkbox" id="module_{{$module->id}}" checked="checked">&nbsp; {{ $module->name }}</td>
-						<td><input class="view_checkb" type="checkbox" id="module_view_{{$module->id}}" checked="checked"></td>
-						<td><input class="create_checkb" type="checkbox" id="module_create_{{$module->id}}" checked="checked"></td>
-						<td><input class="edit_checkb" type="checkbox" id="module_edit_{{$module->id}}" checked="checked"></td>
-						<td><input class="delete_checkb" type="checkbox" id="module_delete_{{$module->id}}" checked="checked"></td>
-						<td>
-							<a role_id="{{ $module->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
-						</td>
-					</tr>
-					<tr class="tr-access-adv module_fields_{{ $module->id }} hide" module_id="{{ $module->id }}" >
-						<td colspan=6>
-							<table class="table table-bordered">
-							@foreach (array_chunk($module->accesses->fields, 3, true) as $fields)
-								<tr>
-									@foreach ($fields as $field)
-										<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}" value="{{ $field['access'] }}" data-slider-value="{{ $field['access'] }}" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal"  data-slider-id="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
-									@endforeach
-								</tr>
-							@endforeach
-							</table>
-						</td>
-					</tr>
-				@endforeach
-			</table>
+			<form action="{{ url(config('laraadmin.adminRoute') . '/save_module_role_permissions/'.$role->id) }}" method="post">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<table class="table table-bordered dataTable no-footer">
+					<thead>
+						<tr class="blockHeader">
+							<th width="30%">
+								<input class="alignTop" type="checkbox" id="module_select_all" id="module_select_all" checked="checked">&nbsp; Modules
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="view_all" checked="checked">&nbsp; View
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="create_all" checked="checked">&nbsp; Create
+							</th>
+							<th width="14%">
+								<input type="checkbox" id="edit_all" checked="checked">&nbsp; Edit
+							</th>
+							<th width="14%">
+							<input class="alignTop" id="delete_all" type="checkbox"  checked="checked">&nbsp; Delete
+							</th>
+							<th width="14%"></th>
+						</tr>
+					</thead>
+					@foreach($modules_access as $module)
+						<tr>
+							<td><input class="module_checkb" type="checkbox" name="module_{{$module->id}}" id="module_{{$module->id}}" checked="checked">&nbsp; {{ $module->name }}</td>
+							<td><input class="view_checkb" type="checkbox" name="module_view_{{$module->id}}" id="module_view_{{$module->id}}" <?php if($module->accesses->view == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="create_checkb" type="checkbox" name="module_create_{{$module->id}}" id="module_create_{{$module->id}}" <?php if($module->accesses->create == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="edit_checkb" type="checkbox" name="module_edit_{{$module->id}}" id="module_edit_{{$module->id}}" <?php if($module->accesses->edit == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td><input class="delete_checkb" type="checkbox" name="module_delete_{{$module->id}}" id="module_delete_{{$module->id}}" <?php if($module->accesses->delete == 1) { echo 'checked="checked"'; } ?> ></td>
+							<td>
+								<a role_id="{{ $module->id }}" class="toggle-adv-access btn btn-default btn-sm hide_row"><i class="fa fa-chevron-down"></i></a>
+							</td>
+						</tr>
+						<tr class="tr-access-adv module_fields_{{ $module->id }} hide" module_id="{{ $module->id }}" >
+							<td colspan=6>
+								<table class="table table-bordered">
+								@foreach (array_chunk($module->accesses->fields, 3, true) as $fields)
+									<tr>
+										@foreach ($fields as $field)
+											<td><div class="col-md-3"><input type="text" name="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}" value="{{ $field['access'] }}" data-slider-value="{{ $field['access'] }}" class="slider form-control" data-slider-min="0" data-slider-max="2" data-slider-step="1" data-slider-orientation="horizontal"  data-slider-id="{{ $field['colname'] }}_{{ $module->id }}_{{ $role->id }}"></div> {{ $field['label'] }} </td>
+										@endforeach
+									</tr>
+								@endforeach
+								</table>
+							</td>
+						</tr>
+					@endforeach
+				</table>
+				<center><input class="btn btn-success" type="submit" name="Save"></center>
+			</form>
 			<!--<div class="text-center p30"><i class="fa fa-list-alt" style="font-size: 100px;"></i> <br> No posts to show</div>-->
 		</div>
 		
@@ -236,7 +240,7 @@ $(function () {
 	});
 
 	$("#module_select_all,  #view_all").on("change", function() {
-		$(".role_checkb").prop('checked', this.checked);
+		$(".module_checkb").prop('checked', this.checked);
 		$(".view_checkb").prop('checked', this.checked);
 		$(".edit_checkb").prop('checked', this.checked)
 		$(".create_checkb").prop('checked', this.checked);
@@ -251,7 +255,7 @@ $(function () {
 	$("#create_all").on("change", function() {
 		$(".create_checkb").prop('checked', this.checked);
 		if($('#create_all').is(':checked')){
-			$(".role_checkb").prop('checked', this.checked);
+			$(".module_checkb").prop('checked', this.checked);
 			$(".view_checkb").prop('checked', this.checked);
 			$("#module_select_all").prop('checked', this.checked);
 			$("#view_all").prop('checked', this.checked);
@@ -261,7 +265,7 @@ $(function () {
 	$("#edit_all").on("change", function() {
 		$(".edit_checkb").prop('checked', this.checked);
 		if($('#edit_all').is(':checked')){
-			$(".role_checkb").prop('checked', this.checked);
+			$(".module_checkb").prop('checked', this.checked);
 			$(".view_checkb").prop('checked', this.checked);
 			$("#module_select_all").prop('checked', this.checked);
 			$("#view_all").prop('checked', this.checked);
@@ -271,7 +275,7 @@ $(function () {
 	$("#delete_all").on("change", function() {
 		$(".delete_checkb").prop('checked', this.checked);
 		if($('#delete_all').is(':checked')){
-			$(".role_checkb").prop('checked', this.checked);
+			$(".module_checkb").prop('checked', this.checked);
 			$(".view_checkb").prop('checked', this.checked);
 			$("#module_select_all").prop('checked', this.checked);
 			$("#view_all").prop('checked', this.checked);
