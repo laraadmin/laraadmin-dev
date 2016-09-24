@@ -53,7 +53,7 @@
 			{!! Form::open(['action' => 'LA\RolesController@store', 'id' => 'role-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
-                    @la_input($module, 'name', null, null, "form-control text-uppercase")
+                    @la_input($module, 'name', null, null, "form-control text-uppercase", ["placeholder" => "Role Name in CAPITAL LETTERS with '_' to JOIN e.g. 'SUPER_ADMIN'"])
 					@la_input($module, 'display_name')
 					@la_input($module, 'description')
 					@la_input($module, 'parent')
