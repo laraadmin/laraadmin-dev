@@ -16,7 +16,6 @@ use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Helpers\LAHelper;
-use DateTime;
 
 use App\Permission;
 use App\Role;
@@ -194,7 +193,7 @@ class PermissionsController extends Controller
 	 * Save the  permissions for role in permission view.
 	 *
 	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
+	 * @return Redirect to permisssions page
 	 */
 	public function save_permissions(Request $request, $id)
 	{
