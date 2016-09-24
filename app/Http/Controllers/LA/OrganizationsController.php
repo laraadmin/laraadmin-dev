@@ -39,11 +39,15 @@ class OrganizationsController extends Controller
     {
         $module = Module::get('Organizations');
         
-        return View('la.organizations.index', [
-            'show_actions' => $this->show_action,
-            'listing_cols' => $this->listing_cols,
-            'module' => $module
-        ]);
+        if(Module::hasAccess($module->id)) {
+            return View('la.organizations.index', [
+                'show_actions' => $this->show_action,
+                'listing_cols' => $this->listing_cols,
+                'module' => $module
+            ]);
+        } else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
     }
 
     /**
@@ -64,17 +68,22 @@ class OrganizationsController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = Module::validateRules("Organizations", $request);
-        
-        $validator = Validator::make($request->all(), $rules);
-        
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+        if(Module::hasAccess("Organizations", "create")) {
             
-        $insert_id = Module::insert("Organizations", $request);
-        
-        return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
+            $rules = Module::validateRules("Organizations", $request);
+            
+            $validator = Validator::make($request->all(), $rules);
+            
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+                
+            $insert_id = Module::insert("Organizations", $request);
+            return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
+            
+        } else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
     }
 
     /**
@@ -85,15 +94,19 @@ class OrganizationsController extends Controller
      */
     public function show($id)
     {
-        $organization = Organization::find($id);
-        $module = Module::get('Organizations');
-        $module->row = $organization;
-        return view('la.organizations.show', [
-            'module' => $module,
-            'view_col' => $this->view_col,
-            'no_header' => true,
-            'no_padding' => "no-padding"
-        ])->with('organization', $organization);
+        if(Module::hasAccess("Organizations", "view")) {
+            $organization = Organization::find($id);
+            $module = Module::get('Organizations');
+            $module->row = $organization;
+            return view('la.organizations.show', [
+                'module' => $module,
+                'view_col' => $this->view_col,
+                'no_header' => true,
+                'no_padding' => "no-padding"
+            ])->with('organization', $organization);
+        } else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
     }
 
     /**
@@ -104,16 +117,20 @@ class OrganizationsController extends Controller
      */
     public function edit($id)
     {
-        $organization = Organization::find($id);
-        
-        $module = Module::get('Organizations');
-        
-        $module->row = $organization;
-        
-        return view('la.organizations.edit', [
-            'module' => $module,
-            'view_col' => $this->view_col,
-        ])->with('organization', $organization);
+       if(Module::hasAccess("Organizations", "edit")) {
+            $organization = Organization::find($id);
+            
+            $module = Module::get('Organizations');
+            
+            $module->row = $organization;
+            
+            return view('la.organizations.edit', [
+                'module' => $module,
+                'view_col' => $this->view_col,
+            ])->with('organization', $organization);
+        } else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
     }
 
     /**
@@ -125,17 +142,20 @@ class OrganizationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = Module::validateRules("Organizations", $request);
-        
-        $validator = Validator::make($request->all(), $rules);
-        
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();;
+        if(Module::hasAccess("Organizations", "edit")) {
+            $rules = Module::validateRules("Organizations", $request);
+            
+            $validator = Validator::make($request->all(), $rules);
+            
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();;
+            }
+            
+            $insert_id = Module::updateRow("Organizations", $request, $id);            
+            return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
+         } else {
+            return redirect(config('laraadmin.adminRoute')."/");
         }
-        
-        $insert_id = Module::updateRow("Organizations", $request, $id);
-        
-        return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
     }
 
     /**
@@ -146,9 +166,13 @@ class OrganizationsController extends Controller
      */
     public function destroy($id)
     {
-        Organization::find($id)->delete();
-        // Redirecting to index() method
-        return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
+        if(Module::hasAccess("Organizations", "delete")) {
+            Organization::find($id)->delete();
+            // Redirecting to index() method
+            return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
+         } else {
+            return redirect(config('laraadmin.adminRoute')."/");
+        }
     }
     
     /**
@@ -177,11 +201,16 @@ class OrganizationsController extends Controller
                 //    $data->data[$i][$j];
                 // }
             }
+             $output = '';
             if($this->show_action) {
-                $output = '<a href="'.url(config('laraadmin.adminRoute') . '/organizations/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.organizations.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
-                $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
-                $output .= Form::close();
+                if(Module::hasAccess("Organizations", "edit")) {
+                    $output .= '<a href="'.url(config('laraadmin.adminRoute') . '/organizations/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+                }
+                if(Module::hasAccess("Organizations", "delete")) {
+                     $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.organizations.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                    $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
+                    $output .= Form::close();
+                }
                 $data->data[$i][] = (string)$output;
             }
         }

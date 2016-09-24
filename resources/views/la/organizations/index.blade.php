@@ -7,7 +7,9 @@
 @section("htmlheader_title", "Organizations Listing")
 
 @section("headerElems")
-<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Organization</button>
+	@la_access("Organizations", "create")
+		<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Organization</button>
+	@endla_access
 @endsection
 
 @section("main-content")
@@ -42,7 +44,7 @@
 		</table>
 	</div>
 </div>
-
+@la_access("Organizations", "create")
 <div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -78,7 +80,7 @@
 		</div>
 	</div>
 </div>
-
+@endla_access
 @endsection
 
 @push('styles')
