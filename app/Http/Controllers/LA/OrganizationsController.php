@@ -153,7 +153,7 @@ class OrganizationsController extends Controller
             
             $insert_id = Module::updateRow("Organizations", $request, $id);            
             return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
-         } else {
+        } else {
             return redirect(config('laraadmin.adminRoute')."/");
         }
     }
@@ -170,7 +170,7 @@ class OrganizationsController extends Controller
             Organization::find($id)->delete();
             // Redirecting to index() method
             return redirect()->route(config('laraadmin.adminRoute') . '.organizations.index');
-         } else {
+        } else {
             return redirect(config('laraadmin.adminRoute')."/");
         }
     }
@@ -207,7 +207,7 @@ class OrganizationsController extends Controller
                     $output .= '<a href="'.url(config('laraadmin.adminRoute') . '/organizations/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
                 }
                 if(Module::hasAccess("Organizations", "delete")) {
-                     $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.organizations.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                    $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.organizations.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                     $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                     $output .= Form::close();
                 }
