@@ -5,7 +5,6 @@
 		"**/*.git": true,
 		"**/*.DS_Store": true,
 		"vendor/**": true,
-		"storage/**": true,
 		"bootstrap/**": true,
 		"node_modules/**":true,
 		"tests/**":true
