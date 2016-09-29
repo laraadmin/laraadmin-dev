@@ -12,12 +12,9 @@
 */
 
 /* ================== Homepage ================== */
-
-Route::group(['middleware' => ['web']], function () {
-	Route::get('/', 'HomeController@index');
-	Route::get('/home', 'HomeController@index');
-	Route::auth();
-});
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+Route::auth();
 
 /* ================== Access Uploaded Files ================== */
 Route::get('files/{hash}/{name}', 'LA\UploadsController@get_file');
@@ -33,6 +30,4 @@ Route::get('files/{hash}/{name}', 'LA\UploadsController@get_file');
 |
 */
 
-if(Request::is(config('laraadmin.adminRoute')) || Request::is(config('laraadmin.adminRoute').'/*')) {
-	require __DIR__.'/admin_routes.php';
-}
+require __DIR__.'/admin_routes.php';
