@@ -7,18 +7,22 @@
 namespace App\Http\Controllers\LA;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response as FacadeResponse;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Collective\Html\FormFacade as Form;
+
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Helpers\LAHelper;
+use Zizaco\Entrust\EntrustFacade as Entrust;
+
 use Auth;
 use DB;
 use File;
-use Illuminate\Support\Facades\Input;
 use Validator;
 use Datatables;
-use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Helpers\LAHelper;
 
 use App\Upload;
 
@@ -95,7 +99,7 @@ class UploadsController extends Controller
             ]);
         }
 
-        if($upload->public || Auth::user()->hasRole("Super Admin") || Auth::user()->id == $upload->user_id) {
+        if($upload->public || Entrust::hasRole('SUPER_ADMIN') || Auth::user()->id == $upload->user_id) {
             
             $path = $upload->path;
 
@@ -229,7 +233,7 @@ class UploadsController extends Controller
 			$uploads = array();
 	
 			// print_r(Auth::user()->roles);
-			if(Auth::user()->hasRole("Super Admin")) {
+			if(Entrust::hasRole('SUPER_ADMIN')) {
 				$uploads = Upload::all();
 			} else {
 				if(config('laraadmin.uploads.private_uploads')) {
@@ -284,7 +288,7 @@ class UploadsController extends Controller
 			
 			$upload = Upload::find($file_id);
 			if(isset($upload->id)) {
-				if($upload->user_id == Auth::user()->id || Auth::user()->hasRole("Super Admin")) {
+				if($upload->user_id == Auth::user()->id || Entrust::hasRole('SUPER_ADMIN')) {
 	
 					// Update Caption
 					$upload->caption = $caption;
@@ -327,7 +331,7 @@ class UploadsController extends Controller
 			
 			$upload = Upload::find($file_id);
 			if(isset($upload->id)) {
-				if($upload->user_id == Auth::user()->id || Auth::user()->hasRole("Super Admin")) {
+				if($upload->user_id == Auth::user()->id || Entrust::hasRole('SUPER_ADMIN')) {
 	
 					// Update Caption
 					$upload->name = $filename;
@@ -375,7 +379,7 @@ class UploadsController extends Controller
 			
 			$upload = Upload::find($file_id);
 			if(isset($upload->id)) {
-				if($upload->user_id == Auth::user()->id || Auth::user()->hasRole("Super Admin")) {
+				if($upload->user_id == Auth::user()->id || Entrust::hasRole('SUPER_ADMIN')) {
 	
 					// Update Caption
 					$upload->public = $public;
@@ -417,7 +421,7 @@ class UploadsController extends Controller
 			
 			$upload = Upload::find($file_id);
 			if(isset($upload->id)) {
-				if($upload->user_id == Auth::user()->id || Auth::user()->hasRole("Super Admin")) {
+				if($upload->user_id == Auth::user()->id || Entrust::hasRole('SUPER_ADMIN')) {
 	
 					// Update Caption
 					$upload->delete();
