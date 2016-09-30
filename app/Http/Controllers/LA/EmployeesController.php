@@ -91,7 +91,7 @@ class EmployeesController extends Controller
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
-				
+			
 			// generate password
 			$password = LAHelper::gen_password();
 			
@@ -195,7 +195,7 @@ class EmployeesController extends Controller
 	{
 		if(Module::hasAccess("Employees", "edit")) {
 			
-			$rules = Module::validateRules("Employees", $request. true);
+			$rules = Module::validateRules("Employees", $request, true);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
