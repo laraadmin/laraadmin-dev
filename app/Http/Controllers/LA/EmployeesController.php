@@ -312,6 +312,7 @@ class EmployeesController extends Controller
 		
 		\Session::flash('success_message', 'Password is successfully changed');
 
+		// Send mail to User his new Password
 		if(env('MAIL_USERNAME') != null && env('MAIL_USERNAME') != "null" && env('MAIL_USERNAME') != "") {
 			// Send mail to User his new Password
 			Mail::send('emails.send_login_cred_change', ['user' => $user, 'password' => $request->password], function ($m) use ($user) {
