@@ -211,7 +211,8 @@ class EmployeesController extends Controller
         	
 			// Update User
 			$user = User::where('context_id', $employee_id)->first();
-			Module::updateRow("Users", $request, $user->id);
+			$user->name = $request->name;
+			$user->save();
 			
 			// update user role
 			$user->detachRoles();
