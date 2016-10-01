@@ -174,9 +174,13 @@ class EmployeesController extends Controller
 			
 			$module->row = $employee;
 			
+			// Get User Table Information
+        	$user = User::where('context_id', '=', $id)->firstOrFail();
+			
 			return view('la.employees.edit', [
 				'module' => $module,
 				'view_col' => $this->view_col,
+				'user' => $user,
 			])->with('employee', $employee);
 			
 		} else {
