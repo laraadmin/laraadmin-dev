@@ -8,9 +8,14 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
-        "dwij/laraadmin": "dev-master",
-        "doctrine/dbal": "~2.3"
+        "dwij/laraadmin": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/dwijitsolutions/laraadmin"
+        }
+    ],
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
