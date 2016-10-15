@@ -9,11 +9,13 @@
 
 	@include('la.layouts.partials.mainheader')
 
-	@include('la.layouts.partials.sidebar')
+	@if(LAConfigs::getByKey('layout') != 'layout-top-nav')
+		@include('la.layouts.partials.sidebar')
+	@endif
 
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-		
+		@if(LAConfigs::getByKey('layout') == 'layout-top-nav') <div class="container"> @endif
 		@if(!isset($no_header))
 			@include('la.layouts.partials.contentheader')
 		@endif
@@ -23,6 +25,8 @@
 			<!-- Your Page Content Here -->
 			@yield('main-content')
 		</section><!-- /.content -->
+
+		@if(LAConfigs::getByKey('layout') == 'layout-top-nav') </div> @endif
 	</div><!-- /.content-wrapper -->
 
 	@include('la.layouts.partials.controlsidebar')
