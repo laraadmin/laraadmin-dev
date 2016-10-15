@@ -4,16 +4,16 @@
  * Help: http://laraadmin.com
  */
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Organization extends Model
+class Backup extends Model
 {
     use SoftDeletes;
 	
-	protected $table = 'organizations';
+	protected $table = 'backups';
 	
 	protected $hidden = [
         
