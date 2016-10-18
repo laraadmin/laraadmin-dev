@@ -41,4 +41,47 @@ class LaraAdminWithoutLoginTest extends TestCase
 		$this->visit('/login')
             ->seePageIs('/register');
     }
+
+	/**
+     * Test Register Page.
+     *
+     * @return void
+     */
+    public function testRegisterPage()
+    {
+        $this->visit('/register')
+            ->see('Register Super Admin');
+    }
+
+	/**
+     * Test Registration
+     *
+     * @return void
+     */
+    public function testRegistration()
+    {
+        $this->visit('/register')
+            ->see('Register Super Admin')
+			->type('Taylor Otwell', 'name')
+			->type('test@example.com', 'email')
+			->type('12345678', 'password')
+			->type('12345678', 'password_confirmation')
+			->press('Register')
+			->seePageIs('/')
+			->click('Taylor Otwell')
+			->seePageIs('/admin')
+			->see('Dashboard')
+			->visit('/logout')
+			->seePageIs('/')
+			->click('Login')
+			->type('test@example.com', 'email')
+			->type('12345678', 'password')
+			->press('Sign In')
+			->seePageIs('/')
+			->click('Taylor Otwell')
+			->seePageIs('/admin')
+			->see('Dashboard');
+    }
+
+
 }
