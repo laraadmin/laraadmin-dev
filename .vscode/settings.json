@@ -6,8 +6,7 @@
 		"**/*.DS_Store": true,
 		"vendor/**": true,
 		"bootstrap/**": true,
-		"node_modules/**":true,
-		"tests/**":true
+		"node_modules/**":true
 	},
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false
