@@ -336,6 +336,11 @@ class LaraAdminModuleTest extends TestCase
 			->check('required')
 			->press('Submit')
 			->see('test_files');
+		$response = $this->call('GET', '/admin/module_generate_migr_crud/9');
+		$this->assertEquals(200, $response->status());
+		$this->visit('/admin/modules/9')
+			->see('Module Generated')
+			->see('Update Module');
 	}
 
 	/**
