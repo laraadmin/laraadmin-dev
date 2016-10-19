@@ -286,7 +286,7 @@ class LaraAdminModuleTest extends TestCase
 		$this->see("StudentsController")
 			->type('Genre', 'label')
 			->type('genre', 'colname')
-			->select('18', 'field_type')
+			->select('20', 'field_type')
 			->type('Bloomsbury', 'defaultvalue')
 			->check('required')
 			->select('list', 'popup_value_type')
@@ -304,7 +304,8 @@ class LaraAdminModuleTest extends TestCase
 			->type('', 'minlength')
 			->type('1000', 'maxlength')
 			->check('required')
-			->press('Submit');
+			->press('Submit')
+			->see('Description');
 		$this->see("StudentsController")
 			->type('Introduction', 'label')
 			->type('short_intro', 'colname')
@@ -314,7 +315,8 @@ class LaraAdminModuleTest extends TestCase
 			->type('', 'minlength')
 			->type('100', 'maxlength')
 			->check('required')
-			->press('Submit');
+			->press('Submit')
+			->see('short_intro');
 		$this->see("StudentsController")
 			->type('Website', 'label')
 			->type('website', 'colname')
@@ -324,7 +326,8 @@ class LaraAdminModuleTest extends TestCase
 			->type('', 'minlength')
 			->type('100', 'maxlength')
 			->check('required')
-			->press('Submit');
+			->press('Submit')
+			->see('website');
 		$this->see("StudentsController")
 			->type('Test Files', 'label')
 			->type('test_files', 'colname')
