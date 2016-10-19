@@ -161,6 +161,24 @@ class LaraAdminModuleTest extends TestCase
 			->select('employees', 'popup_vals_table')
 			->press('Submit')
 			->see('@employees');
+		$this->see("StudentsController")
+			->type('Email', 'label')
+			->type('email', 'colname')
+			->select('8', 'field_type')
+			->check('unique')
+			->type('', 'defaultvalue')
+			->type('', 'minlength')
+			->type('', 'maxlength')
+			->check('required')
+			->press('Submit');
+		$this->see("StudentsController")
+			->type('Test File', 'label')
+			->type('test_file', 'colname')
+			->select('9', 'field_type')
+			->type('', 'defaultvalue')
+			->check('required')
+			->press('Submit')
+			->see('test_file');
 	}
 
 	/**
