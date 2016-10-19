@@ -251,6 +251,16 @@ class LaraAdminModuleTest extends TestCase
 			->press('Submit')
 			->see('@roles');
 		$this->see("StudentsController")
+			->type('User Password', 'label')
+			->type('password', 'colname')
+			->select('17', 'field_type')
+			->type('', 'defaultvalue')
+			->check('required')
+			->type('0', 'minlength')
+			->type('64', 'maxlength')
+			->press('Submit')
+			->see('User Password');
+		$this->see("StudentsController")
 			->type('Test Files', 'label')
 			->type('test_files', 'colname')
 			->select('24', 'field_type')
