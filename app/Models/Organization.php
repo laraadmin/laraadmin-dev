@@ -15,14 +15,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Organization extends Model
 {
     use SoftDeletes;
-	
-	protected $table = 'organizations';
-	
-	protected $hidden = [
-        
+    
+    protected $table = 'organizations';
+    
+    protected $hidden = [
+    
     ];
-
-	protected $guarded = [];
-
-	protected $dates = ['deleted_at'];
+    
+    protected $guarded = [];
+    
+    protected $dates = ['deleted_at'];
 }
