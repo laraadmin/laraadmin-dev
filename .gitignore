@@ -10,6 +10,7 @@ Homestead.json
 /storage/thumbnails
 
 .idea/workspace.xml
+.idea/modules.xml
 .idea/tasks.xml
 .idea/la1.xml
 .idea/*.iml
