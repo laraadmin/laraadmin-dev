@@ -14,7 +14,7 @@ use Dwij\Laraadmin\Models\Module;
 class CreateBackupsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Migration generate Module Table Schema by LaraAdmin
      *
      * @return void
      */
@@ -71,6 +71,7 @@ class CreateBackupsTable extends Migration
             "popup_vals" => ["Employee", "Client"]
         ]
         # Format Details: Check http://laraadmin.com/docs/migrations_cruds#schema-ui-types
+        
         colname: Database column name. lowercase, words concatenated by underscore (_)
         label: Label of Column e.g. Name, Cost, Is Public
         field_type: It defines type of Column in more General way.
@@ -83,7 +84,7 @@ class CreateBackupsTable extends Migration
         popup_vals: These are values for MultiSelect, TagInput and Radio Columns. Either connecting @tables or to list []
         */
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -91,7 +92,7 @@ class CreateBackupsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('backups')) {
+        if(Schema::hasTable('backups')) {
             Schema::drop('backups');
         }
     }
