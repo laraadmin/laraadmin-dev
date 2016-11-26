@@ -8,3 +8,9 @@ Homestead.json
 /public/uploads
 /storage/uploads
 /storage/thumbnails
+
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/la1.xml
+.idea/*.iml
+.idea/misc.xml
